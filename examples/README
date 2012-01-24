@@ -1,0 +1,7 @@
+Only example-4, example-7, example-10, example-12 are meant to be executed from
+command-line.
+
+The other programs are just examples of instruction encodings that are meant to
+be examined with objdump or single-stepped in gdb. They do not call syscall
+exit() to exit properly, so they will likely segmentation fault when execution
+falls through outside of .text.
