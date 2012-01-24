@@ -23,7 +23,7 @@ incl %eax
 decl %ebx
 
 # labels are just symbols containing an address to make
-# it easy to specify destination addresses for jumps
+# it easy to specify addresses
 label1:
 label2:
 	movl $0, %eax	  # %eax = 0

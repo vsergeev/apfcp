@@ -606,7 +606,7 @@ decl %ebx
 \mvs
 \begin{gascode}
 # labels are just symbols containing an address to make
-# it easy to specify destination addresses for jumps
+# it easy to specify addresses
 label1:
 label2:
   movl $0, %eax   # %eax = 0
@@ -679,8 +679,6 @@ Disassembly of section .text:
  8048082: 75 fc                 jne    8048080 <loop>
  8048084: 83 f8 05              cmp    $0x5,%eax
  8048087: 74 00                 je     8048089 <label_foo>
-
-...
 \end{customobjdumpcode}
 \end{frame}
 
@@ -2328,7 +2326,7 @@ $
 \begin{itemize}
   \item Practice the basics
   \item Write your own syscall, e.g. rot13
-  \item Do Stack Smashing Challenges: \\ \url{http://community.corest.com/~gera/InsecureProgramming/}
+  \item Do Stack Smashing challenges: \\ \url{http://community.corest.com/~gera/InsecureProgramming/}
   \item Rewrite a traditional *nix program in Assembly
   \item e.g. telnet: \\ {\small \url{https://github.com/vsergeev/x86asm/blob/master/telnet.asm}}
   \item e.g. asmscan: \\ {\small \url{https://github.com/edma2/asmscan}}
