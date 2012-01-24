@@ -1,5 +1,5 @@
-Only example-4, example-7, example-10, example-12 are meant to be executed from
-command-line.
+Only example-4, example-7, example-10, example-12, example-13, example-14 are
+meant to be executed from command-line.
 
 The other programs are just examples of instruction encodings that are meant to
 be examined with objdump or single-stepped in gdb. They do not call syscall
