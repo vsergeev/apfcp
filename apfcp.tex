@@ -92,7 +92,7 @@ size_t ex_strlen(const char *s) {
 
 %%% Introduction and Example Slide 2
 \begin{frame}[fragile,t]
-\frametitle{Reasonable strlen disassembly}
+\frametitle{Reasonable strlen (example-1.c) disassembly}
 Let's compile and disassemble it.\vs
 \begin{customobjdumpcode}
 $ gcc -O1 example-1.c -o example-1 && objdump -d eaxmple-1
@@ -112,7 +112,7 @@ $ gcc -O1 example-1.c -o example-1 && objdump -d eaxmple-1
 
 %%% Introduction and Example Slide 3
 \begin{frame}[fragile,t]
-\frametitle{Reasonable strlen disassembly}
+\frametitle{Reasonable strlen (example-1.c) disassembly}
 Commented disassembly for \verb+ex_strlen()+:\vs
 \begin{gascode}
 # size_t strlen(const char *s);
@@ -134,7 +134,7 @@ ex_strlen:
 
 %%% Introduction and Example Slide 4
 \begin{frame}[fragile,t]
-\frametitle{glibc strlen}
+\frametitle{glibc strlen (example-1.c)}
 glibc's i386 implementation of \verb+strlen()+:\vs
 \begin{customobjdumpcode}
 $ cat glibc/sysdeps/i386/strlen.c
@@ -160,7 +160,7 @@ strlen (const char *str)
 
 %%% Introduction and Example Slide 5
 \begin{frame}[fragile,t]
-\frametitle{glibc strlen disassembly}
+\frametitle{glibc strlen (example-1.c) disassembly}
 Let's compile and disassemble it.\vs
 \begin{customobjdumpcode}
 $ gcc -O1 example-1.c -o example-1 && objdump -d a.out
@@ -183,7 +183,7 @@ $ gcc -O1 example-1.c -o example-1 && objdump -d a.out
 
 %%% Introduction and Example Slide 6
 \begin{frame}[fragile,t]
-\frametitle{glibc strlen disassembly}
+\frametitle{glibc strlen (example-1.c) disassembly}
 Commented disassembly for glibc's \verb+strlen()+:\vs
 \begin{gascode}
 # size_t strlen(const char *s);
@@ -1254,7 +1254,7 @@ int main(void) {
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack usage (example-8.S)}
+\frametitle{Example of Stack Usage (example-8.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -1286,7 +1286,7 @@ addl $8, %esp       # Deallocate 8 bytes off of the stack
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack usage (example-8.S)}
+\frametitle{Example of Stack Usage (example-8.S)}
 \mvs
 \begin{gascode}
 movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
@@ -1300,7 +1300,7 @@ movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack usage (example-8.S) Disassembly}
+\frametitle{Example of Stack Usage (example-8.S) Disassembly}
 \begin{customobjdumpcode}
 $ as example-8.S -o example-8.o && ld example-8.o -o example-8 &&
    objdump -D example-8

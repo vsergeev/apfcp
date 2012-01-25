@@ -1,3 +1,4 @@
+/* File Line Counter in C (example-12-c.c) */
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {

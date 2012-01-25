@@ -1,3 +1,4 @@
+# Iterative Fibonacci Sequence Program (example-4.S)
 .section .text
 .global main
 main:

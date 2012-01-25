@@ -1,3 +1,4 @@
+# Example of Indirectly Accessing Memory (example-6.S)
 .section .text
 .global _start
 _start:

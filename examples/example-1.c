@@ -1,3 +1,4 @@
+/* Reasonable strlen versus glibc i386 strlen example (example-1.c) */
 #include <stdio.h>
 
 size_t ex_strlen(const char *s) {
@@ -7,6 +8,7 @@ size_t ex_strlen(const char *s) {
 	return i;
 }
 
+/* From glibc/sysdeps/i386/strlen.c */
 size_t
 glibc_strlen (const char *str)
 {

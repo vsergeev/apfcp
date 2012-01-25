@@ -1,3 +1,4 @@
+# Example of using the Frame Pointer (example-11.S)
 .section .text
 .global _start
 _start:

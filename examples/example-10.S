@@ -1,3 +1,4 @@
+# 99 Bottles of Beer on the Wall (example-10.S)
 .section .text
 .global main
 .global printf

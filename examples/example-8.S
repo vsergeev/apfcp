@@ -1,3 +1,4 @@
+# Example of Stack Usage (example-8.S)
 .section .text
 .global _start
 _start:
