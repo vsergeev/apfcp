@@ -17,7 +17,7 @@ pushl $0xdeadbeef   # Push dword 0xdeadbeef onto the stack
 # | 0x00000006 |
 # | 0xdeadbeef |  <-- %esp = 0x8xxxxxxx
 
-addl $8, %eax       # Deallocate 8 bytes off of the stack
+addl $8, %esp       # Deallocate 8 bytes off of the stack
 
 # Stack is now
 # |    ...     |

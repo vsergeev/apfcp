@@ -1246,7 +1246,7 @@ int main(void) {
   popl %eax
   # is basically similar to
   movl (%esp), %eax
-  addl $4, %eax
+  addl $4, %esp
   \end{gascode}
 \begin{itemize}
   \item We can access stack memory with indirect memory acceses on {\ttfamily \%esp}, not just {\ttfamily push} and {\ttfamily pop}
@@ -1275,7 +1275,7 @@ pushl $0xdeadbeef   # Push dword 0xdeadbeef onto the stack
 # | 0x00000006 |
 # | 0xdeadbeef |  <-- %esp = 0x8xxxxxxx
 
-addl $8, %eax       # Deallocate 8 bytes off of the stack
+addl $8, %esp       # Deallocate 8 bytes off of the stack
 
 # Stack is now
 # |    ...     |
