@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="all_figures.svg"
+   sodipodi:docname="apfcp_figures.svg"
    inkscape:export-filename="/home/anteater/projects-misc/asmlec/cpu_big_picture.png"
    inkscape:export-xdpi="500"
    inkscape:export-ydpi="500">
@@ -323,9 +323,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.6284196"
-     inkscape:cx="1346.7028"
-     inkscape:cy="732.10743"
+     inkscape:zoom="2.5136784"
+     inkscape:cx="516.51067"
+     inkscape:cy="541.67177"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -333,8 +333,8 @@
      inkscape:snap-global="true"
      inkscape:window-width="1366"
      inkscape:window-height="768"
-     inkscape:window-x="230"
-     inkscape:window-y="108"
+     inkscape:window-x="440"
+     inkscape:window-y="648"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -1327,7 +1327,7 @@
        height="15"
        x="324.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1337,7 +1337,7 @@
        height="15"
        x="334.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1347,7 +1347,7 @@
        height="15"
        x="344.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1357,7 +1357,7 @@
        height="15"
        x="354.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1367,7 +1367,7 @@
        height="15"
        x="364.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1377,7 +1377,7 @@
        height="15"
        x="374.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1387,7 +1387,7 @@
        height="15"
        x="384.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1397,7 +1397,7 @@
        height="15"
        x="394.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1407,7 +1407,7 @@
        height="15"
        x="404.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1417,7 +1417,7 @@
        height="15"
        x="414.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1427,7 +1427,7 @@
        height="15"
        x="424.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1437,7 +1437,7 @@
        height="15"
        x="434.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1447,7 +1447,7 @@
        height="15"
        x="444.99997"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1457,7 +1457,7 @@
        height="15"
        x="455"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1467,7 +1467,7 @@
        height="15"
        x="465"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1477,7 +1477,7 @@
        height="15"
        x="475"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1487,7 +1487,7 @@
        height="15"
        x="485"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1497,7 +1497,7 @@
        height="15"
        x="495"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1507,7 +1507,7 @@
        height="15"
        x="505"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1517,7 +1517,7 @@
        height="15"
        x="525"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1527,7 +1527,7 @@
        height="15"
        x="535"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1537,7 +1537,7 @@
        height="15"
        x="545"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1547,7 +1547,7 @@
        height="15"
        x="555"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1557,7 +1557,7 @@
        height="15"
        x="565"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1567,7 +1567,7 @@
        height="15"
        x="575"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1577,7 +1577,7 @@
        height="15"
        x="585"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1587,7 +1587,7 @@
        height="15"
        x="595"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1597,7 +1597,7 @@
        height="15"
        x="605"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1607,7 +1607,7 @@
        height="15"
        x="615"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1617,7 +1617,7 @@
        height="15"
        x="625"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <rect
@@ -1627,7 +1627,7 @@
        height="15"
        x="635"
        y="477.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <text
@@ -1637,7 +1637,7 @@
        y="475.36218"
        id="text6271-0-6"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1652,7 +1652,7 @@
        y="475.36218"
        id="text6271-0-6-8"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1667,7 +1667,7 @@
        y="475.36218"
        id="text6271-0-6-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1682,7 +1682,7 @@
        y="475.36218"
        id="text6271-0-6-8-2"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1697,7 +1697,7 @@
        y="475.36218"
        id="text6271-0-6-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1712,7 +1712,7 @@
        y="475.36218"
        id="text6271-0-6-8-8"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1727,7 +1727,7 @@
        y="475.36218"
        id="text6271-0-6-7-5"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1742,7 +1742,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1757,7 +1757,7 @@
        y="475.36218"
        id="text6271-0-6-8-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1772,7 +1772,7 @@
        y="475.36218"
        id="text6271-0-6-7-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1787,7 +1787,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1802,7 +1802,7 @@
        y="475.36218"
        id="text6271-0-6-0-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1817,7 +1817,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-5"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1832,7 +1832,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1847,7 +1847,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-8"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1862,7 +1862,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1877,7 +1877,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1892,7 +1892,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1907,7 +1907,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-5-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1922,7 +1922,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-7-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1937,7 +1937,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-8-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1952,7 +1952,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-3-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1967,7 +1967,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-9"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1982,7 +1982,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-6"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -1997,7 +1997,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-5-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2012,7 +2012,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-7-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2027,7 +2027,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-8-2"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2042,7 +2042,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-3-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2057,7 +2057,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-4"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2072,7 +2072,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-5"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2087,7 +2087,7 @@
        y="475.36218"
        id="text6271-0-6-8-2-9-5-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2102,7 +2102,7 @@
        y="475.36218"
        id="text6271-0-6-0-1-7-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2117,7 +2117,7 @@
        y="483.36218"
        id="text7972"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2137,7 +2137,7 @@
        y="483.36218"
        id="text7972-5"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2157,7 +2157,7 @@
        y="483.36218"
        id="text7972-9"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2177,7 +2177,7 @@
        y="483.36218"
        id="text7972-2"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2197,7 +2197,7 @@
        y="483.36218"
        id="text7972-91"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2217,7 +2217,7 @@
        y="483.36218"
        id="text7972-0"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2237,7 +2237,7 @@
        y="483.36218"
        id="text7972-1"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2257,7 +2257,7 @@
        y="483.36218"
        id="text7972-6"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2277,7 +2277,7 @@
        y="483.36218"
        id="text7972-91-9"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2297,7 +2297,7 @@
        y="483.36218"
        id="text7972-0-8"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2317,7 +2317,7 @@
        y="483.36218"
        id="text7972-1-2"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2337,7 +2337,7 @@
        y="483.36218"
        id="text7972-6-8"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2369,7 +2369,7 @@
        y="483.36218"
        id="text7972-0-2"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2389,7 +2389,7 @@
        y="483.36218"
        id="text7972-1-3"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2409,7 +2409,7 @@
        y="483.36218"
        id="text7972-6-2"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2429,7 +2429,7 @@
        y="483.36218"
        id="text7972-91-4"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2449,7 +2449,7 @@
        y="483.36218"
        id="text7972-0-0"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2469,7 +2469,7 @@
        y="483.36218"
        id="text7972-1-1"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2489,7 +2489,7 @@
        y="483.36218"
        id="text7972-6-04"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2509,7 +2509,7 @@
        y="482.36218"
        id="text7972-1-37-0"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2534,7 +2534,7 @@
        y="483.36218"
        id="text7972-0-0-0"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2554,7 +2554,7 @@
        y="482.36218"
        id="text7972-1-37-0-5"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2579,7 +2579,7 @@
        y="483.36218"
        id="text7972-6-04-4"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2599,7 +2599,7 @@
        y="483.36218"
        id="text7972-6-04-6"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2619,7 +2619,7 @@
        y="483.36218"
        id="text7972-6-04-4-9"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2639,7 +2639,7 @@
        y="483.36218"
        id="text7972-6-04-7"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2659,7 +2659,7 @@
        y="483.36218"
        id="text7972-6-04-4-91"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2679,7 +2679,7 @@
        y="483.36218"
        id="text7972-6-04-6-7"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2699,7 +2699,7 @@
        y="483.36218"
        id="text7972-6-04-4-9-3"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2719,7 +2719,7 @@
        y="483.36218"
        id="text7972-6-04-6-7-4"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2739,7 +2739,7 @@
        y="483.36218"
        id="text7972-6-04-4-9-3-8"
        sodipodi:linespacing="100%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -2760,7 +2760,7 @@
        id="text2987-6-1-0-1-6-5"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/386state.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/eflags.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -4365,7 +4365,7 @@
        height="545.00006"
        x="1310"
        y="40.174152"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4375,7 +4375,7 @@
        y="37.362183"
        id="text2987-8"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4390,7 +4390,7 @@
        y="47.362183"
        id="text3244-7"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4405,7 +4405,7 @@
        y="587.36218"
        id="text3244-7-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4420,7 +4420,7 @@
        height="90"
        x="1310"
        y="458.36224"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4430,7 +4430,7 @@
        y="472.36218"
        id="text2987-9"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4445,7 +4445,7 @@
        y="547.36218"
        id="text3244-7-3-9"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4460,7 +4460,7 @@
        height="45"
        x="1310"
        y="398.36224"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4470,7 +4470,7 @@
        y="413.36224"
        id="text2987-9-2"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4485,7 +4485,7 @@
        y="442.36218"
        id="text3244-7-3-9-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4500,7 +4500,7 @@
        y="433.36224"
        id="text2987-9-2-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4515,7 +4515,7 @@
        y="492.36218"
        id="text2987-9-2-1-2"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4535,7 +4535,7 @@
        height="45"
        x="1310"
        y="343.36224"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4545,7 +4545,7 @@
        y="358.36224"
        id="text2987-9-2-17"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4560,7 +4560,7 @@
        y="387.36218"
        id="text3244-7-3-9-3-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4575,7 +4575,7 @@
        y="378.36224"
        id="text2987-9-2-1-4"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4590,7 +4590,7 @@
        height="51.000061"
        x="1310"
        y="292.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4600,7 +4600,7 @@
        y="318.36218"
        id="text2987-9-2-17-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4615,7 +4615,7 @@
        y="337.36218"
        id="text2987-9-2-1-4-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4630,7 +4630,7 @@
        y="342.36218"
        id="text3244-7-3-9-3-1-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4645,7 +4645,7 @@
        y="152.36217"
        id="text3244-7-0"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4660,7 +4660,7 @@
        height="140"
        x="-152.36217"
        y="1310.3854"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"
        transform="matrix(0,-1,1,0,0,0)" />
@@ -4671,7 +4671,7 @@
        y="127.36217"
        id="text2987-9-2-17-1-6"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4684,7 +4684,7 @@
        d="m 1295,232.36218 25,-15 20,15 20,-15 15,15 20,-15 15,15 20,-15 15,15 20,-15"
        id="path3935"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <rect
@@ -4694,7 +4694,7 @@
        height="49.999924"
        x="1310"
        y="152.36226"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4704,7 +4704,7 @@
        y="167.36218"
        id="text2987-9-2-17-1-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4719,7 +4719,7 @@
        y="182.36218"
        id="text2987-9-2-1-4-1-6"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4732,7 +4732,7 @@
        d="m 1295.0001,71.362249 25,-15 20,15 20,-15 15,15 20,-15 15,15 20,-15 15,15 20,-15"
        id="path3935-8"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <path
@@ -4740,7 +4740,7 @@
        d="m 1378.9318,218.40569 c -0.1522,-0.40685 -1.2981,-3.57644 -2.5464,-7.04352 -1.2483,-3.46708 -2.3109,-6.41122 -2.3614,-6.54252 -0.079,-0.20552 -0.021,-0.19323 0.4169,0.0883 0.9822,0.63169 2.1812,1.05193 3.7272,1.30629 l 0.4735,0.0779 0,-4.18691 0,-4.18692 0.5682,0 0.5682,0 0,4.1924 0,4.19239 0.5366,-0.0816 c 1.4845,-0.22571 2.8156,-0.68664 3.7867,-1.31125 0.296,-0.19033 0.485,-0.25577 0.4477,-0.15498 -0.036,0.0959 -1.2184,3.37293 -2.6289,7.28224 -1.4105,3.90932 -2.5976,7.10785 -2.638,7.10785 -0.041,0 -0.1981,-0.33288 -0.3503,-0.73973 z"
        id="path5813"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -4750,7 +4750,7 @@
        y="162.36218"
        id="text3244-7-0-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -4852,7 +4852,7 @@
        y="22.362183"
        id="text2987-8-3"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -5009,7 +5009,7 @@
        height="80"
        x="880"
        y="682.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5017,7 +5017,7 @@
        d="m 880,682.36218 0,-25"
        id="path6867"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5025,7 +5025,7 @@
        d="m 960,682.36218 0,-25"
        id="path6869"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5033,7 +5033,7 @@
        d="m 880,702.36218 80,0"
        id="path6871"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5041,7 +5041,7 @@
        d="m 880,722.36218 80,0"
        id="path6873"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5049,7 +5049,7 @@
        d="m 880,742.36218 80,0"
        id="path6875"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <text
@@ -5059,7 +5059,7 @@
        y="647.36218"
        id="text6877"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5082,7 +5082,7 @@
        d="m 880,787.36218 0,-25"
        id="path6867-3"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <path
@@ -5090,7 +5090,7 @@
        d="m 960,787.36218 0,-25"
        id="path6869-6"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <text
@@ -5101,7 +5101,7 @@
        id="text3244-4"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5116,7 +5116,7 @@
        y="777.36218"
        id="text6877-1"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5142,14 +5142,14 @@
        id="text3244-4-9"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
          id="tspan3246-8-0"
          x="904.6499"
          y="709.71008"
-         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0xffffffff</tspan></text>
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0xabcdabcd</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
@@ -5158,7 +5158,7 @@
        id="text3244-4-9-8"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5174,7 +5174,7 @@
        id="text3244-4-9-8-5"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5190,7 +5190,7 @@
        id="text2987-6-9-8-1-9"
        sodipodi:linespacing="125%"
        transform="scale(0.98933302,1.010782)"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
@@ -5203,7 +5203,7 @@
        d="m 860,712.36218 c 15,0 15,0 15,0"
        id="path7066"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/stackplain.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/stackplain.png"
        inkscape:export-xdpi="500"
        inkscape:export-ydpi="500" />
     <text
@@ -7207,7 +7207,7 @@
        height="50"
        x="1310"
        y="252.36218"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
     <text
@@ -7217,7 +7217,7 @@
        y="272.36218"
        id="text2987-9-2-17-1-8"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -7232,7 +7232,7 @@
        y="292.36218"
        id="text2987-9-2-1-4-1-9"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375"><tspan
          sodipodi:role="line"
@@ -7245,8 +7245,621 @@
        d="m 1379.4536,236.31868 c 0.1522,0.4068 1.2981,3.5764 2.5464,7.0435 1.2483,3.4671 2.3109,6.4112 2.3614,6.5425 0.079,0.2055 0.021,0.1932 -0.4169,-0.088 -0.9822,-0.6317 -2.1812,-1.0519 -3.7272,-1.3063 l -0.4735,-0.078 0,4.1869 0,4.1869 -0.5682,0 -0.5682,0 0,-4.1924 0,-4.1924 -0.5366,0.082 c -1.4845,0.2258 -2.8156,0.6867 -3.7867,1.3113 -0.296,0.1903 -0.485,0.2558 -0.4477,0.155 0.036,-0.096 1.2184,-3.373 2.6289,-7.2823 1.4105,-3.9093 2.5976,-7.1078 2.638,-7.1078 0.041,0 0.1981,0.3329 0.3503,0.7397 z"
        id="path5813-0"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayout.png"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/memlayoutvm.png"
        inkscape:export-xdpi="375"
        inkscape:export-ydpi="375" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.424;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect6865-5-0-7-1"
+       width="80"
+       height="80"
+       x="1570.0001"
+       y="1037.3623"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.233;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1037.3622 0,-65.00002"
+       id="path6867-9-6-0-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.233;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1650,1037.3622 0,-65.00002"
+       id="path6869-8-4-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1057.3622 80,0"
+       id="path6871-4-6-8-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1077.3622 80,0"
+       id="path6873-8-2-0-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1097.3622 80,0"
+       id="path6875-1-5-4-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1606.8174"
+       y="947.26276"
+       id="text6877-0-8-2-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan6879-3-6-9-3"
+         x="1606.8174"
+         y="947.26276"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1606.8174"
+         y="959.76276"
+         id="tspan6881-0-2-6-7"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1606.8174"
+         y="972.26276"
+         id="tspan6883-4-8-1-5"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1157.3621 0,-39.9999"
+       id="path6867-3-4-4-0-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1650,1157.3621 0,-39.9999"
+       id="path6869-6-4-7-4-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1610.1758"
+       y="1041.1366"
+       id="text3244-4-4-2-2-2"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-7-4-2-8"
+         x="1610.1758"
+         y="1041.1366"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">old ebp</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1607"
+       y="1147.3622"
+       id="text6877-1-6-0-2-9"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan6879-2-3-6-0-7"
+         x="1607"
+         y="1147.3622"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1607"
+         y="1159.8622"
+         id="tspan6881-9-1-2-5-3"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1607"
+         y="1172.3622"
+         id="tspan6883-3-7-9-5-6"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1620.2836"
+       y="1100.4967"
+       id="text3244-4-9-8-5-1-1-0-9"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-0-7-1-2-3"
+         x="1620.2836"
+         y="1100.4967"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">buf</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1620.2836"
+       y="1080.71"
+       id="text3244-4-9-8-2-4-8-1"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-9"
+         x="1620.2836"
+         y="1080.71"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">buf</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,1137.3621 80,0"
+       id="path6875-1-5-3-8-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1617.2512"
+       y="1120.2833"
+       id="text3244-4-9-8-5-1-1-9-0-7"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-0-7-1-1-4-8"
+         x="1617.2512"
+         y="1120.2833"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">&amp;buf</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570.0001,1017.3622 80,0"
+       id="path6871-4-6-8-9-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1610.1758"
+       y="1021.35"
+       id="text3244-4-4-2-2-2-5"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-7-4-2-8-0"
+         x="1610.1758"
+         y="1021.35"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">retaddr</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570.0001,997.36218 80,0"
+       id="path6871-4-6-8-9-4-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1602.0895"
+       y="1001.5634"
+       id="text3244-4-9-8-2-4-8-6"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-1"
+         x="1602.0895"
+         y="1001.5634"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0x????????</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1602.0895"
+       y="981.77667"
+       id="text3244-4-9-8-2-4-8-0"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-6"
+         x="1602.0895"
+         y="981.77667"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0x????????</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1570,977.36218 80,0"
+       id="path6871-4-6-8-9-4-3-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.42400002;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect6865-5-0-7-1-2"
+       width="80"
+       height="80"
+       x="1735.0001"
+       y="1037.3623"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1057.3622 80,0"
+       id="path6871-4-6-8-9-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1077.3622 80,0"
+       id="path6873-8-2-0-2-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1097.3622 80,0"
+       id="path6875-1-5-4-0-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1157.3621 0,-39.9999"
+       id="path6867-3-4-4-0-9-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1815,1157.3621 0,-39.9999"
+       id="path6869-6-4-7-4-2-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1772"
+       y="1147.3622"
+       id="text6877-1-6-0-2-9-4"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan6879-2-3-6-0-7-5"
+         x="1772"
+         y="1147.3622"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1772"
+         y="1159.8622"
+         id="tspan6881-9-1-2-5-3-2"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1772"
+         y="1172.3622"
+         id="tspan6883-3-7-9-5-6-5"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1137.3621 80,0"
+       id="path6875-1-5-3-8-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1784.0303"
+       y="1120.2833"
+       id="text3244-4-9-8-5-1-1-9-0-7-8"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-0-7-1-1-4-8-6"
+         x="1784.0303"
+         y="1120.2833"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">&amp;buf</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735.0001,1017.3622 80,0"
+       id="path6871-4-6-8-9-4-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="1021.35"
+       id="text3244-4-4-2-2-2-5-8"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-7-4-2-8-0-4"
+         x="1768.8685"
+         y="1021.35"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0xbffff300</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="1100.4966"
+       id="text3244-4-9-8-2-4-8-6-4"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-1-9"
+         x="1768.8685"
+         y="1100.4966"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">shellcode</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="1080.7098"
+       id="text3244-4-9-8-2-4-8-0-2"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-6-0"
+         x="1768.8685"
+         y="1080.7098"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">shellcode</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,977.36218 80,0"
+       id="path6871-4-6-8-9-4-3-3-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="1041.1366"
+       id="text3244-4-9-8-5-1-1-0-9-4-6"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-0-7-1-2-3-4-4"
+         x="1768.8685"
+         y="1041.1366"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">'AAAAAAAA'</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.15336597;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 1820,1027.3622 35,0"
+       id="path7119"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.73299998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
+       d="m 1855,1027.3622 0,80 -30,0"
+       id="path7121"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.73299998000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
+       d="m 1665,1062.3622 50,0"
+       id="path7354"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1693.0598"
+       y="1041.1366"
+       id="text3244-4-9-8-2-4-8-0-4"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-6-8"
+         x="1693.0598"
+         y="1041.1366"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">gets()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24.44413757px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="982.04327"
+       y="1740.069"
+       id="text6877-1-6-0-2-9-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"
+       transform="scale(1.6363841,0.61110346)"><tspan
+         sodipodi:role="line"
+         id="tspan6879-2-3-6-0-7-1"
+         x="982.04327"
+         y="1740.069"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan><tspan
+         sodipodi:role="line"
+         x="982.04327"
+         y="1747.569"
+         id="tspan6881-9-1-2-5-3-7"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan><tspan
+         sodipodi:role="line"
+         x="982.04327"
+         y="1755.069"
+         id="tspan6883-3-7-9-5-6-2"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24.44413757px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1082.8754"
+       y="1740.069"
+       id="text6877-1-6-0-2-9-7-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"
+       transform="scale(1.6363841,0.61110346)"><tspan
+         sodipodi:role="line"
+         id="tspan6879-2-3-6-0-7-1-2"
+         x="1082.8754"
+         y="1740.069"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan><tspan
+         sodipodi:role="line"
+         x="1082.8754"
+         y="1747.569"
+         id="tspan6881-9-1-2-5-3-7-2"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan><tspan
+         sodipodi:role="line"
+         x="1082.8754"
+         y="1755.069"
+         id="tspan6883-3-7-9-5-6-2-6"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace Bold">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="1001.5634"
+       id="text3244-4-9-8-2-4-8-6-1"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-1-5"
+         x="1768.8685"
+         y="1001.5634"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0x????????</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23292017;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735.0001,997.36218 80,0"
+       id="path6871-4-6-8-9-4-3-31"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1768.8685"
+       y="981.77667"
+       id="text3244-4-9-8-2-4-8-0-9"
+       sodipodi:linespacing="125%"
+       transform="scale(0.98933302,1.010782)"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan3246-8-0-8-1-0-3-6-7"
+         x="1768.8685"
+         y="981.77667"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">0x????????</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1735,1037.3622 0,-65.00002"
+       id="path6867-9-6-0-8-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.23300004;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 1815,1037.3622 0,-65.00002"
+       id="path6869-8-4-4-7-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       x="1771.8174"
+       y="947.26276"
+       id="text6877-0-8-2-2-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/anteater/projects-misc/asmlec/figures/bufferoverflow.png"
+       inkscape:export-xdpi="500"
+       inkscape:export-ydpi="500"><tspan
+         sodipodi:role="line"
+         id="tspan6879-3-6-9-3-8"
+         x="1771.8174"
+         y="947.26276"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1771.8174"
+         y="959.76276"
+         id="tspan6881-0-2-6-7-5"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan><tspan
+         sodipodi:role="line"
+         x="1771.8174"
+         y="972.26276"
+         id="tspan6883-4-8-1-5-6"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">.</tspan></text>
   </g>
 </svg>

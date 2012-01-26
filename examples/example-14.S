@@ -112,9 +112,9 @@ putbyte:
 putchar:
   # Save %ebx
   pushl %ebx
-  # syscall write(0, c, 1);
+  # syscall write(1, c, 1);
   movl $0x04, %eax
-  movl $0, %ebx
+  movl $1, %ebx
   leal 8(%esp), %ecx
   movl $1, %edx
   int $0x80

