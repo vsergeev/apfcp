@@ -93,4 +93,4 @@ formatStr:
 .section .data
   # input data (multiple of 3 bytes for the purpose of this example)
   plainData:      .ascii "Hello World!\0"
-  plainDataLen:   .word 12, 0
+  plainDataLen:   .long 12

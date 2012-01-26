@@ -418,7 +418,7 @@ movl %eax, magicNumber  # *(magicNumber) = %eax
 
 .section .data
 magicNumber:
-  .byte 0xef, 0xbe, 0xad, 0xde
+  .long 0xdeadbeef
 \end{gascode*}
 \end{frame}
 
@@ -484,7 +484,7 @@ Disassembly of section .data:
     \begin{itemize}
         \item {\ttfamily \%} precedes a register: {\ttfamily \%eax}
         \item {\ttfamily \$} precedes a constant: {\ttfamily \$5, \$0xff, \$07, \$'A, \$0b111}
-        \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .ascii, .section, .comm}
+        \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .long, .ascii, .section, .comm}
         \item No special character precedes a dereferenced memory address: \\ {\ttfamily movl \%eax, 0x80000000}
         \item {\ttfamily mylabel:} defines a label, a symbol of name {\ttfamily mylabel} containing the address at that point
     \end{itemize}
@@ -836,7 +836,7 @@ anotherStr:   .ascii "Another string\n\0"
 .section .data
 magicByte1:   .byte 0xaa
 magicBytes2:  .byte 0x55, 0x10
-magicWord:    .word 0xbeef, 0xdead
+magicDWord:   .long 0xdeadbeef
 magicStr:     .ascii "String!\0"
 
 # Reserve 1024 uninitialized bytes in .bss
@@ -953,7 +953,7 @@ andb byteMask, %al        # %al &= *byteMask
 movl %eax, modifiedDword  # *modifiedDword = %eax
 
 .section .rodata          # Read-only!
-magicDword: .word 0xffff, 0xffff
+magicDword: .long 0xffffffff
 byteMask:   .byte 0x55
 
 .section .bss             # Uninitialized read-write
@@ -1013,7 +1013,7 @@ loop:
     jl loop
 
 .section .data
-tableStart: .word 0x0000, 0x0000, 0x0001, 0x0000, ...
+tableStart: .long 0x00000000, 0x00000001, ...
 \end{gascode}
 \end{frame}
 
@@ -1165,7 +1165,7 @@ formatStr:
 .section .data
   # input data (multiple of 3 bytes for the purpose of this example)
   plainData:      .ascii "Hello World!\0"
-  plainDataLen:   .word 12, 0
+  plainDataLen:   .long 12
 \end{gascode*}
 \end{frame}
 
@@ -1430,7 +1430,7 @@ sumThreeNumbers:
   ret
 
 .section .data
-magicNumber: .word 42, 0
+magicNumber: .long 42
 \end{gascode}
 \end{frame}
 
@@ -1994,7 +1994,7 @@ $
 \frametitle{Linux System Calls}
 \mvs
 \begin{itemize}
-  \item 338 system calls (and more being added)
+  \item Currently 338 system calls
   \item Common ones are {\ttfamily exit(), read(), write(), open(), close(), ioctl(), fork(), execve()}, etc.
   \pause
   \begin{itemize}

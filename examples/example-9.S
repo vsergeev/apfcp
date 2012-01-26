@@ -25,5 +25,5 @@ sumThreeNumbers:
   ret
 
 .section .data
-magicNumber: .word 42, 0
+magicNumber: .long 42
 

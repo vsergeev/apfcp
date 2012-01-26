@@ -16,7 +16,7 @@ anotherStr:   .ascii "Another string\n\0"
 .section .data
 magicByte1:   .byte 0xaa
 magicBytes2:  .byte 0x55, 0x10
-magicWord:    .word 0xbeef, 0xdead
+magicDWord:   .long 0xdeadbeef
 magicStr:     .ascii "String!\0"
 
 # Reserve 1024 uninitialized bytes in .bss

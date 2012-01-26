@@ -25,4 +25,4 @@ movl magicNumber, %eax	# %eax = *(magicNumber)
 movl %eax, magicNumber	# *(magicNumber) = %eax
 
 .section .data
-magicNumber: .byte 0xef, 0xbe, 0xad, 0xde
+magicNumber: .long 0xdeadbeef
