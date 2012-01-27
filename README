@@ -10,8 +10,9 @@ cheap? when is it and when is it not?)
 * ability to debug at the lowest level, which means you can catch the subtlest
 of bugs
 * ability to utilize processor-specific instructions that squeeze the most out
-of every clock cycle and available processor features the appreciation of time
-/ space advantages that different compiler optimization settings can yield
+of every clock cycle and available processor features
+* the appreciation of time / space advantages that different compiler
+optimization settings can yield
 * a fluency with low-level detail that makes it easy to pick up new computer
 architectures
 
