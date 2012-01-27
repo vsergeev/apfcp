@@ -16,14 +16,14 @@ stosb             # *(%edi++) = %al
 
 # Load the last four with a single dword
 movl $0xFFFFFFFF, %eax
-stosw             # *(%edi) = %eax, %esi += 4
+stosl             # *(%edi) = %eax, %esi += 4
 
 # Copy str1 to str2
 movl $str1, %esi  # str1 in the source
 movl $str2, %edi  # str2 in the destination
 # Two dword moves copies all 8 bytes
-movsw
-movsw
+movsl
+movsl
 # Done!
 
 .section .bss

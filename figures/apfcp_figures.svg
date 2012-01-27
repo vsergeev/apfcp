@@ -323,9 +323,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.5136784"
-     inkscape:cx="516.51067"
-     inkscape:cy="541.67177"
+     inkscape:zoom="1.2568392"
+     inkscape:cx="1845.3844"
+     inkscape:cy="222.19304"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -333,8 +333,8 @@
      inkscape:snap-global="true"
      inkscape:window-width="1366"
      inkscape:window-height="768"
-     inkscape:window-x="440"
-     inkscape:window-y="648"
+     inkscape:window-x="70"
+     inkscape:window-y="41"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -6625,7 +6625,7 @@
     <text
        xml:space="preserve"
        style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
-       x="1849.7311"
+       x="1861.8605"
        y="767.09143"
        id="text3244-4-8"
        sodipodi:linespacing="125%"
@@ -6635,9 +6635,9 @@
        inkscape:export-ydpi="500"><tspan
          sodipodi:role="line"
          id="tspan3246-8-74"
-         x="1849.7311"
+         x="1861.8605"
          y="767.09143"
-         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">return value</tspan></text>
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace">retaddr</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
