@@ -3092,7 +3092,7 @@ Hello!$
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 15: Comparisons with Atmel AVR and ARM}
+\section{Advanced Topic 15: Comparisons with Atmel AVR and ARM Cortex-M3}
 
 \section{Extra Topic 1: Intel/nasm Syntax}
 
@@ -3117,7 +3117,7 @@ Hello!$
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Side-by-side Hello World Syscall Example (example-20.asm)}
+\frametitle{Side-by-side Hello World Syscall Example (example-22.asm)}
 \mvs \mvs
 \begin{columns}[T]
 \column{0.5\textwidth}
@@ -3178,7 +3178,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Side-by-side Hello World Syscall Example (example-20.asm) Continued}
+\frametitle{Side-by-side Hello World Syscall Example (example-22.asm) Continued}
 \mvs
 \begin{columns}[T]
 \column{0.5\textwidth}
@@ -3209,9 +3209,9 @@ messageLen: equ $ - message
 \vs
 {\footnotesize Runtime:}
 \begin{textcode}
-$ nasm -f elf example-20.asm -o example-20.o
-$ ld example-20.o -o example-20
-$ ./example-20
+$ nasm -f elf example-22.asm -o example-22.o
+$ ld example-22.o -o example-22
+$ ./example-22
 $ cat foo
 Hello World!
 $
