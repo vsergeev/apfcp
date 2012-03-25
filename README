@@ -5,16 +5,16 @@ Date: Jan 24 05:00pm - 07:00pm, Jan 26 05:00pm - 07:00pm in 4-231
 A solid grasp of assembly language makes you a better programmer. Understanding
 assembly gives you:
 * insight into the true cost of high-level language operations (is modulus %
-cheap? when is it and when is it not?)
-* a keen understanding of how program memory is managed and manipulated
-* ability to debug at the lowest level, which means you can catch the subtlest
-of bugs
+  cheap? when is it and when is it not?)
+* a keen understanding of how program memory is managed and manipulated ability
+* to debug at the lowest level, which means you can catch the subtlest
+  of bugs
 * ability to utilize processor-specific instructions that squeeze the most out
-of every clock cycle and available processor features
+  of every clock cycle and available processor features
 * the appreciation of time / space advantages that different compiler
-optimization settings can yield
+  optimization settings can yield
 * a fluency with low-level detail that makes it easy to pick up new computer
-architectures
+  architectures
 
 Come to the x86 Assembly Primer and get a full introduction into x86 assembly
 language, program memory, stack frames, system calls, the role of libc, some of

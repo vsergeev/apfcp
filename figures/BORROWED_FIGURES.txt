@@ -1,0 +1,5 @@
+simd.png        - borrowed from http://software.intel.com/en-us/articles/introduction-to-intel-advanced-vector-extensions/
+ia32-eflags.png - screenshot from Intel 64 and IA-32 Architectures Software Developers Manual Vol. 1, A-1
+syscalls.png    - screenshot from http://syscalls.kernelgrok.com/
+
+Please contact me if you would like these removed from apfcp.
