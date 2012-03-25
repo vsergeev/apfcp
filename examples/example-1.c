@@ -8,7 +8,9 @@ size_t ex_strlen(const char *s) {
 	return i;
 }
 
-/* From glibc/sysdeps/i386/strlen.c */
+/* From glibc/sysdeps/i386/strlen.c
+ * http://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/i386/strlen.c
+ * Licensed: GNU Lesser General Public License */
 size_t
 glibc_strlen (const char *str)
 {
