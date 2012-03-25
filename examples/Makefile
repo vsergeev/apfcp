@@ -25,7 +25,7 @@ all:
 	as example-12.S -o example-12.o && gcc example-12.o -o example-12 && objdump -D example-12 > example-12.objdump
 	as example-16.S -o example-16.o && gcc example-16.o -o example-16 && objdump -D example-16 > example-16.objdump
 	as example-17.S -o example-17.o && gcc example-17.o -o example-17 && objdump -D example-17 > example-17.objdump
-# These exampels should be assembled with nasm and linked with ld
+# These examples should be assembled with nasm and linked with ld
 	nasm -f elf example-22.asm -o example-22.o && ld example-22.o -o example-22 && objdump -D example-22 > example-22.objdump
 
 clean:
