@@ -1,0 +1,153 @@
+diff -r 34cc08a2c354 pygments/lexers/_mapping.py
+--- a/pygments/lexers/_mapping.py	Sun Mar 18 08:09:21 2012 +0100
++++ b/pygments/lexers/_mapping.py	Sun Mar 25 17:58:11 2012 -0400
+@@ -66,6 +66,7 @@
+     'CssLexer': ('pygments.lexers.web', 'CSS', ('css',), ('*.css',), ('text/css',)),
+     'CssPhpLexer': ('pygments.lexers.templates', 'CSS+PHP', ('css+php',), (), ('text/css+php',)),
+     'CssSmartyLexer': ('pygments.lexers.templates', 'CSS+Smarty', ('css+smarty',), (), ('text/css+smarty',)),
++    'CustomObjdumpLexer': ('pygments.lexers.customobjdump', 'customobjdump', ('customobjdump',), ('*.objdump',), ('text/x-objdump',)),
+     'CythonLexer': ('pygments.lexers.compiled', 'Cython', ('cython', 'pyx'), ('*.pyx', '*.pxd', '*.pxi'), ('text/x-cython', 'application/x-cython')),
+     'DLexer': ('pygments.lexers.compiled', 'D', ('d',), ('*.d', '*.di'), ('text/x-dsrc',)),
+     'DObjdumpLexer': ('pygments.lexers.asm', 'd-objdump', ('d-objdump',), ('*.d-objdump',), ('text/x-d-objdump',)),
+diff -r 34cc08a2c354 pygments/lexers/customobjdump.py
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/pygments/lexers/customobjdump.py	Sun Mar 25 17:58:11 2012 -0400
+@@ -0,0 +1,138 @@
++import re
++
++from pygments.lexer import RegexLexer, include, bygroups, using, DelegatingLexer
++from pygments.lexers.compiled import DLexer, CppLexer, CLexer
++from pygments.token import *
++
++__all__ = ['GasLexer', 'CustomObjdumpLexer']
++
++class GasLexer(RegexLexer):
++    """
++    For Gas (AT&T) assembly code.
++    """
++    name = 'GAS'
++    aliases = ['gas']
++    filenames = ['*.s', '*.S']
++    mimetypes = ['text/x-gas']
++
++    #: optional Comment or Whitespace
++    string = r'"(\\"|[^"])*"'
++    char = r'[a-zA-Z$._0-9@]'
++    identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
++    number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
++
++    tokens = {
++        'root': [
++            include('whitespace'),
++            (identifier + ':', Name.Label),
++            (r'\.' + identifier, Name.Attribute, 'directive-args'),
++            (r'lock|rep(n?z)?|data\d+', Name.Attribute),
++            (identifier, Name.Function, 'instruction-args'),
++            (r'[\r\n]+', Text)
++        ],
++        'directive-args': [
++            (identifier, Name.Constant),
++            (string, String),
++            ('@' + identifier, Name.Attribute),
++            (number, Number.Integer),
++            (r'[\r\n]+', Text, '#pop'),
++
++            (r'#.*?$', Comment, '#pop'),
++
++            include('punctuation'),
++            include('whitespace')
++        ],
++        'instruction-args': [
++            # For objdump-disassembled code, shouldn't occur in
++            # actual assembler input
++            ('([a-z0-9]+)( )(<)('+identifier+')(>)',
++                bygroups(Number.Hex, Text, Punctuation, Name.Constant,
++                         Punctuation)),
++            ('([a-z0-9]+)( )(<)('+identifier+')([-+])('+number+')(>)',
++                bygroups(Number.Hex, Text, Punctuation, Name.Constant,
++                         Punctuation, Number.Integer, Punctuation)),
++
++            # Address constants
++            (identifier, Name.Constant),
++            (number, Number.Integer),
++            # Registers
++            ('%' + identifier, Name.Variable),
++            # Numeric constants
++            ('$'+number, Number.Integer),
++            (r'[\r\n]+', Text, '#pop'),
++            (r'#.*?$', Comment, '#pop'),
++            include('punctuation'),
++            include('whitespace')
++        ],
++        'whitespace': [
++            (r'\n', Text),
++            (r'\s+', Text),
++            (r'#.*?\n', Comment)
++        ],
++        'punctuation': [
++            (r'[-*,.():]+', Punctuation)
++        ]
++    }
++
++    def analyse_text(text):
++        if re.match(r'^\.(text|data|section)', text, re.M):
++            return True
++        elif re.match(r'^\.\w+', text, re.M):
++            return 0.1
++
++
++
++class CustomObjdumpLexer(RegexLexer):
++    """
++    For the output of 'objdump -dr'
++    """
++    name = 'customobjdump'
++    aliases = ['customobjdump']
++    filenames = ['*.objdump']
++    mimetypes = ['text/x-objdump']
++
++    hex = r'[0-9A-Za-z]'
++
++    tokens = {
++        'root': [
++            # File name & format:
++            ('(.*?)(:)( +file format )(.*?)$',
++                bygroups(Name.Label, Punctuation, Text, String)),
++            # Section header
++            ('(Disassembly of section )(.*?)(:)$',
++                bygroups(Text, Name.Label, Punctuation)),
++            # Function labels
++            # (With offset)
++            ('('+hex+'+)( )(<)(.*?)([-+])(0[xX][A-Za-z0-9]+)(>:)$',
++                bygroups(Number.Hex, Text, Punctuation, Name.Function,
++                         Punctuation, Number.Hex, Punctuation)),
++            # (Without offset)
++            ('('+hex+'+)( )(<)(.*?)(>:)$',
++                bygroups(Number.Hex, Text, Punctuation, Name.Function,
++                         Punctuation)),
++            # Code line with disassembled instructions
++            ('( *)('+hex+r'+:)( )((?:'+hex+hex+' )+)( * )([a-zA-Z].*?)$',
++                bygroups(Text, Name.Label, Text, Number.Hex, Text,
++                         using(GasLexer))),
++            # Code line with ascii
++            ('( *)('+hex+r'+:)( )((?:'+hex+hex+' )+)( *)(.*?)$',
++                bygroups(Text, Name.Label, Text, Number.Hex, Text, String)),
++            # Continued code line, only raw opcodes without disassembled
++            # instruction
++            ('( *)('+hex+r'+:)( )((?:'+hex+hex+' )+)$',
++                bygroups(Text, Name.Label, Text, Number.Hex)),
++            # Skipped a few bytes
++            ('\.\.\.$', Text),
++            # Relocation line
++            # (With offset)
++            ('(\t\t\t)('+hex+'+:)( )([^\t]+)(\t)(.*?)([-+])(0x' + hex + '+)$',
++                bygroups(Text, Name.Label, Text, Name.Property, Text,
++                         Name.Constant, Punctuation, Number.Hex)),
++            # (Without offset)
++            ('(\t\t\t)('+hex+'+:)( )([^\t]+)(\t)(.*?)$',
++                bygroups(Text, Name.Label, Text, Name.Property, Text,
++                         Name.Constant)),
++            ('[^\n]+\n', Other)
++        ]
++    }
++
