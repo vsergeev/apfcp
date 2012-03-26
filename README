@@ -6,8 +6,8 @@ A solid grasp of assembly language makes you a better programmer. Understanding
 assembly gives you:
 * insight into the true cost of high-level language operations (is modulus %
   cheap? when is it and when is it not?)
-* a keen understanding of how program memory is managed and manipulated ability
-* to debug at the lowest level, which means you can catch the subtlest
+* a keen understanding of how program memory is managed and manipulated
+* ability to debug at the lowest level, which means you can catch the subtlest
   of bugs
 * ability to utilize processor-specific instructions that squeeze the most out
   of every clock cycle and available processor features
