@@ -977,8 +977,9 @@ Disassembly of section .text:
 \frametitle{Indirectly Accessing Memory}
 \begin{itemize}
   \item Many x86 instructions are capable of complex indirect addressing in the form of: \\
-  {\ttfamily *(base register + (offset register * multiplier) + displacement)}
-  \item GAS Syntax: {\ttfamily displacement(base register, offset register, multiplier)}
+  {\ttfamily {\footnotesize *(base register + (offset register * multiplier) + displacement)}}
+  \item GAS Syntax: \\
+  {\ttfamily {\footnotesize displacement(base register, offset register, multiplier)}}
   \pause
   \begin{itemize}
     \item Base register can be any general purpose register
@@ -2319,8 +2320,8 @@ $
   \item {\ttfamily movs} does {\ttfamily *\%edi++ = *\%esi++}
   \item {\ttfamily cmps} does {\ttfamily cmp \%esi++, \%edi++}
   \item {\ttfamily scas} does {\ttfamily cmp \%eax, \%edi++}
-  \item {\ttfamily lods} does {\ttfamily movl \%esi++, \%eax}
-  \item {\ttfamily stos} does {\ttfamily movl \%eax, \%edi++}
+  \item {\ttfamily lods} does {\ttfamily mov \%esi++, \%eax}
+  \item {\ttfamily stos} does {\ttfamily mov \%eax, \%edi++}
   \pause
   \vs
   \item Instruction size suffix {\ttfamily b, w, l} determines copy, compare, move size and post-increment amount (1, 2, 4)
@@ -2404,7 +2405,7 @@ movsl
 .section .text
 .global main
 main:
-  # memset(str, 'A', 98);
+  # memset(str, 'A', 48);
   pushl $48
   pushl $'A 
   pushl $str
@@ -2434,7 +2435,7 @@ asm_memset:
   pushl %ebp
   movl %esp, %ebp
 
-  movl 12(%ebp), %edi    # %eid = s
+  movl 12(%ebp), %edi    # %edi = s
   movl 16(%ebp), %eax    # %eax = c
   movl 20(%ebp), %ecx    # %ecx = n
 
