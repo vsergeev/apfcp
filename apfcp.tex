@@ -488,7 +488,8 @@ Disassembly of section .data:
         \item {\ttfamily \%} precedes a register: {\ttfamily \%eax}
         \item {\ttfamily \$} precedes a constant: {\ttfamily \$5, \$0xff, \$07, \$'A, \$0b111}
         \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .long, .ascii, .section, .comm}
-        \item No special character precedes a dereferenced memory address: \\ {\ttfamily movl \%eax, 0x80000000}
+	\item {\ttfamily \#} precedes a comment
+        \item No special character precedes a dereferenced memory address: \\ {\ttfamily movl \%eax, 0x80000000 \;\; \# *(0x80000000) = \%eax}
         \item {\ttfamily mylabel:} defines a label, a symbol of name {\ttfamily mylabel} containing the address at that point
     \end{itemize}
     \item Directives
@@ -509,9 +510,11 @@ Disassembly of section .data:
         \item x86 is backwards compatible to the original 8086
         \item Inherited instructions operate on 8-bits, 16-bits, 32-bits
         \item Naturally, they often have the same name...
-        \item GAS supports the syntax {\ttfamily <mnemonic><size>} to unambigiously encode the correct instruction
-        \item {\ttfamily movb \$0xff, \%al \;\; movw \%bx, \%ax \;\; movl memAddr, \%eax}
-        \item {\ttfamily incb \%ah \;\; incw \%ax \;\; incl \%eax}
+        \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambigiously encode the correct instruction \\
+\begin{textcode}
+movb $0xff, %al   movw %bx, %ax    movl memAddr, %eax
+incb %ah          incw %ax         incl %eax
+\end{textcode}
     \end{itemize}
 \end{itemize}
 \begin{center}
@@ -533,8 +536,8 @@ qword & 64-bits & q \\
 \begin{itemize}
   \item Certain instructions will set boolean bit flags in the {\ttfamily \%eflags} registers based on the result
   \begin{itemize}
-    \item Implicitly, based on result of arithmetic
-    \item Intentionally, with {\ttfamily cmp} or {\ttfamily test} between two operands
+    \item Implicitly, based on result of an arithmetic instruction
+    \item Explicitly, with {\ttfamily cmp} or {\ttfamily test} between two operands
   \end{itemize}
 \end{itemize}
 \mvs
@@ -1005,8 +1008,8 @@ Disassembly of section .text:
 .section .text
 
 movl $tableStart, %ebx          # Pointer to table start
-                                # We are moving the *value* $tableStart,
-                                # *this is not a memory access*
+                                # We are moving the /value/ $tableStart,
+                                # this is not a memory access!
 movl $0, %ecx
 loop:
     movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
@@ -1098,7 +1101,7 @@ b64_encode_loop:
   incl %ecx
 
   # %eax contains 24-bits of input bytes
-  # arranges as | x | 2 | 1 | 0 |
+  # arranged as | x | 2 | 1 | 0 |
 
 \end{gascode*}
 \end{frame}
