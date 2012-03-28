@@ -1064,15 +1064,14 @@ Disassembly of section .data:
   \item Encoding Scheme
   \begin{itemize}
     \item Combine three input bytes into a 24-bit quantity \\
-    {\ttfamily 0xFF 0xDE 0x02 = 0b11111111\_11011110\_00000010}
+    {\ttfamily 0xFF 0xDE 0x02 =} \\ {\ttfamily 0b11111111\_11011110\_00000010}
     \item Split the 24-bits into four 6-bit quantities \\
-    {\ttfamily 0b11111111\_11011110\_00000010} \\
     {\ttfamily 0b111111\_111101\_111000\_000010} \\
     \item Look up each 6-bit quantity in the 64 ASCII character table
     {\ttfamily b64table[0b111111], b64table[0b111101], b64table[0b111000], b64table[0b000010]} \\
     \item Base-64 encoding of {\ttfamily 0xFF 0xDE 0x02} is {\ttfamily '/' '9' '4' 'c'}
   \end{itemize}
-  \item Rules to pad input sequences that are not multiples of 3 bytes
+  \item Rules to pad input sequences that are not multiples of 3 bytes exist
 \end{itemize}
 \end{frame}
 
@@ -2554,7 +2553,7 @@ loop:
   \item Separate instruction sets
   \item x87 floating point unit
   \begin{itemize}
-    \item 80-bit double-extended precision registers
+    \item 80-bit double-extended precision floating point registers
     \item add, subtract, multiply, divide, square root, round, cosine, sine, compare, load/store, etc. for floating point numbers
   \end{itemize}
   \pause
