@@ -18,9 +18,11 @@ assembly gives you:
 
 Come to the x86 Assembly Primer and get a full introduction into x86 assembly
 language, program memory, stack frames, system calls, the role of libc, some of
-the convoluted nuances of x86, and some comparisons to another architecture
-(ARM). Enhance your quest in becoming a systems programming ninja here!
+the convoluted nuances of x86, the x86-64 architecture, and some comparisons to
+other architectures. Enhance your quest in becoming a systems programming ninja
+here!
 
 Platform: strictly x86-32 GNU/Linux, gcc toolchain.
 Assembly Syntax: AT&T/GAS.
 Prereqs: Intermediate C
+

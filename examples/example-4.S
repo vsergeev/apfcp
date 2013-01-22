@@ -2,9 +2,9 @@
 .section .text
 .global main
 main:
-  movl $0, %ecx     # f_n-2 = f_0 = 0
-  movl $1, %ebx     # f_n-1 = f_1 = 1
-  movl $1, %eax     # f_n   = f_2 = 1
+  movl $0, %ecx     # f_n-2 = 0
+  movl $1, %ebx     # f_n-1 = 1
+  movl $1, %eax     # f_n   = 1
   movl $12, %edi    # Number of integers to compute
 
   fib_loop:

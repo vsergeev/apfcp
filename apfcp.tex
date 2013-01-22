@@ -68,7 +68,7 @@
 \title{x86 Assembly Primer for C Programmers}
 \author{Ivan Sergeev}
 \institute{\url{https://github.com/vsergeev/apfcp}}
-\date{January 24/26, 2012}
+\date{January 22/24, 2013}
 
 %%% Title Slide
 \begin{frame}[plain]
@@ -96,7 +96,7 @@ size_t ex_strlen(const char *s) {
 \frametitle{Reasonable strlen (example-1.c) disassembly}
 Let's compile and disassemble it.\vs
 \begin{customobjdumpcode}
-$ gcc -O1 example-1.c -o example-1 && objdump -d eaxmple-1
+$ gcc -O1 example-1.c -o example-1 && objdump -d example-1
 ...
 080483b4 <ex_strlen>:
  80483b4: 8b 54 24 04     mov    0x4(%esp),%edx
@@ -110,11 +110,11 @@ $ gcc -O1 example-1.c -o example-1 && objdump -d eaxmple-1
 ...
 \end{customobjdumpcode}
 \begin{itemize}
-	\item Note: output of optimization levels 2 and 3 only differs with added padding bytes for memory alignment.
+	\item Output of optimization levels 2 and 3 only differs with added padding bytes for memory alignment.
 \end{itemize}
 \end{frame}
 
-%%% Introduction and Example Slide 3
+%% Introduction and Example Slide 3
 \begin{frame}[fragile,t]
 \frametitle{Reasonable strlen (example-1.c) disassembly}
 Commented disassembly for \verb+ex_strlen()+:\vs
@@ -186,26 +186,26 @@ $ gcc -O1 example-1.c -o example-1 && objdump -d a.out
 
 
 %%% Introduction and Example Slide 6
-\begin{frame}[fragile,t]
-\frametitle{glibc strlen (example-1.c) disassembly}
-Commented disassembly for glibc's \verb+strlen()+:\vs
-\begin{gascode}
-# size_t strlen(const char *s);
-strlen:
-  push   %edi               # Save %edi
-  mov    $0xffffffff,%ecx   # %ecx = 0xffffffff
-  mov    $0x0,%eax          # %eax = 0
-  mov    0x8(%esp),%edi     # %edi = argument s
-  cld                       # Clear direction flag
-
-  repnz scas %es:(%edi),%al # Repeat scan while *(%edi) != 0x0
-
-  mov    $0xfffffffe,%eax   # %eax = 0xfffffffe
-  sub    %ecx,%eax          # %eax = %eax - %ecx
-  pop    %edi               # Restore %edi
-  ret                       # Return, return value in %eax
-\end{gascode}
-\end{frame}
+%\begin{frame}[fragile,t]
+%\frametitle{glibc strlen (example-1.c) disassembly}
+%Commented disassembly for glibc's \verb+strlen()+:\vs
+%\begin{gascode}
+%# size_t strlen(const char *s);
+%strlen:
+%  push   %edi               # Save %edi
+%  mov    $0xffffffff,%ecx   # %ecx = 0xffffffff
+%  mov    $0x0,%eax          # %eax = 0
+%  mov    0x8(%esp),%edi     # %edi = argument s
+%  cld                       # Clear direction flag
+%
+%  repnz scas %es:(%edi),%al # Repeat scan while *(%edi) != 0x0
+%
+%  mov    $0xfffffffe,%eax   # %eax = 0xfffffffe
+%  sub    %ecx,%eax          # %eax = %eax - %ecx
+%  pop    %edi               # Restore %edi
+%  ret                       # Return, return value in %eax
+%\end{gascode}
+%\end{frame}
 
 %%% Introduction and Example Slide 7
 \begin{frame}[fragile,t]
@@ -285,7 +285,7 @@ f2 ae           repnz scas %es:(%edi),%al
 \begin{itemize}
         \item What's going on here?
         \pause
-        \item glibc's \verb+strlen()+ "main loop" is only 2 bytes!
+        \item glibc's i386 \verb+strlen()+ "main loop" is only 2 bytes!
         \begin{itemize}
                 \item In fact, it's only one instruction: \verb+repnz scas (%edi),%al+.
         \end{itemize}
@@ -309,7 +309,26 @@ f2 ae           repnz scas %es:(%edi),%al
 
 \part{1}
 
-\section{Topic 1: Arithmetic and Data Transfer}
+\section{Topic 1: State, Instructions, Fetch-Decode-Execute}
+\begin{frame}[fragile,t]
+
+\frametitle{State and Instructions}
+\begin{itemize}
+    \item State is retained information
+    \begin{itemize}
+        \item CPU Registers: small, built-in, referred to by name \\ ({\ttfamily \%eax, \%ebx, \%ecx, \%edx, ...})
+        \item Memory: large, external, referred to by address
+    \end{itemize}
+    \item Instructions affect and/or use state
+    \begin{itemize}
+        \item Add a constant to a register, subtract two registers, write to a memory location, jump to a memory location if a condition is true, etc.
+    \end{itemize}
+    \vs
+    \pause
+    \item Sufficient expressability of instructions makes a CPU Turing complete, \\ provided you have infinite memory
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile,t]
 \frametitle{8086 CPU Registers}
 \begin{figure}
@@ -331,31 +350,30 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{frame}
 
 \begin{frame}[fragile,t]
+\frametitle{386+ CPU Registers and Memory}
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386statemem.png}
+\end{figure}
+\begin{itemize}
+    \item Registers + Memory comprise (almost) total system state
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
 \frametitle{Instructions}
 \begin{itemize}
     \item x86 instructions manipulate CPU registers, memory, and I/O ports
     \item Encoded as numbers, sitting in memory like any other data
     \item Uniquely defined for each architecture in its {\bf instruction set}
-\end{itemize}
-\vs
-\pause
-\begin{itemize}
-    \item Represented in assembly by a mnemonic and operands
-    \item AT\&T/GAS syntax
-    \begin{itemize}
-    \item No operands: \verb+<mnemonic>+
-    \item One operand: \verb+<mnemonic> <dest>+
-    \item Two operands: \verb+<mnemonic> <src>,<dest>+
+    \item {\ttfamily \%eip} contains address of next instruction
+    \vs
     \pause
-    \end{itemize}
-    \item Source and destination operands are typically one of:
+    \item Fetch - Decode - Execute Loop
     \begin{itemize}
-        \item Register: {\ttfamily \%eax, \%ebx, \%ecx, \%edx,} etc.
-        \item Immediate: constant value embedded in the instruction encoding
-        \item Memory: constant value representing an absolute (0x80000000) or relative address (+4)
+        \item CPU {\bf fetches} data at address {\ttfamily \%eip} from main memory \\
+        \item CPU {\bf decodes} data into an instruction \\
+        \item CPU {\bf executes} instruction, \\ possibly manipulating memory, I/O, and its own state, including {\ttfamily \%eip}
     \end{itemize}
-    \pause
-    \item Availability of operands for a particular instruction depends on instruction set
 \end{itemize}
 \end{frame}
 
@@ -363,16 +381,94 @@ f2 ae           repnz scas %es:(%edi),%al
 \frametitle{Instruction Fetch-Decode-Execute}
 \mvs
 \begin{figure}
-\centering \includegraphics[width=0.45\textwidth]{figures/cpustate.png}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute1.png}
 \end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute2.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute3.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute4.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute5.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute6.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute7.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instructions in Assembly}
 \begin{itemize}
-    \item {\ttfamily \%eip} contains address of next instruction
-    \item CPU {\bf fetches} data at address {\ttfamily \%eip} from main memory
+    \item Instructions represented by a mnemonic and operands
+    \item AT\&T/GAS syntax
     \begin{itemize}
-        \item e.g. \verb+83 c0 01+ which is encoded from \verb+add $0x1, %eax+
+    \item {\bf No operands:} \verb+<mnemonic>+
+    \begin{itemize}
+        \item {\ttfamily nop}
     \end{itemize}
-    \item CPU {\bf decodes} data into an instruction
-    \item CPU {\bf executes} instruction, possibly manipulating memory, I/O, and its own state, including {\ttfamily \%eip}
+    \item {\bf One operand:} \verb+<mnemonic> <dest>+
+    \begin{itemize}
+        \item {\ttfamily incl \%eax}
+    \end{itemize}
+    \item {\bf Two operands:} \verb+<mnemonic> <src>,<dest>+
+    \begin{itemize}
+        \item {\ttfamily addl \$0x1, \%eax}
+    \end{itemize}
+    \end{itemize}
+    \vs
+    \pause
+    \item Source and destination operands are typically one of:
+    \begin{itemize}
+        \item {\bf Register:} {\ttfamily \%eax, \%ebx, \%ecx, \%edx,} etc.
+        \begin{itemize}
+            \item {\ttfamily movl \%eax, \%ebx}
+        \end{itemize}
+        \item {\bf Immediate:} constant value embedded in the instruction encoding
+        \begin{itemize}
+            \item {\ttfamily movl \$0x1, \%eax}
+        \end{itemize}
+        \item {\bf Memory:} constant value representing an absolute (0x80000000) or relative address (+4)
+        \begin{itemize}
+            \item {\ttfamily movl 0x800000000, \%eax}
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -391,37 +487,38 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{itemize}
 \end{frame}
 
+\section{Topic 2: Arithmetic, and Data Transfer}
+
 \begin{frame}[fragile,t]
 \frametitle{Example of Arithmetic and Data Transfer Instructions (example-2.S)}
 \mvs
 \begin{gascode*}{fontsize=\fontsize{9}{8}}
 .section .text
-# nop
-nop                     # Do nothing!
+nop                        # ; (Do nothing!)
 
 # add, sub, adc, and, or, xor
-addl %eax, %ebx         # %ebx = %ebx + %eax
-addl magicNumber, %ebx  # %ebx = %ebx + *(magicNumber)
-addl %ebx, magicNumber  # *(magicNumber) = *(magicNumber) + %ebx
-addl $0x12341234, %ebx  # %ebx = %ebx + 0x12341234
+addl %eax, %ebx            # %ebx = %ebx + %eax
+addl magicNumber, %ebx     # %ebx = %ebx + *(magicNumber)
+addl %ebx, magicNumber     # *(magicNumber) = *(magicNumber) + %ebx
+addl $0x12341234, %ebx     # %ebx = %ebx + 0x12341234
 
 # inc, dec, not, neg
-decl %eax               # %eax--
-decw %ax                # %ax--
-decb %al                # %al--
+decl %eax                  # %eax--
+decw %ax                   # %ax--
+decb %al                   # %al--
 
 # rol, rcl, shl, shr, sal, sar
-shrl $3, %eax           # %eax = %eax >> 3
-shrl $3, magicNumber    # *(magicNumber) = *(magicNumber) >> 3
+shrl $3, %eax              # %eax = %eax >> 3
+shrl $3, magicNumber       # *(magicNumber) = *(magicNumber) >> 3
 
 # mov
-movl %eax, %ebx         # %ebx = %eax
-movl magicNumber, %eax  # %eax = *(magicNumber)
-movl %eax, magicNumber  # *(magicNumber) = %eax
+movl %eax, %ebx            # %ebx = %eax
+movl magicNumber, %eax     # %eax = *(magicNumber)
+movl %eax, magicNumber     # *(magicNumber) = %eax
 
 .section .data
-magicNumber:
-  .long 0xdeadbeef
+magicNumber:               # int *magicNumber;
+  .long 0xdeadbeef         # *magicNumber = 0xdeadbeef;
 \end{gascode*}
 \end{frame}
 
@@ -489,9 +586,14 @@ Disassembly of section .data:
         \item {\ttfamily \$} precedes a constant: {\ttfamily \$5, \$0xff, \$07, \$'A, \$0b111}
         \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .long, .ascii, .section, .comm}
 	\item {\ttfamily \#} precedes a comment
-        \item No special character precedes a dereferenced memory address: \\ {\ttfamily movl \%eax, 0x80000000 \;\; \# *(0x80000000) = \%eax}
+        \vs
+        \pause
+        \item {\bf No special character precedes a dereferenced memory address:} \\ {\ttfamily movl \%eax, 0x80000000 \;\; \# *(0x80000000) = \%eax}
+        \pause
         \item {\ttfamily mylabel:} defines a label, a symbol of name {\ttfamily mylabel} containing the address at that point
+        \pause
     \end{itemize}
+    \vs
     \item Directives
     \begin{itemize}
         \item Place a raw byte: {\ttfamily .byte 0xff}
@@ -510,6 +612,8 @@ Disassembly of section .data:
         \item x86 is backwards compatible to the original 8086
         \item Inherited instructions operate on 8-bits, 16-bits, 32-bits
         \item Naturally, they often have the same name...
+        \vs
+        \pause
         \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambigiously encode the correct instruction \\
 \begin{textcode}
 movb $0xff, %al   movw %bx, %ax    movl memAddr, %eax
@@ -529,9 +633,8 @@ qword & 64-bits & q \\
 \end{center}
 \end{frame}
 
-\section{Topic 2: Flow Control}
+\section{Topic 3: Flow Control}
 \begin{frame}[fragile,t]
-\mvs
 \frametitle{Instruction Side-Effects}
 \begin{itemize}
   \item Certain instructions will set boolean bit flags in the {\ttfamily \%eflags} registers based on the result
@@ -545,7 +648,7 @@ qword & 64-bits & q \\
 \centering
   \includegraphics[width=\textwidth]{figures/eflags.png} \\
   \vs
-  \includegraphics[height=0.4\paperheight]{figures/ia32-eflags.png}\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, A-1}
+  \includegraphics[height=0.3\paperheight]{figures/ia32-eflags.png}\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, A-1}
 \end{figure}
 \end{frame}
 
@@ -553,7 +656,7 @@ qword & 64-bits & q \\
 \frametitle{Conditional Jumps}
 \begin{itemize}
   \item Flags are the basis of flow control with conditional jumps
-  \item Conditional jump will update {\ttfamily \%eip} to a relative address, if a particular {\ttfamily \%eflags} flag is set
+  \item Conditional jump will update {\ttfamily \%eip} to a relative address, \\ if a particular {\ttfamily \%eflags} flag is set
 \end{itemize}
 \begin{table}[h]\tiny
 \begin{tabular}{l|c|c}
@@ -701,9 +804,9 @@ Disassembly of section .text:
 .section .text
 .global main
 main:
-  movl $0, %ecx     # f_n-2 = f_0 = 0
-  movl $1, %ebx     # f_n-1 = f_1 = 1
-  movl $1, %eax     # f_n   = f_2 = 1
+  movl $0, %ecx     # f_n-2 = 0
+  movl $1, %ebx     # f_n-1 = 1
+  movl $1, %eax     # f_n   = 1
   movl $12, %edi    # Number of integers to compute
 
   fib_loop:
@@ -767,12 +870,11 @@ $
 \end{customobjdumpcode}
 \begin{itemize}
   \item Main code is only 35 bytes!
-  \item Can easily be cut down to 28 bytes by optimizing the clears: \\
-  {\ttfamily movl \$0x0, \%ecx} \; to \; {\ttfamily xorl \%ecx, \%ecx}
+  \item Can easily be cut down to 28 bytes by optimizing the clears
 \end{itemize}
 \end{frame}
 
-\section{Topic 3: Program Memory}
+\section{Topic 4: Program Memory}
 
 \begin{frame}[fragile,t]
 \frametitle{Static Allocation in C}
@@ -786,6 +888,9 @@ char buff[1024];
 /* Initialized static allocations, read-write */
 int foo = 5;
 char str[] = "Hello World";
+\end{ccode}
+\pause
+\begin{ccode}
 
 /* Trickier example: */
 char *p = "Hello World";
@@ -801,8 +906,8 @@ int main(void) {
 \begin{frame}[fragile,t]
 \frametitle{Static Allocation in Assembly}
 \begin{itemize}
-  \item In assembly, we are responsible for specifying the contents of memory as the program requires it
-  \item Description is stored in a binary format like ELF, in terms of sections, r/w/x permissions, and sizes
+  \item Responsible for manually specifying the contents of memory
+  \item Description is stored in a binary format like ELF, \\ in terms of sections, r/w/x permissions, and sizes
   \item OS is responsible for setting up memory as described in ELF binary in {\ttfamily execve()}
   \pause
   \vs\vs\vs
@@ -945,7 +1050,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
 \end{textcode*}
 \end{frame}
 
-\section{Topic 4: Reading/Writing Memory}
+\section{Topic 5: Reading/Writing Memory}
 
 \begin{frame}[fragile,t]
 \frametitle{Directly Accessing Memory}
@@ -954,9 +1059,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
 \end{itemize}
 \begin{gascode}
 .section .text
-movl magicDword, %eax     # %eax = *magicDword
-andb byteMask, %al        # %al &= *byteMask
-movl %eax, modifiedDword  # *modifiedDword = %eax
+movl magicDword, %eax
+andb byteMask, %al
+movl %eax, modifiedDword
 
 .section .rodata          # Read-only!
 magicDword: .long 0xffffffff
@@ -965,8 +1070,9 @@ byteMask:   .byte 0x55
 .section .bss             # Uninitialized read-write
 .comm modifiedDword, 4
 \end{gascode}
+\pause
 \begin{itemize}
-  \item The memory addresses are directly encoded in the instructions:
+  \item The memory addresses are {\bf directly encoded} in the instructions:
 \end{itemize}
 \begin{customobjdumpcode}
 Disassembly of section .text:
@@ -979,7 +1085,7 @@ Disassembly of section .text:
 \begin{frame}[fragile,t]
 \frametitle{Indirectly Accessing Memory}
 \begin{itemize}
-  \item Many x86 instructions are capable of complex indirect addressing in the form of: \\
+  \item Many x86 instructions are capable of complex indirect addressing: \\
   {\ttfamily {\footnotesize *(base register + (offset register * multiplier) + displacement)}}
   \item GAS Syntax: \\
   {\ttfamily {\footnotesize displacement(base register, offset register, multiplier)}}
@@ -1189,7 +1295,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Topic 5: Stack}
+\section{Topic 6: Stack}
 
 \begin{frame}[fragile,t]
 \frametitle{Automatic Allocation in C}
@@ -1333,7 +1439,7 @@ Disassembly of section .text:
 \end{customobjdumpcode}
 \end{frame}
 
-\section{Topic 6: Functions and cdecl Convention}
+\section{Topic 7: Functions and cdecl Convention}
 
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily call} and {\ttfamily ret}}
@@ -1390,7 +1496,7 @@ Disassembly of section .text:
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily cdecl} Calling Convention}
 \begin{itemize}
-  \item How can we ensure that our CPU state ({\ttfamily \%eax, \%ebx, \%ecx, \%edx, \%edi, ...}) doesn't get corrupted when a function needs to use those registers to do useful work?
+  \item How can we ensure that our CPU state \\ ({\ttfamily \%eax, \%ebx, \%ecx, \%edx, \%edi, ...}) \\ doesn't get corrupted when a function needs to use those registers to do useful work?
   \pause
   \item How should we pass arguments to functions?
   \begin{itemize}
@@ -1400,7 +1506,7 @@ Disassembly of section .text:
   \item GCC on Linux uses the {\ttfamily cdecl} calling convention
   \begin{itemize}
      \item function arguments pushed onto the stack from right to left
-     \item {\ttfamily \%eax, \%ecx, \%edx} can be used by the function (must be preserved by caller if necessary)
+     \item {\ttfamily \%eax, \%ecx, \%edx} can be used by the function \\ (must be preserved by caller if necessary)
      \item other registers are preserved by function
      \item return value in {\ttfamily \%eax}
      \item function arguments pushed onto the stack must be cleaned up by caller
@@ -1593,7 +1699,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Topic 7: Stack Frames}
+\section{Topic 8: Stack Frames}
 
 \begin{frame}[fragile,t]
 \frametitle{Where did that argument go?}
@@ -1633,7 +1739,7 @@ $
   \item What if we had an anchor point in our stack at the start of our function?
   \item We could have constant offsets above to arguments and below to allocated variables from the anchor point
   \pause
-  \item This is the conventional role of register {\ttfamily \%ebp}, the frame pointer (also called base pointer)
+  \item This is the conventional role of register {\ttfamily \%ebp}, the frame pointer \\ (also called base pointer)
 \end{itemize}
 \end{frame}
 
@@ -1740,7 +1846,7 @@ _start:
 \end{gascode*}
 \end{frame}
 
-\section{Topic 8: Command-line Arguments}
+\section{Topic 9: Command-line Arguments}
 
 \begin{frame}[fragile,t]
 \frametitle{argc and **argv on the stack}
@@ -1962,7 +2068,11 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Topic 9: System Calls}
+\section*{Questions?}
+
+\part{2}
+
+\section{Topic 10: System Calls}
 
 \begin{frame}[fragile,t]
 \frametitle{The User Program Condition}
@@ -2302,11 +2412,8 @@ $
 \end{textcode}
 \end{frame}
 
-\section*{Questions?}
 
-\part{2}
-
-\section{Advanced Topic 10: x86 String Operations}
+\section{Advanced Topic 11: x86 String Operations}
 
 \begin{frame}[fragile,t]
 \mvs
@@ -2392,10 +2499,10 @@ movsl
   \item {\ttfamily \%ecx} automatically decremented for you
   \vs
   \pause
-  \item Simple {\ttfamily memset()}: {\ttfamily rep stosb}
-  \item Simple {\ttfamily memcpy()}: {\ttfamily rep movsb}
-  \item Simple {\ttfamily strlen()}: {\ttfamily repne scasb}
-  \item Simple {\ttfamily strncmp()}: {\ttfamily repe cmpsb}
+  \item Simple, inefficient {\ttfamily memset()}: {\ttfamily rep stosb}
+  \item Simple, inefficient {\ttfamily memcpy()}: {\ttfamily rep movsb}
+  \item Simple, inefficient {\ttfamily strlen()}: {\ttfamily repne scasb}
+  \item Simple, inefficient {\ttfamily strncmp()}: {\ttfamily repe cmpsb}
   \item Can be better optimized for memory alignment and scan/copy size
 \end{itemize}
 \end{frame}
@@ -2409,7 +2516,7 @@ movsl
 main:
   # memset(str, 'A', 48);
   pushl $48
-  pushl $'A 
+  pushl $'A
   pushl $str
   call asm_memset
   addl $12, %esp
@@ -2494,7 +2601,7 @@ $
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 11: Three Simple Optimizations}
+\section{Advanced Topic 12: Three Simple Optimizations}
 
 \begin{frame}[fragile,t]
 \frametitle{Three Basic Optimizations}
@@ -2545,7 +2652,7 @@ loop:
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 12: x86 Extensions}
+\section{Advanced Topic 13: x86 Extensions}
 
 \begin{frame}[fragile,t]
 \frametitle{Overview}
@@ -2582,7 +2689,7 @@ loop:
 \end{figure}
 \end{frame}
 
-\section{Advanced Topic 13: Role of libc}
+\section{Advanced Topic 14: Role of libc}
 
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily libc} for library functions and system calls}
@@ -2670,7 +2777,7 @@ $
 \end{columns}
 \end{frame}
 
-\section{Advanced Topic 14: Stack-based Buffer Overflows}
+\section{Advanced Topic 15: Stack-based Buffer Overflows}
 
 \begin{frame}[fragile,t]
 \frametitle{Classic Insecure Example in C (example-18.c)}
@@ -3104,7 +3211,7 @@ Hello!$
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 15: Comparisons with Atmel AVR and ARM Cortex-M3}
+\section{Advanced Topic 16: Comparisons with Atmel AVR and ARM Cortex-M3}
 
 \section{Extra Topic 1: Intel/nasm Syntax}
 
