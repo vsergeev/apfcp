@@ -82,6 +82,7 @@
 \frametitle{Why Assembly?}
 \begin{itemize}
     \item Embedded Systems
+    \item Well-characterized execution time
     \item Bootstrapping an OS
     \item Compilers
     \item Debugging
@@ -90,7 +91,7 @@
     \pause
     \item {\bf Sharpened intuition} on computing
     \begin{itemize}
-        \item Gut instinct on some questions of feasibility
+        \item Gut instinct on implementation and feasibility
         \item Justification for liking powers of two
         \item Turing completeness is a special cage
     \end{itemize}
@@ -153,7 +154,7 @@ ex_strlen:
     jne    loop               #    If not equal, jump to add
 
   end:
-    repz ret                  # Return, return value in %eax
+  repz ret                  # Return, return value in %eax
 \end{gascode}
 \end{frame}
 
@@ -824,7 +825,7 @@ Disassembly of section .text:
 \end{customobjdumpcode}
 \end{frame}
 
-\section{Putting it together: Iterative Fibonacci}
+\section{Program Example: Iterative Fibonacci}
 \begin{frame}[fragile,t]
 \frametitle{Iterative Fibonacci (fibonacci.S)}
 \mvs
@@ -1138,6 +1139,7 @@ Disassembly of section .text:
 
 \begin{frame}[fragile,t]
 \frametitle{Example of Indirectly Accessing Memory (example-6.S)}
+\mvs
 \begin{gascode}
 .section .text
 
@@ -1192,7 +1194,7 @@ Disassembly of section .data:
 \end{customobjdumpcode}
 \end{frame}
 
-\section{Putting it together: Morse Encoder}
+\section{Program Example: Morse Encoder}
 
 \begin{frame}[fragile,t]
 \frametitle{Morse Encoder (morse\_encoder.S)}
@@ -1603,7 +1605,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section{Putting it together: 99 Bottles of Beer on the Wall}
+\section{Program Example: 99 Bottles of Beer on the Wall}
 \begin{frame}[fragile,t]
 \mvs
 \frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
@@ -1885,7 +1887,7 @@ main:
 \end{gascode}
 \end{frame}
 
-\section{Putting it together: Linked List}
+\section{Program Example: Linked List}
 
 \begin{frame}[fragile,t]
 \frametitle{Linked List (linked\_list.S)}
@@ -2206,7 +2208,7 @@ Disassembly of section .data:
 \end{customobjdumpcode*}
 \end{frame}
 
-\section{Putting it together: tee}
+\section{Program Example: tee}
 
 \begin{frame}[fragile,t]
 \mvs
@@ -3328,7 +3330,8 @@ $
   \begin{itemize}
     \item Modify Morse Encoder example to handle words
     \item Add find and remove to Linked List example
-    \item Modify Fibonacci to print with syscalls instead of printf()
+    \item Modify Fibonacci to print with syscalls instead of {\ttfamily printf()}
+    \item Write a recursive Fibonacci Sequence generator
   \end{itemize}
   \item Write your own syscall, e.g. rot13
   \item Do Stack Smashing challenges: \\ {\footnotesize \url{http://community.corest.com/~gera/InsecureProgramming/}}
