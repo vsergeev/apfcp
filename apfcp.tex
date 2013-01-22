@@ -338,15 +338,15 @@ f2 ae           repnz scas %es:(%edi),%al
     \item State is retained information
     \begin{itemize}
         \item CPU Registers: small, built-in, referred to by name \\ ({\ttfamily \%eax, \%ebx, \%ecx, \%edx, ...})
-        \item Memory: large, external, referred to by address
+        \item Memory: large, external, referred to by address \\ ({\ttfamily 0x80000000, ...})
     \end{itemize}
     \item Instructions affect and/or use state
     \begin{itemize}
-        \item Add a constant to a register, subtract two registers, write to a memory location, jump to a memory location if a condition is true, etc.
+        \item Add a constant to a register, subtract two registers, write to a memory location, jump to a memory location if a flag is set, etc.
     \end{itemize}
     \vs
     \pause
-    \item Sufficient expressiveness of instructions makes a CPU Turing complete, \\ provided you have infinite memory
+    \item Sufficient expressiveness of instructions makes a CPU Turing complete, provided you have infinite memory
 \end{itemize}
 \end{frame}
 
@@ -389,7 +389,7 @@ f2 ae           repnz scas %es:(%edi),%al
     \item {\ttfamily \%eip} contains address of next instruction
     \vs \vs \vs
     \pause
-    \item Fetch - Decode - Execute Model
+    \item Fetch - Decode - Execute Simplified Model
     \begin{itemize}
         \item CPU {\bf fetches} data at address {\ttfamily \%eip} from main memory \\
         \item CPU {\bf decodes} data into an instruction \\
@@ -516,6 +516,62 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile,t]
+\frametitle{A Note on GAS Syntax}
+\begin{itemize}
+    \item Syntax
+    \begin{itemize}
+        \item {\ttfamily \%} precedes a register: {\ttfamily \%eax}
+        \item {\ttfamily \$} precedes a constant: {\ttfamily \$5, \$0xff, \$07, \$'A, \$0b111}
+        \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .long, .ascii, .section, .comm}
+	\item {\ttfamily \#} precedes a comment
+        \vs
+        \pause
+        \item {\bf No special character precedes a dereferenced memory address:} \\ {\ttfamily movl \%eax, 0x80000000 \;\; \# *(0x80000000) = \%eax}
+        \pause
+        \item {\ttfamily mylabel:} defines a label, a symbol of name {\ttfamily mylabel} containing the address at that point
+        \pause
+    \end{itemize}
+    \vs
+    \item Directives
+    \begin{itemize}
+        \item Place a raw byte: {\ttfamily .byte 0xff}
+        \item Place a raw short: {\ttfamily .short 0x1234}
+        \item Place a raw ASCII string: {\ttfamily .ascii "Hello World!\textbackslash0"}
+        \item Specify a section (e.g. .text, .data, .rodata, .bss): \\ {\ttfamily .section <section-name>}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{A Note on GAS Syntax}
+\begin{itemize}
+    \item Instruction Size Suffix
+    \begin{itemize}
+        \item x86 is backwards compatible to the original 8086
+        \item Inherited instructions operate on 8-bits, 16-bits, 32-bits
+        \item Naturally, they often have the same name...
+        \vs
+        \pause
+        \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambigiously encode the correct instruction \\
+\begin{textcode}
+movb $0xff, %al   movw %bx, %ax    movl memAddr, %eax
+incb %ah          incw %ax         incl %eax
+\end{textcode}
+    \end{itemize}
+\end{itemize}
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{Name} & \textbf{Size} & \textbf{GAS Suffix} \\
+\hline \hline
+byte & 8-bits & b \\
+word & 16-bits & w \\
+dword & 32-bits & l \\
+qword & 64-bits & q \\
+\end{tabular}
+\end{center}
+\end{frame}
+
 \section{Topic 2: Arithmetic, and Data Transfer}
 
 \begin{frame}[fragile,t]
@@ -596,73 +652,19 @@ Disassembly of section .data:
     \item Debug Disassembly: {\ttfamily gdb prog}
     \begin{itemize}
         \item Step instruction: {\ttfamily si}
+        \item Disassembly layout: {\ttfamily layout asm}
         \item Set breakpoint at symbol: {\ttfamily b \_start}
         \item Set breakpoint at address: {\ttfamily b * 0x80001230}
         \item View CPU registers: {\ttfamily info reg}
-        \item Disassemble next instruction: {\ttfamily x/i \$eip}
+        \item Disassemble next three instructions: {\ttfamily x/3i \$eip}
         \item View five dwords of memory starting at {\ttfamily \$esp}: {\ttfamily x/5w \$esp}
         \item View five bytes of memory starting at {\ttfamily 0xbffffff0}: {\ttfamily x/5b 0xbffffff0}
     \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,t]
-\frametitle{A Note on GAS Syntax}
-\begin{itemize}
-    \item Syntax
-    \begin{itemize}
-        \item {\ttfamily \%} precedes a register: {\ttfamily \%eax}
-        \item {\ttfamily \$} precedes a constant: {\ttfamily \$5, \$0xff, \$07, \$'A, \$0b111}
-        \item {\ttfamily .} precedes a directive: {\ttfamily .byte, .long, .ascii, .section, .comm}
-	\item {\ttfamily \#} precedes a comment
-        \vs
-        \pause
-        \item {\bf No special character precedes a dereferenced memory address:} \\ {\ttfamily movl \%eax, 0x80000000 \;\; \# *(0x80000000) = \%eax}
-        \pause
-        \item {\ttfamily mylabel:} defines a label, a symbol of name {\ttfamily mylabel} containing the address at that point
-        \pause
-    \end{itemize}
-    \vs
-    \item Directives
-    \begin{itemize}
-        \item Place a raw byte: {\ttfamily .byte 0xff}
-        \item Place a raw short: {\ttfamily .short 0x1234}
-        \item Place a raw ASCII string: {\ttfamily .ascii "Hello World!\textbackslash0"}
-        \item Specify a section (e.g. .text, .data, .rodata, .bss): \\ {\ttfamily .section <section-name>}
-    \end{itemize}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile,t]
-\frametitle{A Note on GAS Syntax}
-\begin{itemize}
-    \item Instruction Size Suffix
-    \begin{itemize}
-        \item x86 is backwards compatible to the original 8086
-        \item Inherited instructions operate on 8-bits, 16-bits, 32-bits
-        \item Naturally, they often have the same name...
-        \vs
-        \pause
-        \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambigiously encode the correct instruction \\
-\begin{textcode}
-movb $0xff, %al   movw %bx, %ax    movl memAddr, %eax
-incb %ah          incw %ax         incl %eax
-\end{textcode}
-    \end{itemize}
-\end{itemize}
-\begin{center}
-\begin{tabular}{c|c|c}
-\textbf{Name} & \textbf{Size} & \textbf{GAS Suffix} \\
-\hline \hline
-byte & 8-bits & b \\
-word & 16-bits & w \\
-dword & 32-bits & l \\
-qword & 64-bits & q \\
-\end{tabular}
-\end{center}
-\end{frame}
-
-\section{Topic 3: Flow Control}
+\section{Topic 3: Flow Contol}
 \begin{frame}[fragile,t]
 \frametitle{Instruction Side-Effects}
 \begin{itemize}
@@ -671,6 +673,7 @@ qword & 64-bits & q \\
     \item Implicitly, based on result of an arithmetic instruction
     \item Explicitly, with {\ttfamily cmp} or {\ttfamily test} between two operands
   \end{itemize}
+  \item Flags are the basis of flow control with conditional jumps, which \\ update {\ttfamily \%eip} to a relative offset if an {\ttfamily \%eflags} flag is set
 \end{itemize}
 \mvs
 \begin{figure}
@@ -683,11 +686,7 @@ qword & 64-bits & q \\
 
 \begin{frame}[fragile,t]
 \frametitle{Conditional Jumps}
-\begin{itemize}
-  \item Flags are the basis of flow control with conditional jumps
-  \item Conditional jump will update {\ttfamily \%eip} to a relative address, \\ if a particular {\ttfamily \%eflags} flag is set
-\end{itemize}
-\begin{table}[h]\tiny
+\begin{table}[h]\scriptsize
 \begin{tabular}{l|c|c}
   \textbf{Instruction} & \textbf{\%eflags Condition} &  \textbf{Description} \\
   \hline
@@ -2310,8 +2309,23 @@ _start:
 $ as tee.S -o tee.o
 $ ld tee.o -o tee
 
-$ ./tee testfile
-$
+# Count total number of syscalls while generating a CSV syscall,no list
+$ egrep "NR.*$" -o /usr/include/asm/unistd_32.h |
+   cut -b 4- | sed 's/ /,/' | ./tee syscalls.txt | wc
+    346     346    4604
+$ cat syscalls.txt
+restart_syscall,0
+exit,1
+fork,2
+read,3
+write,4
+open,5
+close,6
+waitpid,7
+creat,8
+link,9
+unlink,10
+...
 \end{textcode}
 \end{frame}
 

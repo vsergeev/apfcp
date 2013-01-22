@@ -28,8 +28,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2568392"
-     inkscape:cx="1775.2055"
-     inkscape:cy="300.30589"
+     inkscape:cx="-408.5222"
+     inkscape:cy="-2374.1134"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -11472,11 +11472,9 @@
          y="1492.2743"
          x="-625.67413"
          id="tspan3246-8-0-8-1-0-3-4-45-8-4-8-4"
-         sodipodi:role="line"><tspan
-           id="tspan13264"
-           style="fill:#0000ff"> 83 c0 01</tspan><tspan
-           id="tspan13262"
-           style="fill:#0000ff">   89</tspan></tspan></text>
+         sodipodi:role="line"> 83 c0 01<tspan
+   style="fill:#000000"
+   id="tspan8929">   89</tspan></tspan></text>
     <g
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -11510,7 +11508,7 @@
        id="text5156-4-1-6-2-5-0"
        y="1533.3635"
        x="-639"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="1533.3635"
          x="-639"
@@ -12941,12 +12939,12 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute3.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-09"
-       y="1914.808"
+       y="1902.808"
        x="-612.27588"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          style="font-weight:bold"
-         y="1914.808"
+         y="1902.808"
          x="-612.27588"
          id="tspan5158-9-6-2-1-3-8"
          sodipodi:role="line">Execute</tspan></text>
@@ -12957,24 +12955,22 @@
        transform="scale(0.98933302,1.010782)"
        sodipodi:linespacing="125%"
        id="text3244-4-9-8-2-4-8-7-2-2-26-5-4-9"
-       y="1911.2019"
+       y="1899.3301"
        x="-628.98529"
-       style="font-size:57.16146469000000252px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
+       style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
        xml:space="preserve"><tspan
-         style="font-size:8.57421970000000044px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#0000ff;font-family:Monospace;-inkscape-font-specification:Monospace"
-         y="1911.2019"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#0000ff;font-family:Monospace;-inkscape-font-specification:Monospace"
+         y="1899.3301"
          x="-628.98529"
          id="tspan3246-8-0-8-1-0-3-4-45-8-4-8-4-2"
-         sodipodi:role="line"><tspan
-           id="tspan13266"
-           style="fill:#0000ff"> 83 c0 01</tspan><tspan
-           id="tspan13260"
-           style="fill:#0000ff">   89</tspan></tspan></text>
+         sodipodi:role="line"> 83 c0 01<tspan
+   style="fill:#000000"
+   id="tspan8932">   89</tspan></tspan></text>
     <g
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute3.png"
-       transform="translate(17.724122,652.44583)"
+       transform="translate(17.724122,640.44583)"
        id="g12610-8"
        style="display:inline">
       <path
@@ -13002,11 +12998,11 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute3.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-3"
-       y="1956.808"
+       y="1960.808"
        x="-642.27588"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
-         y="1956.808"
+         y="1960.808"
          x="-642.27588"
          id="tspan5158-9-6-2-1-3-2-5"
          sodipodi:role="line">%eax = %eax + 1</tspan></text>
@@ -13016,11 +13012,11 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute3.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-3-6"
-       y="1973.3635"
+       y="1977.3635"
        x="-642"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
-         y="1973.3635"
+         y="1977.3635"
          x="-642"
          id="tspan5158-9-6-2-1-3-2-5-1"
          sodipodi:role="line">%eip = %eip + 3</tspan></text>
@@ -14477,12 +14473,12 @@
        transform="scale(0.98933302,1.010782)"
        sodipodi:linespacing="125%"
        id="text3244-4-9-8-2-4-8-7-2-2-26-5-1"
-       y="2352.0032"
+       y="2348.0457"
        x="-636.79266"
        style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
        xml:space="preserve"><tspan
          style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#0000ff;font-family:Monospace;-inkscape-font-specification:Monospace"
-         y="2352.0032"
+         y="2348.0457"
          x="-636.79266"
          id="tspan3246-8-0-8-1-0-3-4-45-8-4-8-7"
          sodipodi:role="line">89 c3 89 d9</tspan></text>
@@ -15925,12 +15921,12 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute5.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-7"
-       y="2736.3633"
+       y="2734.3633"
        x="-609.66132"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          style="font-weight:bold"
-         y="2736.3633"
+         y="2734.3633"
          x="-609.66132"
          id="tspan5158-9-6-2-1-3-82"
          sodipodi:role="line">Decode</tspan></text>
@@ -15941,20 +15937,22 @@
        transform="scale(0.98933302,1.010782)"
        sodipodi:linespacing="125%"
        id="text3244-4-9-8-2-4-8-7-2-2-26-5-4-0"
-       y="2723.9927"
+       y="2722.0139"
        x="-628.36407"
        style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
        xml:space="preserve"><tspan
-         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#0000ff;font-family:Monospace;-inkscape-font-specification:Monospace"
-         y="2723.9927"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;font-family:Monospace;-inkscape-font-specification:Monospace"
+         y="2722.0139"
          x="-628.36407"
          id="tspan3246-8-0-8-1-0-3-4-45-8-4-8-4-26"
-         sodipodi:role="line"> 89 c3  89 d9</tspan></text>
+         sodipodi:role="line"><tspan
+   style="fill:#0000ff"
+   id="tspan8981"> 89 c3</tspan>  89 d9</tspan></text>
     <g
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute5.png"
-       transform="matrix(0.74270353,0,0,1,-146.46271,1474.0014)"
+       transform="matrix(0.74270353,0,0,1,-146.46271,1472.0014)"
        id="g12610-3"
        style="display:inline">
       <path
@@ -15982,14 +15980,15 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute5.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-1"
-       y="2778.3633"
+       y="2770.3633"
        x="-641.66132"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
-         y="2778.3633"
+         y="2770.3633"
          x="-641.66132"
          id="tspan5158-9-6-2-1-3-2-0"
-         sodipodi:role="line">movl %eax, %ebx</tspan></text>
+         sodipodi:role="line"
+         style="fill:#0000ff">movl %eax, %ebx</tspan></text>
     <rect
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -17415,12 +17414,12 @@
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute6.png"
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-09-7"
-       y="3158.3633"
+       y="3148.3633"
        x="-608.00006"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          style="font-weight:bold"
-         y="3158.3633"
+         y="3148.3633"
          x="-608.00006"
          id="tspan5158-9-6-2-1-3-8-2"
          sodipodi:role="line">Execute</tspan></text>
@@ -17431,11 +17430,11 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-3-8"
        y="3200.3633"
-       x="-634.00006"
+       x="-632.00006"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="3200.3633"
-         x="-634.00006"
+         x="-632.00006"
          id="tspan5158-9-6-2-1-3-2-5-2"
          sodipodi:role="line">%ebx = %eax</tspan></text>
     <text
@@ -17445,11 +17444,11 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-3-6-8"
        y="3216.9187"
-       x="-633.72418"
+       x="-631.72418"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="3216.9187"
-         x="-633.72418"
+         x="-631.72418"
          id="tspan5158-9-6-2-1-3-2-5-1-3"
          sodipodi:role="line">%eip = %eip + 2</tspan></text>
     <text
@@ -17459,20 +17458,22 @@
        transform="scale(0.98933302,1.010782)"
        sodipodi:linespacing="125%"
        id="text3244-4-9-8-2-4-8-7-2-2-26-5-4-0-9"
-       y="3145.4485"
+       y="3129.6184"
        x="-621.63092"
        style="font-size:57.16146469px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
        xml:space="preserve"><tspan
-         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#0000ff;font-family:Monospace;-inkscape-font-specification:Monospace"
-         y="3145.4485"
+         style="font-size:8.5742197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;font-family:Monospace;-inkscape-font-specification:Monospace"
+         y="3129.6184"
          x="-621.63092"
          id="tspan3246-8-0-8-1-0-3-4-45-8-4-8-4-26-2"
-         sodipodi:role="line"> 89 c3  89 d9</tspan></text>
+         sodipodi:role="line"><tspan
+   style="fill:#0000ff"
+   id="tspan8983"> 89 c3</tspan>  89 d9</tspan></text>
     <g
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
        inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute6.png"
-       transform="matrix(0.74270353,0,0,1,-139.80138,1900.0013)"
+       transform="matrix(0.74270353,0,0,1,-139.80138,1884.0013)"
        id="g12610-3-6"
        style="display:inline">
       <path
@@ -23035,5 +23036,34 @@
          y="732.46478"
          x="1718.3293"
          sodipodi:role="line">&lt;Function Body&gt;</tspan></text>
+    <text
+       inkscape:export-ydpi="500"
+       inkscape:export-xdpi="500"
+       inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute3.png"
+       sodipodi:linespacing="125%"
+       id="text5156-4-1-6-2-5-0-0"
+       y="1942.3622"
+       x="-640"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       xml:space="preserve"><tspan
+         y="1942.3622"
+         x="-640"
+         id="tspan5158-9-6-2-1-3-2-59"
+         sodipodi:role="line">addl $0x1, %eax</tspan></text>
+    <text
+       inkscape:export-ydpi="500"
+       inkscape:export-xdpi="500"
+       inkscape:export-filename="/home/anteater/projects-misc/apfcp/figures/386fetch_decode_execute6.png"
+       sodipodi:linespacing="125%"
+       id="text5156-4-1-6-2-5-0-1-9"
+       y="3182.3623"
+       x="-636"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       xml:space="preserve"><tspan
+         y="3182.3623"
+         x="-636"
+         id="tspan5158-9-6-2-1-3-2-0-1"
+         sodipodi:role="line"
+         style="fill:#0000ff">movl %eax, %ebx</tspan></text>
   </g>
 </svg>
