@@ -827,7 +827,7 @@ Disassembly of section .text:
 
 \section{Putting it together: Iterative Fibonacci}
 \begin{frame}[fragile,t]
-\frametitle{Iterative Fibonacci (example-4.S)}
+\frametitle{Iterative Fibonacci (fibonacci.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -858,11 +858,11 @@ myprint:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Iterative Fibonacci (example-4.S) Output}
+\frametitle{Iterative Fibonacci (fibonacci.S) Output}
 \begin{textcode}
-$ as example-4.S -o example-4.o
-$ gcc example-4.o -o example-4
-$ ./example-4
+$ as fibonacci.S -o fibonacci.o
+$ gcc fibonacci.o -o fibonacci
+$ ./fibonacci
 1
 2
 3
@@ -880,7 +880,7 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Iterative Fibonacci (example-4.S) Disassembly}
+\frametitle{Iterative Fibonacci (fibonacci.S) Disassembly}
 \begin{customobjdumpcode}
 080483e4 <main>:
  80483e4: b9 00 00 00 00        mov    $0x0,%ecx
@@ -1193,137 +1193,108 @@ Disassembly of section .data:
 \end{customobjdumpcode}
 \end{frame}
 
-\section{Putting it together: Base-64 Encoder}
+\section{Putting it together: Morse Encoder}
 
 \begin{frame}[fragile,t]
-\frametitle{Base-64 Representation of Binary Data}
-\begin{itemize}
-  \item Some ASCII-based communication channels do not handle binary data well (email, http, etc.).
-  \item Base-64 encoding expresses binary data with a set of 64 printable ASCII characters.
-  \item Encoding Scheme
-  \begin{itemize}
-    \item Combine three input bytes into a 24-bit quantity \\
-    {\ttfamily 0xFF 0xDE 0x02 =} \\ {\ttfamily 0b11111111\_11011110\_00000010}
-    \item Split the 24-bits into four 6-bit quantities \\
-    {\ttfamily 0b111111\_111101\_111000\_000010} \\
-    \item Look up each 6-bit quantity in the 64 ASCII character table
-    {\ttfamily b64table[0b111111], b64table[0b111101], b64table[0b111000], b64table[0b000010]} \\
-    \item Base-64 encoding of {\ttfamily 0xFF 0xDE 0x02} is {\ttfamily '/' '9' '4' 'c'}
-  \end{itemize}
-  \item Rules to pad input sequences that are not multiples of 3 bytes exist
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{Base-64 Encoder (example-7.S)}
+\frametitle{Morse Encoder (morse\_encoder.S)}
 \mvs
 \begin{gascode*}{fontsize=\fontsize{9}{8}}
 .section .text
-
 .global main
 main:
-movl $plainData, %esi     # Pointer to plainData
-movl $encodedData, %edi   # Pointer to encodedData
-movl $b64table, %ebp      # Pointer to b64Table
+movl $inputWord, %esi       # Pointer to input word
+movl $outputMorse, %edi     # Pointer to output morse
+movl $0, %eax               # Clear %eax
 
-movl $0, %ecx             # Clear our counter %ecx
-movl plainDataLen, %edx   # Length of plain data in %edx
+encode_loop:
+  movb (%esi), %al          # Read the next byte of input to %al
+  incl %esi                 # Increment input word pointer
 
-b64_encode_loop:
-  movb (%esi, %ecx, 1), %al   # Fetch byte 1 of 3
-  incl %ecx
-  shl $16, %eax               # Left shift the byte into place
-  movb (%esi, %ecx, 1), %ah   # Fetch byte 2 of 3
-  incl %ecx
-  movb (%esi, %ecx, 1), %al   # Fetch byte 3 of 3
-  incl %ecx
+  testb %al, %al            # If we encounter a null byte
+  jz finished               #   jump to finished
 
-  # %eax contains 24-bits of input bytes
-  # arranged as | x | 2 | 1 | 0 |
+  subb $'A, %al             # Adjust %al to be relative to 'A'
+
+  movl $MorseTable, %ecx    # Initialize %ecx morse table pointer
+  lookup:
+                                # Read the next code character into %bl
+    movb (%ecx, %eax, 8), %bl   # %bl = *(%ecx + 8*%eax)
+
+    cmpb $' , %bl               # If we encounter a space
+    je lookup_done              #   break out of the loop
 
 \end{gascode*}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Base-64 Encoder (example-7.S)}
+\frametitle{Morse Encoder (morse\_encoder.S) Continued}
 \mvs
 \begin{gascode*}{fontsize=\fontsize{9}{8}}
-  movl %eax, %ebx     # Save a copy of %eax
+    # (inside lookup loop)
 
-  # Look up base-64 character 1
-  shr $18, %eax               # Shift top 6-bits to the bottom
-  andl $0x3F, %eax            # Mask them off
-  movb (%ebp, %eax, 1), %al   # Look up the character from b64table
-  movb %al, (%edi)            # Write character to encodeString
-  incl %edi
-  movl %ebx, %eax             # Restore %eax
+    movb %bl, (%edi)            # Copy the code character to our output morse
+    incl %edi                   # Increment output morse pointer
 
-  # Look up base-64 character 2
-  shr $12, %eax               # Shift next 6-bits to the bottom
+    incl %ecx                   # Incerment our table pointer
+    jmp lookup                  # Loop
 
-  ...
-  ...
+lookup_done:
+  movb $' , (%edi)          # Copy a space to the output morse
+  incl %edi                 # Increment output morse pointer
+  movb $' , (%edi)          # ...
+  incl %edi                 # ...
+  movb $' , (%edi)          # ...
+  incl %edi                 # ...
 
-  # Loop until we've processed all input bytes
-  cmpl %edx, %ecx
-  jl b64_encode_loop
+  jmp encode_loop
 
-# Write a null-terminating byte to the encoded string
-movb $0, %al
-movb %al, (%edi)
-
-# Print the encoded string
-...
-
-ret
+finished:
+  movb $0x00, (%edi)        # Append a null byte to the output morse
+  incl %edi                 # Increment output morse pointer
 \end{gascode*}
 \end{frame}
 
-
 \begin{frame}[fragile,t]
-\frametitle{Base-64 Encoder (example-7.S)}
+\frametitle{Morse Encoder (morse\_encoder.S) Continued}
 \mvs
 \begin{gascode*}{fontsize=\fontsize{9}{8}}
+
+  pushl $outputMorse        # Call puts(outputMorse);
+  call puts
+  addl $4, %esp
+
+  movl $0, %eax             # Return 0
+  ret
+
 .section .rodata
-  # base-64 encoding look up table
-  b64table:
-\end{gascode*}
-\begin{textcode*}{fontsize=\fontsize{9}{8}}
-  .byte 'A,'B,'C,'D,'E,'F,'G,'H
-  .byte 'I,'J,'K,'L,'M,'N,'O,'P
-  .byte 'Q,'R,'S,'T,'U,'V,'W,'X
-  .byte 'Y,'Z,'a,'b,'c,'d,'e,'f
-  .byte 'g,'h,'i,'j,'k,'l,'m,'n
-  .byte 'o,'p,'q,'r,'s,'t,'u,'v
-  .byte 'w,'x,'y,'z,'0,'1,'2,'3
-  .byte '4,'5,'6,'7,'8,'9,'+,'/
-\end{textcode*}
-\begin{gascode*}{fontsize=\fontsize{9}{8}}
-
-formatStr:
-  .ascii "Plain data: %s\nEncoded data: %s\n\0"
-
-.section .bss
-  # base-64 encoded string storage
-  .comm encodedData, 1024
+# Morse code lookup table
+  MorseTable:
+  .ascii ".-      ", "-...    ", "-.-.    ", "-..     " # A, B, C, D
+  .ascii ".       ", "..-.    ", "--.     ", "....    " # E, F, G, H
+  .ascii "..      ", ".---    ", "-.-     ", ".-..    " # I, J, K, L
+  .ascii "--      ", "-.      ", "---     ", ".--.    " # M, N, O, P
+  .ascii "--.-    ", ".-.     ", "...     ", "-       " # Q, R, S, T
+  .ascii "..-     ", "...-    ", ".--     ", "-..-    " # U, V, W, X
+  .ascii "-.--    ", "--..    "                         # Y, Z
 
 .section .data
-  # input data (multiple of 3 bytes for the purpose of this example)
-  plainData:      .ascii "Hello World!\0"
-  plainDataLen:   .long 12
+# Input Word Storage
+  inputWord: .ascii "HELLO\0"
+
+.section .bss
+# Output Morse Code Storage
+  .comm outputMorse, 64
 \end{gascode*}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Base-64 Encoder (example-7.S) Runtime}
+\frametitle{Morse Encoder (morse\_encoder.S) Runtime}
 \mvs
 \begin{textcode}
-$ as example-7.S -o example-7.o
-$ gcc example-7.o -o example-7
-$ ./example-7
-./example-7
-Plain data: Hello World!
-Encoded data: SGVsbG8gV29ybGQh
+$ as morse_encoder.S -o morse_encoder.o
+$ gcc morse_encoder.o -o morse_encoder
+$ ./morse_encoder
+....   .   .-..   .-..   ---   
 $
 \end{textcode}
 \end{frame}
@@ -1368,7 +1339,7 @@ int main(void) {
 \includegraphics[height=0.4\paperheight]{figures/x86stack.png}
 \end{figure}
 \begin{itemize}
-  \item Implemented in hardware with a "stack pointer" -- {\ttfamily \%esp} \\ and a chunk of memory
+  \item Implemented in hardware with a "stack pointer" {\ttfamily \%esp} \\ and a chunk of memory
   \item x86 stack is {\bf last in first out}, {\bf descending}, and \\ {\ttfamily \%esp} {\bf points to allocated memory}
   \item OS sets up valid {\ttfamily \%esp} at program start
 \end{itemize}
@@ -1479,7 +1450,7 @@ Disassembly of section .text:
 \frametitle{{\ttfamily call} and {\ttfamily ret}}
 \begin{itemize}
   \item {\ttfamily call <label>}
-  \item {\ttfamily call} pushes a return address onto the stack, then jumps
+  \item {\ttfamily call} pushes a return address onto the stack, then jumps to {\ttfamily <label>}
   \item {\ttfamily ret} pops the return address off the stack, and jumps to it
 \end{itemize}
   \begin{gascode}
@@ -1636,7 +1607,7 @@ $
 \section{Putting it together: 99 Bottles of Beer on the Wall}
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{99 Bottles of Beer on the Wall (example-10.S)}
+\frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
 \begin{gascode*}{textsize=\textsize{9}{8}}
 .section .text
 .global main
@@ -1669,7 +1640,7 @@ main:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{99 Bottles of Beer on the Wall (example-10.S)}
+\frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
 \begin{gascode*}{textsize=\textsize{9}{8}}
     # Save %eax
     pushl %eax
@@ -1700,7 +1671,7 @@ main:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{99 Bottles of Beer on the Wall (example-10.S)}
+\frametitle{99 Bottles of Beer on the Wall (99\_botttles\_of\_beer.S)}
 \begin{gascode*}{textsize=\textsize{7.5}{8}}
 .section .data
 formatStr1:
@@ -1714,11 +1685,11 @@ formatStr3:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{99 Bottles of Beer on the Wall (example-10.S) Runtime}
+\frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S) Runtime}
 \begin{textcode}
-$ as example-10.S -o example-10.o
-$ gcc example-10.o -o example-10
-$ ./example-10
+$ as 99_bottles_of_beer.S -o 99_bottles_of_beer.o
+$ gcc 99_bottles_of_beer.o -o 99_bottles_of_beer
+$ ./99_bottles_of_beer
 99 bottles of beer on the wall! 99 bottles of beer!
 Take one down, pass it around, 98 bottles of beer on the wall!
 98 bottles of beer on the wall! 98 bottles of beer!
@@ -1915,193 +1886,146 @@ main:
 \end{gascode}
 \end{frame}
 
-\section{Putting it together: File Line Counter}
+\section{Putting it together: Linked List}
 
 \begin{frame}[fragile,t]
-\frametitle{File Line Counter in C (example-12-c.c)}
-\mvs
-\begin{ccode*}{fontsize=\fontsize{9}{8}}
-#include <stdio.h>
-
-int main(int argc, char *argv[]) {
-  FILE *fp; char c; unsigned int lc;
-
-  if (argc < 2) {
-    printf("usage: %s <file>\n", argv[0]);
-    return -1;
-  }
-
-  fp = fopen(argv[1], "r");
-  if (fp == NULL) {
-    printf("error opening file!\n");
-    return -1;
-  }
-
-  lc = 0;
-  while ((c = fgetc(fp)) != EOF) {
-    if (c == '\n')
-      lc++;
-  }
-
-  printf("%d\n", lc);
-
-  fclose(fp);
-  return 0;
-}
-\end{ccode*}
-\end{frame}
-
-
-\begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S)}
+\frametitle{Linked List (linked\_list.S)}
 \mvs
 \begin{gascode}
 .section .text
 .global main
 
-# int main(int argc, char *argv[]) {
-main:
-  # Function prologue
-  pushl %ebp
-  movl %esp, %ebp
+# struct list { int data; struct list *next; }
+# struct list: [ data: 4 bytes ][ list *next: 4 bytes ]
 
-  # Allocate space for FILE *fp; unsigned int lc;
-  subl $8, %esp
+# list *list_alloc(int data);
+list_alloc:
+  pushl $8            # %eax = malloc(8);
+  call malloc
+  addl $4, %esp
 
-  # libc retaddr at %ebp+4
-  # argc is at %ebp+8
-  # **argv is at %ebp+12
-  # *argv[0] is at *(%ebp+12)+0
-  # *argv[1] is at *(%ebp+12)+4
-  # FILE *fp is at %ebp-4
-  # unsigned int lc at %ebp-8
+  testl %eax, %eax    # if (%eax == NULL)
+  jz fatal            #   goto fatal;
 
-  # if (argc < 2)
-  movl 8(%ebp), %ecx    # Copy argc to %ecx
-  cmpl $2, %ecx
-  jl printUsage
+  movl 4(%esp), %ecx
+  movl %ecx, (%eax)   # %eax->data = data
+  movl $0, 4(%eax)    # %eax->next = 0
+  ret
+
+  # Dirty error handling
+  fatal:
+      jmp fatal
 \end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S) Continued}
+\frametitle{Linked List (linked\_list.S) Continued}
 \mvs
 \begin{gascode}
-  movl 12(%ebp), %eax   # Copy argv to %eax
-  addl $4, %eax         # Add 4 to yield *argv[1]
-  movl (%eax), %eax     # Derefence to yield argv[1]
+# void list_add(list *head, int data);
+list_add:
+  push %ebp
+  mov %esp, %ebp
+  subl $4, %esp           # list *n;
 
-  # fopen(argv[1], "r");
-  pushl $openMode
-  pushl %eax
-  call fopen
-  addl $8, %esp
-  # fp = ...
-  movl %eax, -4(%ebp)
+  pushl 12(%ebp)          # %eax = list_alloc(data);
+  call list_alloc
+  addl $4, %esp
+  mov %eax, -4(%ebp)      # n = %eax;
 
-  # if (fp == NULL)
-  test %eax, %eax
-  jz errorOpen
+  mov 8(%ebp), %eax       # %eax = head
+  traverse_add:
+    cmpl $0, 4(%eax)      # if (%eax->next == NULL)
+    jz at_end_add         #  goto at_end_add;
+    movl 4(%eax), %eax    # %eax = %eax->next
+    jmp traverse_add      # Loop
 
-  # lc = 0;
-  movl $0, -8(%ebp)
+  at_end_add:
+  movl -4(%ebp), %ecx     # %ecx = n
+  movl %ecx, 4(%eax)      # %eax->next = %ecx
 
-
-
-
-
-
-  # --continued-->
-\end{gascode}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S) Continued}
-\mvs
-\begin{gascode}
-  read_loop:
-    # %eax = fgetc(fp);
-    pushl -4(%ebp)
-    call fgetc
-    addl $4, %esp
-
-    # if (c == EOF) break;
-    cmpl $-1, %eax
-    je print_count
-    # if (c != '\n') continue;
-    cmpl $0x0A, %eax
-    jne read_loop
-    # lc += 1
-    addl $1, -8(%ebp)
-    jmp read_loop
-
-  print_count:
-    # printf("%d\n", lc);
-    pushl -8(%ebp)
-    pushl $countStr
-    call printf
-    addl $8, %esp
-    # return 0;
-    movl $0, %eax
-    jmp finished
-\end{gascode}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S) Continued}
-\mvs
-\begin{gascode}
-  printUsage:
-    # printf("usage %s <file>\n", argv[0]);
-    movl 12(%ebp), %eax
-    pushl (%eax)
-    pushl $usageStr
-    call printf
-    addl $8, %esp
-    # return -1;
-    movl $0, %eax
-    notl %eax
-    jmp finished
-
-  errorOpen:
-    # printf("error opening file!\n");
-    pushl $errorOpenStr
-    call printf
-    addl $4, %esp
-    # return -1;
-    movl $0, %eax
-    notl %eax
-    jmp finished
-
-  finished:
-  movl %ebp, %esp
-  popl %ebp
+  mov %ebp, %esp
+  pop %ebp
   ret
 \end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S) Continued}
+\frametitle{Linked List (linked\_list.S) Continued}
 \mvs
 \begin{gascode}
-.section .data
-openMode:     .ascii "r\0"
-countStr:     .ascii "%d\n\0"
-usageStr:     .ascii "usage: %s <file>\n\0"
-errorOpenStr: .ascii "error opening file!\n\0"
+# void list_dump(list *head);
+list_dump:
+    push %ebp
+    mov %esp, %ebp
+
+    pushl %ebx              # Save %ebx
+    movl 8(%ebp), %ebx      # %ebx = head
+
+    traverse_dump:
+        testl %ebx, %ebx    # if (%ebx == NULL)
+        jz at_end_dump      #  goto at_end_dump;
+
+        movl (%ebx), %ecx   # %ecx = %ebx->data
+        pushl %ecx          # printf("%d\n", %ecx)
+        pushl $fmtStr
+        call printf
+        addl $8, %esp
+
+        movl 4(%ebx), %ebx  # %ebx = %ebx->next
+        jmp traverse_dump   # Loop
+
+    at_end_dump:
+    pop %ebx                # Restore %ebx
+    mov %ebp, %esp
+    pop %ebp
+    ret
 \end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{File Line Counter (example-12.S) Runtime}
+\frametitle{Linked List (linked\_list.S) Continued}
+\mvs
+\begin{gascode}
+main:
+    pushl $86           # %eax = list_alloc(86);
+    call list_alloc
+    addl $4, %esp
+    movl %eax, head     # head = %eax
+
+    pushl $75           # list_add(head, 75);
+    pushl head
+    call list_add
+    addl $8, %esp
+
+    pushl $309          # list_add(head, 309);
+    pushl head
+    call list_add
+    addl $8, %esp
+
+    pushl head          # list_dump(head);
+    call list_dump
+    addl $4, %esp
+
+    movl $0, %eax       # Return 0
+    ret
+
+.section .data
+  head:     .long 0
+  fmtStr:   .ascii "%d\n\0"
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Linked List (linked\_list.S) Runtime}
 \mvs
 \begin{textcode}
-$ as example-12.S -o example-12.o
-$ gcc example-12.o -o example-12
-$ ./example-12 /usr/include/stdio.h
-944
-$ wc /usr/include/stdio.h
-  944  4430 31657 /usr/include/stdio.h
+$ as linked_list.S -o linked_list.o
+$ gcc linked_list.o -o linked_list
+$ ./linked_list
+86
+75
+309
 $
 \end{textcode}
 \end{frame}
@@ -2287,7 +2211,7 @@ Disassembly of section .data:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S)}
+\frametitle{Simple Hexdump (example-14-hexdump.S)}
 \begin{gascode}
 .section .text
 .global _start
@@ -2320,7 +2244,7 @@ _start:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S) Continued}
+\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
 \begin{gascode*}{textsize=\textsize{9}{8}}
     read_loop:
         # syscall read(fd, buff, 16);
@@ -2353,7 +2277,7 @@ _start:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S) Continued}
+\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
 \begin{gascode*}{textsize=\textsize{9}{8}}
             # Loop byte_loop
             incl %esi
@@ -2386,7 +2310,7 @@ exit:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S) Continued}
+\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
 \begin{gascode*}{textsize=\textsize{9}{8}}
 putbyte:
     # Fetch argument
@@ -2419,7 +2343,7 @@ putbyte:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S) Continued}
+\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
 \begin{gascode*}{textsize=\textsize{9}{8}}
 putchar:
     # Save %ebx
@@ -2443,7 +2367,7 @@ nibble2hex: .ascii "0123456789abcdef"
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14.S) Runtime}
+\frametitle{Simple Hexdump (example-14-hexdump.S) Runtime}
 \begin{textcode}
 $ as example-14.S -o example-14.o
 $ ld example-14.o -o example-14

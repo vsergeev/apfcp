@@ -1,4 +1,4 @@
-EXAMPLES = example-1 example-2 example-3 example-4 example-5 example-6 example-7 example-8 example-9 example-10 example-11 example-12 example-13 example-14 example-15 example-16 example-17 example-18 example-19 example-20 example-21 example-22
+EXAMPLES = example-1 example-2 example-3 fibonacci example-5 example-6 morse_encoder example-8 example-9 99_bottles_of_beer example-11 linked_list example-13 example-15 example-16 example-17 example-18 example-19 example-20 example-21 example-22
 
 all:
 # These C examples should be compiled & linked with gcc
@@ -14,15 +14,14 @@ all:
 	as example-9.S -o example-9.o && ld example-9.o -o example-9 && objdump -D example-9 > example-9.objdump
 	as example-11.S -o example-11.o && ld example-11.o -o example-11 && objdump -D example-11 > example-11.objdump
 	as example-13.S -o example-13.o && ld example-13.o -o example-13 && objdump -D example-13 > example-13.objdump
-	as example-14.S -o example-14.o && ld example-14.o -o example-14 && objdump -D example-14 > example-14.objdump
 	as example-15.S -o example-15.o && ld example-15.o -o example-15 && objdump -D example-15 > example-15.objdump
 	as example-20.S -o example-20.o && ld example-20.o -o example-20 && objdump -D example-20 > example-20.objdump
 	as example-21.S -o example-21.o && ld example-21.o -o example-21 && objdump -D example-21 > example-21.objdump
 # These examples should be linked with gcc/libc
-	as example-4.S -o example-4.o && gcc example-4.o -o example-4 && objdump -D example-4 > example-4.objdump
-	as example-7.S -o example-7.o && gcc example-7.o -o example-7 && objdump -D example-7 > example-7.objdump
-	as example-10.S -o example-10.o && gcc example-10.o -o example-10 && objdump -D example-10 > example-10.objdump
-	as example-12.S -o example-12.o && gcc example-12.o -o example-12 && objdump -D example-12 > example-12.objdump
+	as fibonacci.S -o fibonacci.o && gcc fibonacci.o -o fibonacci && objdump -D fibonacci > fibonacci.objdump
+	as morse_encoder.S -o morse_encoder.o && gcc morse_encoder.o -o morse_encoder && objdump -D morse_encoder > morse_encoder.objdump
+	as 99_bottles_of_beer.S -o 99_bottles_of_beer.o && gcc 99_bottles_of_beer.o -o 99_bottles_of_beer && objdump -D 99_bottles_of_beer > 99_bottles_of_beer.objdump
+	as linked_list.S -o linked_list.o && gcc linked_list.o -o linked_list && objdump -D linked_list > linked_list.objdump
 	as example-16.S -o example-16.o && gcc example-16.o -o example-16 && objdump -D example-16 > example-16.objdump
 	as example-17.S -o example-17.o && gcc example-17.o -o example-17 && objdump -D example-17 > example-17.objdump
 # These examples should be assembled with nasm and linked with ld

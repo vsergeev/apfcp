@@ -1,6 +1,6 @@
-Only example-4, example-7, example-10, example-12, example-13, example-14,
-example-16, example-17, example-18, example-19, example-20, example-21, and
-example-22 are meant to be executed from command-line.
+Only fibonacci, morse_encoder, 99_bottles_of_beer, linked_list, example-13,
+example-14, example-16, example-17, example-18, example-19, example-20,
+example-21, and example-22 are meant to be executed from command-line.
 
 The other programs are just examples of instruction encodings that are meant to
 be examined with objdump or single-stepped in gdb. They do not call syscall
