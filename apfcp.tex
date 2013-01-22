@@ -77,6 +77,27 @@
 
 \section*{Introduction and Example}
 
+%%% Introduction and Example Slide 0
+\begin{frame}[fragile,t]
+\frametitle{Why Assembly?}
+\begin{itemize}
+    \item Embedded Systems
+    \item Bootstrapping an OS
+    \item Compilers
+    \item Debugging
+    \item Fancy instructions
+    \vs \vs
+    \pause
+    \item {\bf Sharpened intuition} on computing
+    \begin{itemize}
+        \item Gut instinct on some questions of feasibility
+        \item Justification for liking powers of two
+        \item Turing completeness is a special cage
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
 %%% Introduction and Example Slide 1
 \begin{frame}[fragile,t]
 \frametitle{Reasonable strlen (example-1.c)}
@@ -325,7 +346,7 @@ f2 ae           repnz scas %es:(%edi),%al
     \end{itemize}
     \vs
     \pause
-    \item Sufficient expressability of instructions makes a CPU Turing complete, \\ provided you have infinite memory
+    \item Sufficient expressiveness of instructions makes a CPU Turing complete, \\ provided you have infinite memory
 \end{itemize}
 \end{frame}
 
@@ -366,15 +387,23 @@ f2 ae           repnz scas %es:(%edi),%al
     \item Encoded as numbers, sitting in memory like any other data
     \item Uniquely defined for each architecture in its {\bf instruction set}
     \item {\ttfamily \%eip} contains address of next instruction
-    \vs
+    \vs \vs \vs
     \pause
-    \item Fetch - Decode - Execute Loop
+    \item Fetch - Decode - Execute Model
     \begin{itemize}
         \item CPU {\bf fetches} data at address {\ttfamily \%eip} from main memory \\
         \item CPU {\bf decodes} data into an instruction \\
         \item CPU {\bf executes} instruction, \\ possibly manipulating memory, I/O, and its own state, including {\ttfamily \%eip}
     \end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Instruction Fetch-Decode-Execute}
+\mvs
+\begin{figure}
+\centering \includegraphics[width=0.65\textwidth]{figures/386fetch_decode_execute0.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1059,9 +1088,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
 \end{itemize}
 \begin{gascode}
 .section .text
-movl magicDword, %eax
-andb byteMask, %al
-movl %eax, modifiedDword
+movl magicDword, %eax     # %eax = *(magicDword)
+andb byteMask, %al        # %al = %al & *(byteMask)
+movl %eax, modifiedDword  # *(magicDword) = %eax
 
 .section .rodata          # Read-only!
 magicDword: .long 0xffffffff
@@ -1114,19 +1143,23 @@ Disassembly of section .text:
 .section .text
 
 movl $tableStart, %ebx          # Pointer to table start
-                                # We are moving the /value/ $tableStart,
+                                # We are moving the *value* $tableStart,
                                 # this is not a memory access!
 movl $0, %ecx
 loop:
     movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
-    notl %eax                   # %eax = ~ %eax
+    notl %eax                   # %eax = ~%eax
     movl %eax, (%ebx, %ecx, 4)  # *(%ebx + 4*%ecx) = %eax
     incl %ecx
     cmpl $10, %ecx
     jl loop
 
 .section .data
-tableStart: .long 0x00000000, 0x00000001, ...
+tableStart: .long 0x00000000, 0x00000001
+            .long 0x00000002, 0x00000003
+            .long 0x00000004, 0x00000005
+            .long 0x00000006, 0x00000007
+            .long 0x00000008, 0x00000009
 \end{gascode}
 \end{frame}
 
@@ -1336,7 +1369,7 @@ int main(void) {
 \end{figure}
 \begin{itemize}
   \item Implemented in hardware with a "stack pointer" -- {\ttfamily \%esp} \\ and a chunk of memory
-  \item x86 stack is {\bf last in first out}, {\bf descending}, and \\ {\ttfamily \%esp} points to allocated memory
+  \item x86 stack is {\bf last in first out}, {\bf descending}, and \\ {\ttfamily \%esp} {\bf points to allocated memory}
   \item OS sets up valid {\ttfamily \%esp} at program start
 \end{itemize}
 \end{frame}
@@ -1445,7 +1478,7 @@ Disassembly of section .text:
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily call} and {\ttfamily ret}}
 \begin{itemize}
-  \item There is {\ttfamily jmp <label>} and {\ttfamily call <label>}
+  \item {\ttfamily call <label>}
   \item {\ttfamily call} pushes a return address onto the stack, then jumps
   \item {\ttfamily ret} pops the return address off the stack, and jumps to it
 \end{itemize}
@@ -1555,6 +1588,7 @@ magicNumber: .long 42
   \item ELF binary specifies an entry point address for the OS to set initial {\ttfamily \%eip} to
   \item {\ttfamily ld} expects this to be specified by the symbol {\ttfamily \_start}
 \end{itemize}
+\pause
 \begin{gascode}
 .section .text
 .global _start    # Export the symbol
@@ -1578,6 +1612,7 @@ $ ./test
   \item We provide a {\ttfamily main} and also a return back to libc with {\ttfamily ret} and a return value in {\ttfamily \%eax}
   \item libc {\ttfamily exit()'s} with this value
 \end{itemize}
+\pause
 \begin{gascode}
 .section .text
 .global main
@@ -1621,7 +1656,7 @@ main:
     # printf(formatStr1, %eax, %eax);
     pushl %eax
     pushl %eax
-    pushl $formatStr1   # /Address/ of formatStr1
+    pushl $formatStr1   # *Address* of formatStr1
     call printf
     addl $12, %esp      # Clean up the stack
 
@@ -1647,6 +1682,7 @@ main:
 
     # Restore %eax
     popl %eax
+
     # Loop
     test %eax, %eax
     jnz more_beer
@@ -1772,7 +1808,7 @@ $
     # | local var  | <- %esp+4   %ebp-8
     # | local var  | <- %esp     %ebp-12
     # Argument is still always at %ebp+8
-    # Allocated memory always accessible at %ebp-4, %ebp-8, %ebp-12
+    # Allocated memory always at %ebp-4, %ebp-8, %ebp-12
 \end{gascode*}
 \end{frame}
 
@@ -1812,6 +1848,7 @@ _start:
   addl $16, %esp
   # %eax is now 84
 
+  # sumNumbers(int n, ...)
   sumNumbers:
     # Function prologue, save old frame pointer and setup new one
     pushl %ebp
@@ -1850,7 +1887,7 @@ _start:
 \section{Topic 9: Command-line Arguments}
 
 \begin{frame}[fragile,t]
-\frametitle{argc and **argv on the stack}
+\frametitle{{\ttfamily argc} and {\ttfamily **argv} on the stack}
 \mvs
 \begin{itemize}
   \item In the {\ttfamily \_start} entry point, first argument on the stack is {\ttfamily argc}, followed by {\ttfamily argv[0], argv[1], ...}
@@ -2083,13 +2120,10 @@ $
   \item User program executes at a lower CPU privillege
   \item Virtual memory hides other programs, restricts access to kernel memory and memory-mapped I/O
   \end{itemize}
+  \vs \vs
   \pause
   \item User program can effectively only do pure computation and manipulate user memory mapped by the OS
 \end{itemize}
-\begin{figure}
-\centering
-\includegraphics[height=0.45\paperheight]{figures/monolithic.png}
-\end{figure}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -2099,13 +2133,24 @@ $
   \begin{itemize}
     \item timer tick, DMA exchange complete, divide-by-zero
   \end{itemize}
+  \pause
   \item External interrupts can happen asynchronously --- are not polled --- and \textbf{interrupt} current program
+  \pause
   \item CPU saves current state in an architecture-specific way, switches to privileged mode, and jumps to the interrupt handler in the kernel
   \pause
   \item Software interrupt, instruction {\ttfamily int <number>}, provides a mechanism to make a request to the kernel to do something user program cannot
   \item System call
 \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{System Call Interface}
+\begin{figure}
+\centering
+\includegraphics[height=0.45\paperheight]{figures/monolithic.png}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}[fragile,t]
 \frametitle{Linux System Calls}
@@ -2121,6 +2166,7 @@ $
   \end{itemize}
   \pause
   \item Operating System specific convention for making a system call
+  \pause
   \item On Linux it is:
   \begin{itemize}
     \item system call number in {\ttfamily \%eax}
@@ -2128,6 +2174,7 @@ $
     \item invoke software interrupt with vector {\ttfamily 0x80}: {\ttfamily int \$0x80}
     \item return value in \%eax
   \end{itemize}
+  \pause
   \item All registers preserved except for {\ttfamily \%eax}
   \item Passes arguments in registers, not the stack like {\ttfamily cdecl}
 \end{itemize}
@@ -2415,6 +2462,13 @@ $
 
 
 \section{Advanced Topic 11: x86 String Operations}
+
+\begin{frame}[fragile,t]
+\frametitle{Some Overlooked Registers}
+\begin{figure}
+\centering \includegraphics[width=0.85\textwidth]{figures/386state.png}
+\end{figure}
+\end{frame}
 
 \begin{frame}[fragile,t]
 \mvs

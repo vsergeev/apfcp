@@ -10,6 +10,7 @@ _start:
   addl $16, %esp
   # %eax is now 84
 
+  # sumNumbers(int n, ...)
   sumNumbers:
     # Function prologue, save old frame pointer and setup new one
     pushl %ebp

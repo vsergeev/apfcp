@@ -8,7 +8,7 @@ movl $tableStart, %ebx          # Pointer to table start
 movl $0, %ecx
 loop:
     movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
-    notl %eax                   # %eax = ~ %eax
+    notl %eax                   # %eax = ~%eax
     movl %eax, (%ebx, %ecx, 4)  # *(%ebx + 4*%ecx) = %eax
     incl %ecx
     cmpl $10, %ecx
@@ -17,8 +17,8 @@ nop
 
 .section .data
 tableStart: .long 0x00000000, 0x00000001
-            .word 0x00000002, 0x00000003
-            .word 0x00000004, 0x00000005
-            .word 0x00000006, 0x00000007
-            .word 0x00000008, 0x00000009
+            .long 0x00000002, 0x00000003
+            .long 0x00000004, 0x00000005
+            .long 0x00000006, 0x00000007
+            .long 0x00000008, 0x00000009
 
