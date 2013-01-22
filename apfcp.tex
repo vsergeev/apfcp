@@ -1315,33 +1315,52 @@ int main(void) {
   return 0;
 }
 \end{ccode}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{Automatic Allocation in Assembly}
-\begin{figure}
-\centering
-\includegraphics[height=0.4\paperheight]{figures/stackplain.png}
-\end{figure}
 \begin{itemize}
-  \item In assembly, we can dynamically allocate/deallocate memory on the stack with {\ttfamily push} and {\ttfamily pop} instructions, or direct arithmetic on {\ttfamily \%esp}
-  \item x86 stack is
-  \begin{itemize}
-    \item last-in-first-out
-    \item descending
-    \item {\ttfamily \%esp} points to allocated memory
-  \end{itemize}
-  \item OS sets up {\ttfamily \%esp} to point to a valid chunk of read-write user memory at program start
+  \item These allocations typically live on the {\bf stack}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Basic {\ttfamily push} / {\ttfamily pop} Stack Usage}
-\mvs
+\begin{frame}[fragile,t]
+\frametitle{LIFO Stack Data Structure}
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/stackpushpop.png}
+\includegraphics[height=0.60\paperheight]{figures/lifostack.png}
 \end{figure}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{x86 Stack}
+\begin{figure}
+\centering
+\includegraphics[height=0.4\paperheight]{figures/x86stack.png}
+\end{figure}
+\begin{itemize}
+  \item Implemented in hardware with a "stack pointer" -- {\ttfamily \%esp} \\ and a chunk of memory
+  \item x86 stack is {\bf last in first out}, {\bf descending}, and \\ {\ttfamily \%esp} points to allocated memory
+  \item OS sets up valid {\ttfamily \%esp} at program start
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Push to Stack}
+\begin{figure}
+\centering
+\includegraphics[height=0.6\paperheight]{figures/x86stackpush.png}
+\end{figure}
+\begin{itemize}
+\item We can push by adjusting and writing to {\ttfamily \%esp}, \\ or with the atomic {\ttfamily push} instruction
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Pop from Stack}
+\begin{figure}
+\centering
+\includegraphics[height=0.6\paperheight]{figures/x86stackpop.png}
+\end{figure}
+\begin{itemize}
+\item We can push by reading from and adjusting {\ttfamily \%esp}, \\ or with the atomic {\ttfamily pop} instruction
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1349,28 +1368,10 @@ int main(void) {
 \mvs
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/stackalloc.png}
+\includegraphics[width=\textwidth]{figures/x86stackalloc.png}
 \end{figure}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{Accessing the Stack}
 \begin{itemize}
-  \item {\ttfamily push} and {\ttfamily pop} are not too magical
-\end{itemize}
-  \begin{gascode}
-  pushl %eax
-  # is basically similar to
-  subl $4, %esp
-  movl %eax, (%esp)
-
-  popl %eax
-  # is basically similar to
-  movl (%esp), %eax
-  addl $4, %esp
-  \end{gascode}
-\begin{itemize}
-  \item We can access stack memory with indirect memory acceses on {\ttfamily \%esp}, not just {\ttfamily push} and {\ttfamily pop}
+\item We can batch allocate/deallocate space by simply adjusting {\ttfamily \%esp}
 \end{itemize}
 \end{frame}
 
