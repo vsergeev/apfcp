@@ -1608,7 +1608,7 @@ $
 \begin{frame}[fragile,t]
 \mvs
 \frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 .section .text
 .global main
 .global printf
@@ -1635,19 +1635,19 @@ main:
     popl %eax
     # Drink a beer
     decl %eax
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \mvs
 \frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
     # Save %eax
     pushl %eax
 
     # printf(formatStr2, %eax);
     pushl %eax
-    pushl $formatStr2   # /Address/ of formatStr2
+    pushl $formatStr2   # *Address* of formatStr2
     call printf
     addl $8, %esp       # Clean up the stack
 
@@ -1666,13 +1666,13 @@ main:
   movl $0, %eax
   ret
 
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{99 Bottles of Beer on the Wall (99\_botttles\_of\_beer.S)}
-\begin{gascode*}{textsize=\textsize{7.5}{8}}
+\frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
+\begin{gascode}
 .section .data
 formatStr1:
 .ascii "%d bottles of beer on the wall! %d bottles of beer!\n\0"
@@ -1680,7 +1680,7 @@ formatStr2:
 .ascii "Take one down, pass it around, %d bottles of beer on the wall!\n\0"
 formatStr3:
 .ascii "No more bottles of beer on the wall!\n\0"
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1801,7 +1801,7 @@ $
 \mvs
 \begin{figure}
 \centering
-\includegraphics[width=0.60\textwidth]{figures/stackframe.png}
+\includegraphics[width=0.65\textwidth]{figures/stackframe.png}
 \end{figure}
 \end{frame}
 
@@ -1914,7 +1914,7 @@ list_alloc:
 
   # Dirty error handling
   fatal:
-      jmp fatal
+    jmp fatal
 \end{gascode}
 \end{frame}
 
@@ -1963,17 +1963,17 @@ list_dump:
     movl 8(%ebp), %ebx      # %ebx = head
 
     traverse_dump:
-        testl %ebx, %ebx    # if (%ebx == NULL)
-        jz at_end_dump      #  goto at_end_dump;
+      testl %ebx, %ebx    # if (%ebx == NULL)
+      jz at_end_dump      #  goto at_end_dump;
 
-        movl (%ebx), %ecx   # %ecx = %ebx->data
-        pushl %ecx          # printf("%d\n", %ecx)
-        pushl $fmtStr
-        call printf
-        addl $8, %esp
+      movl (%ebx), %ecx   # %ecx = %ebx->data
+      pushl %ecx          # printf("%d\n", %ecx)
+      pushl $fmtStr
+      call printf
+      addl $8, %esp
 
-        movl 4(%ebx), %ebx  # %ebx = %ebx->next
-        jmp traverse_dump   # Loop
+      movl 4(%ebx), %ebx  # %ebx = %ebx->next
+      jmp traverse_dump   # Loop
 
     at_end_dump:
     pop %ebx                # Restore %ebx
@@ -2071,7 +2071,7 @@ $
 \frametitle{System Call Interface}
 \begin{figure}
 \centering
-\includegraphics[height=0.45\paperheight]{figures/monolithic.png}
+\includegraphics[height=0.65\paperheight]{figures/monolithic.png}
 \end{figure}
 \end{frame}
 
@@ -2207,179 +2207,110 @@ Disassembly of section .data:
 \end{customobjdumpcode*}
 \end{frame}
 
-\section{Putting it together: Simple hexdump}
+\section{Putting it together: tee}
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S)}
+\frametitle{tee (tee.S)}
 \begin{gascode}
+# Tee (tee.S)
 .section .text
-.global _start
 _start:
-    pushl %ebp
-    movl %esp, %ebp
+  push %ebp
+  mov %esp, %ebp
 
-    # Allocate int fd; char buff[16]; on stack
-    subl $20, %esp
+  subl $4, %esp       # int fd; on the stack
 
-    # Check if argc < 2
-    movl 4(%ebp), %eax
-    cmpl $2, %eax
-    jl exit
+  cmpl $2, 4(%ebp)    # if (argc != 2)
+  jne tee_usage       #   goto tee_usage;
 
-    # syscall open(argv[1], O_RDONLY);
-    movl $0x05, %eax
-    movl 12(%ebp), %ebx
-    movl $0x00, %ecx
-    int $0x80
+  tee_open:
+  # syscall open(argv[1], O_CREAT|O_WRONLY|O_TRUNC, 0644);
+  movl $0x05, %eax
+  movl 12(%ebp), %ebx
+  movl $0x241, %ecx
+  movl $0644, %edx
+  int $0x80
 
-    # Check if fd < 0
-    test %eax, %eax
-    jl exit
+  cmpl $0, %eax       # if (%eax < 0)
+  jl tee_exit         #   goto tee_exit;
 
-    # Copy %eax to fd local variable
-    movl %eax, -4(%ebp)
+  movl %eax, -4(%ebp) # fd = %eax
 \end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
-\begin{gascode*}{textsize=\textsize{9}{8}}
-    read_loop:
-        # syscall read(fd, buff, 16);
-        movl $0x03, %eax
-        movl -4(%ebp), %ebx   # fd
-        leal -20(%ebp), %ecx  # address %ebp-20, our buff[16]
-        movl $16, %edx
-        int $0x80
-        # Check for error on read
-        cmpl $0, %eax
-        jle cleanup
-
-        # %esi = index, %edi = count
-        movl $0, %esi
-        movl %eax, %edi
-
-        byte_loop:
-            # Fetch the byte from our buff
-            movb -20(%ebp, %esi, 1), %al
-            # Print out the byte as ASCII hex
-            pushl %eax
-            call putbyte
-            addl $4, %esp
-            # Print out a space
-            pushl $' '
-            call putchar
-            addl $4, %esp
-\end{gascode*}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
-\begin{gascode*}{textsize=\textsize{9}{8}}
-            # Loop byte_loop
-            incl %esi
-            decl %edi
-            jnz byte_loop
-
-        # Print out a newline
-        pushl $'\n'
-        call putchar
-        addl $4, %esp
-
-        # Loop read_loop
-        jmp read_loop
-
-cleanup:
-    # syscall close(fd);
-    movl $0x06, %eax
-    movl -4(%ebp), %ebx
-    int $0x80
-
-exit:
-    # syscall exit(0);
-    movl $0x01, %eax
-    movl $0x0, %ebx
-    int $0x80
-
-########################################
-\end{gascode*}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
-\begin{gascode*}{textsize=\textsize{9}{8}}
-putbyte:
-    # Fetch argument
-    movl 4(%esp), %eax
-    # Isolate the top nibble 0xX0
-    shrb $4, %al
-    andl $0x0F, %eax
-    # Convert to ASCII hex
-    movl $nibble2hex, %ecx
-    movb (%ecx, %eax, 1), %al
-    # Print out the nibble
-    pushl %eax
-    call putchar
-    addl $4, %esp
-
-    # Fetch argument
-    movl 4(%esp), %eax
-    # Isolate the bottom nibble 0x0X
-    andl $0x0F, %eax
-    # Convert to ASCII hex
-    movl $nibble2hex, %ecx
-    movb (%ecx, %eax, 1), %al
-    # Print out the nibble
-    pushl %eax
-    call putchar
-    addl $4, %esp
-    ret
-\end{gascode*}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S) Continued}
-\begin{gascode*}{textsize=\textsize{9}{8}}
-putchar:
-    # Save %ebx
-    pushl %ebx
-    # syscall write(1, c, 1);
-    movl $0x04, %eax
-    movl $1, %ebx
-    leal 8(%esp), %ecx
+\frametitle{tee (tee.S) Continued}
+\begin{gascode*}{textsize=\textsize{8.5}{8}}
+  tee_loop:
+    # Read from input
+    # syscall read(0, &c, 1);
+    movl $3, %eax
+    movl $0, %ebx
+    movl $c, %ecx
     movl $1, %edx
     int $0x80
-    # Restore %ebx
-    popl %ebx
-    ret
 
-########################################
+    cmpl $1, %eax       # if (%eax < 1)
+    jl tee_exit         #   goto tee_exit;
 
-.section .rodata
-nibble2hex: .ascii "0123456789abcdef"
+    # Write to file
+    # syscall write(fd, &c, 1);
+    movl $4, %eax
+    movl -4(%ebp), %ebx
+    movl $c, %ecx
+    movl $1, %edx
+    int $0x80
+    # Write to stdout
+    # syscall write(1, &c, 1);
+    movl $4, %eax
+    movl $1, %ebx
+    movl $c, %ecx
+    movl $1, %edx
+    int $0x80
+
+    jmp tee_loop       # Loop
 \end{gascode*}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Simple Hexdump (example-14-hexdump.S) Runtime}
-\begin{textcode}
-$ as example-14.S -o example-14.o
-$ ld example-14.o -o example-14
+\frametitle{tee (tee.S) Continued}
+\begin{gascode}
+  tee_usage:
+  # syscall write(1, usageStr, usageStrLen);
+  movl $4, %eax
+  movl $1, %ebx
+  movl $usageStr, %ecx
+  movl usageStrLen, %edx
+  int $0x80
 
-$ dd if=/dev/random of=testfile bs=1 count=23
-$ od -t x1 testfile
-0000000 21 1d e6 b0 a1 09 43 00 ce 00 30 eb d1 da 9b b3
-0000020 b5 ed 5e 51 aa 42 a7
-0000027
-$ ./example-14 testfile
-21 1d e6 b0 a1 09 43 00 ce 00 30 eb d1 da 9b b3
-b5 ed 5e 51 aa 42 a7
+  tee_exit:
+  # syscall exit(0);
+  movl $1, %eax
+  movl $0, %ebx
+  int $0x80
+
+.section .rodata
+# Usage string and length
+  usageStr:     .ascii "./tee <file>\n\0"
+  usageStrLen:  .long .-usageStr-1
+
+.section .bss
+# Read character var
+  .comm c, 1
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{tee (tee.S) Runtime}
+\begin{textcode}
+$ as tee.S -o tee.o
+$ ld tee.o -o tee
+
+$ ./tee testfile
 $
 \end{textcode}
 \end{frame}
@@ -3367,7 +3298,7 @@ $
 \begin{frame}[fragile,t]
 \frametitle{Essential Links}
 \begin{itemize}
-  \item x86-32 + x86-64 instruction set: \\ \url{http://siyobik.info/main/reference}
+  \item x86-32 + x86-64 instruction set: \\ \url{http://ref.x86asm.net/}
   \item Official x86-32 + x86-64 architecture info: \\ \url{http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html}
   \item Unofficial x86-32 + x86-64 architecture info: \\ \url{http://sandpile.org/}
   \item Linux System Call Reference: \\ \url{http://syscalls.kernelgrok.com/}
@@ -3380,6 +3311,11 @@ $
 \frametitle{Going From Here}
 \begin{itemize}
   \item Play with the examples
+  \begin{itemize}
+    \item Modify Morse Encoder example to handle words
+    \item Add find and remove to Linked List example
+    \item Modify Fibonacci to print with syscalls instead of printf()
+  \end{itemize}
   \item Write your own syscall, e.g. rot13
   \item Do Stack Smashing challenges: \\ {\footnotesize \url{http://community.corest.com/~gera/InsecureProgramming/}}
   \item Rewrite a traditional *nix program in Assembly

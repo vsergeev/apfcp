@@ -1,11 +1,11 @@
-EXAMPLES = example-1 example-2 example-3 fibonacci example-5 example-6 morse_encoder example-8 example-9 99_bottles_of_beer example-11 linked_list example-13 example-15 example-16 example-17 example-18 example-19 example-20 example-21 example-22
+EXAMPLES = example-1 example-2 example-3 fibonacci example-5 example-6 morse_encoder example-8 example-9 99_bottles_of_beer example-11 linked_list example-13 tee example-15 example-16 example-17 example-18 example-19 example-20 example-21 example-22
 
 all:
 # These C examples should be compiled & linked with gcc
 	gcc -O1 example-1.c -o example-1 && objdump -D example-1 > example-1.objdump
 	gcc example-18.c -o example-18 && objdump -D example-18 > example-18.objdump
 	gcc example-19.c -o example-19 && objdump -D example-19 > example-19.objdump
-# These examples should be linked with ld
+# These examples should be linked directlywith ld
 	as example-2.S -o example-2.o && ld example-2.o -o example-2 && objdump -D example-2 > example-2.objdump
 	as example-3.S -o example-3.o && ld example-3.o -o example-3 && objdump -D example-3 > example-3.objdump
 	as example-5.S -o example-5.o && ld example-5.o -o example-5 && objdump -D example-5 > example-5.objdump
@@ -14,6 +14,7 @@ all:
 	as example-9.S -o example-9.o && ld example-9.o -o example-9 && objdump -D example-9 > example-9.objdump
 	as example-11.S -o example-11.o && ld example-11.o -o example-11 && objdump -D example-11 > example-11.objdump
 	as example-13.S -o example-13.o && ld example-13.o -o example-13 && objdump -D example-13 > example-13.objdump
+	as tee.S -o tee.o && ld tee.o -o tee && objdump -D tee > tee.objdump
 	as example-15.S -o example-15.o && ld example-15.o -o example-15 && objdump -D example-15 > example-15.objdump
 	as example-20.S -o example-20.o && ld example-20.o -o example-20 && objdump -D example-20 > example-20.objdump
 	as example-21.S -o example-21.o && ld example-21.o -o example-21 && objdump -D example-21 > example-21.objdump
