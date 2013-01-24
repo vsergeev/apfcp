@@ -1,5 +1,6 @@
 # Tee (tee.S)
 .section .text
+.global _start
 _start:
   push %ebp
   mov %esp, %ebp

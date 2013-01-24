@@ -29,6 +29,6 @@ main:
   ret
 
 .section .data
-.comm curtime, 4
+  .comm curtime, 4
 formatStr:  .ascii "%s\0"
 

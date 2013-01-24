@@ -305,8 +305,6 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{columns}
 \vs
 \begin{itemize}
-        \item What's going on here?
-        \pause
         \item glibc's i386 \verb+strlen()+ "main loop" is only 2 bytes!
         \begin{itemize}
                 \item In fact, it's only one instruction: \verb+repnz scas (%edi),%al+.
@@ -314,8 +312,8 @@ f2 ae           repnz scas %es:(%edi),%al
         \pause
         \item Reasonable strlen's "main loop" is three instructions, with a conditional branch \verb+jne 0x80483c2+.
         \pause
-        \item No (obvious) gcc optimization will eliminate the three instruction critical loop with the conditional branch.
-        \item glibc's i486 and i586 implementations of {\ttfamily strlen()} get complicated, taking into account memory alignment and processor pipeline
+        \item An older example of when hand-assembly utilized processor features for a more efficient implementation
+        \item glibc's i486 and i586 implementations of {\ttfamily strlen()} are still assembly, but much more complicated, taking into account memory alignment and processor pipeline
 \end{itemize}
 \end{frame}
 
@@ -665,9 +663,45 @@ Disassembly of section .data:
 \end{frame}
 
 
-\section{Topic 3: Flow Contol}
+\section{Topic 3: Flow Control}
+
 \begin{frame}[fragile,t]
-\frametitle{Instruction Side-Effects}
+\frametitle{Modifying Flow of Execution}
+\mvs
+\begin{itemize}
+  \item With most instructions, CPU will increment {\ttfamily \%eip} by the executed instruction size to proceed to the next immediate instruction
+\end{itemize}
+\begin{gascode*}{textsize=\textsize{9}{8}}
+a_label:
+  nop
+  addl $5, %eax         # %eax = %eax + 5
+  xorl %ecx, %ebx       # %ebx = %ebx ^ %ecx
+
+another_label:
+  nop
+  nop
+\end{gascode*}
+\pause
+\begin{itemize}
+  \item The unconditional {\ttfamily jmp <label>} instruction allows us to explicitly change {\ttfamily \%eip} to another address, and continue execution from there
+\end{itemize}
+\begin{gascode*}{textsize=\textsize{9}{8}}
+a_label:
+  nop
+  addl $5, %eax         # %eax = %eax + 5
+  jmp somewhere_else    # Jump to somewhere_else
+
+another_label:
+  ...                   # We just skipped over all of this
+
+somewhere_else:
+  xorl %ecx, %ebx       # %ebx = %ebx ^ %ecx
+  ...
+\end{gascode*}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Modifying Flow of Execution Intelligently}
 \begin{itemize}
   \item Certain instructions will set boolean bit flags in the {\ttfamily \%eflags} registers based on the result
   \begin{itemize}
@@ -970,7 +1004,7 @@ nop
 
 # Put a string in .rodata
 .section .rodata
-anotherStr:   .ascii "Another string\n\0"
+  anotherStr:   .ascii "Another string\n\0"
 
 # Put some magic bytes in .data
 .section .data
@@ -981,7 +1015,7 @@ magicStr:     .ascii "String!\0"
 
 # Reserve 1024 uninitialized bytes in .bss
 .section .bss
-.comm Buffer, 1024
+  .comm Buffer, 1024
 \end{gascode}
 \end{frame}
 
@@ -1093,11 +1127,11 @@ andb byteMask, %al        # %al = %al & *(byteMask)
 movl %eax, modifiedDword  # *(magicDword) = %eax
 
 .section .rodata          # Read-only!
-magicDword: .long 0xffffffff
-byteMask:   .byte 0x55
+  magicDword: .long 0xffffffff
+  byteMask:   .byte 0x55
 
 .section .bss             # Uninitialized read-write
-.comm modifiedDword, 4
+  .comm modifiedDword, 4
 \end{gascode}
 \pause
 \begin{itemize}
@@ -1384,30 +1418,25 @@ int main(void) {
 \frametitle{Example of Stack Usage (example-8.S)}
 \mvs
 \begin{gascode}
-.section .text
-
+_start:
 # Stack is now
 # |    ...     |   <-- %esp = 0x8xxxxxxx
 
-movl $0x05, %eax
+movl $0x05, %eax    # Load 0x00000005 into %eax
+
 pushl %eax          # Push dword 0x00000005 onto the stack
-incl %eax
+incl %eax           # %eax += 1
 pushl %eax          # Push dword 0x00000006 onto the stack
-incl %eax
+
 pushl $0xdeadbeef   # Push dword 0xdeadbeef onto the stack
+
+popl %ebx           # Pop dword off of the stack,
+                    # %ebx = 0xdeadbeef now
 
 # Stack is now
 # |    ...     |
 # | 0x00000005 |
-# | 0x00000006 |
-# | 0xdeadbeef |  <-- %esp = 0x8xxxxxxx
-
-addl $8, %esp       # Deallocate 8 bytes off of the stack
-
-# Stack is now
-# |    ...     |
-# | 0x00000005 |  <-- %esp = 0x8xxxxxxx
-# | 0x00000006 |
+# | 0x00000006 |  <-- %esp = 0x8xxxxxxx
 # | 0xdeadbeef |
 \end{gascode}
 \end{frame}
@@ -1416,6 +1445,20 @@ addl $8, %esp       # Deallocate 8 bytes off of the stack
 \frametitle{Example of Stack Usage (example-8.S)}
 \mvs
 \begin{gascode}
+# Stack is now
+# |    ...     |
+# | 0x00000005 |
+# | 0x00000006 |  <-- %esp = 0x8xxxxxxx
+# | 0xdeadbeef |
+
+addl $4, %esp       # Deallocate 4 bytes off of the stack
+
+# Stack is now
+# |    ...     |
+# | 0x00000005 |  <-- %esp = 0x8xxxxxxx
+# | 0x00000006 |
+# | 0xdeadbeef |
+
 movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
 
 # Stack is now
@@ -1423,6 +1466,7 @@ movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
 # | 0xaaaaaaaa |  <-- %esp = 0x8xxxxxxx
 # | 0x00000006 |
 # | 0xdeadbeef |
+
 \end{gascode}
 \end{frame}
 
@@ -1433,15 +1477,16 @@ $ as example-8.S -o example-8.o && ld example-8.o -o example-8 &&
    objdump -D example-8
 
 Disassembly of section .text:
-08048054 <.text>:
- 8048054: b8 05 00 00 00        mov    $0x5,%eax
- 8048059: 50                    push   %eax
- 804805a: 40                    inc    %eax
- 804805b: 50                    push   %eax
- 804805c: 40                    inc    %eax
- 804805d: 68 ef be ad de        push   $0xdeadbeef
- 8048062: 83 c0 08              add    $0x8,%eax
- 8048065: c7 04 24 aa aa aa aa  movl   $0xaaaaaaaa,(%esp)
+
+08048054 <_start>:
+ 8048054:	b8 05 00 00 00       	mov    $0x5,%eax
+ 8048059:	50                   	push   %eax
+ 804805a:	40                   	inc    %eax
+ 804805b:	50                   	push   %eax
+ 804805c:	68 ef be ad de       	push   $0xdeadbeef
+ 8048061:	5b                   	pop    %ebx
+ 8048062:	83 c4 04             	add    $0x4,%esp
+ 8048065:	c7 04 24 aa aa aa aa 	movl   $0xaaaaaaaa,(%esp)
 \end{customobjdumpcode}
 \end{frame}
 
@@ -1449,9 +1494,10 @@ Disassembly of section .text:
 
 \begin{frame}[fragile,t]
 \frametitle{{\ttfamily call} and {\ttfamily ret}}
+\mvs
 \begin{itemize}
-  \item {\ttfamily call <label>}
-  \item {\ttfamily call} pushes a return address onto the stack, then jumps to {\ttfamily <label>}
+  \item {\ttfamily jmp <label>} merely updates {\ttfamily \%eip} to address of {\ttfamily <label>}
+  \item {\ttfamily call <label>} pushes a return address onto the stack, then jumps to {\ttfamily <label>}
   \item {\ttfamily ret} pops the return address off the stack, and jumps to it
 \end{itemize}
   \begin{gascode}
@@ -1479,6 +1525,7 @@ Disassembly of section .text:
 
 \begin{frame}[fragile,t]
 \frametitle{Function Arguments on the Stack}
+\mvs
 \begin{itemize}
   \item Arguments can be passed on the stack to functions
 \end{itemize}
@@ -1497,6 +1544,19 @@ Disassembly of section .text:
     addl %eax, %eax       # %eax += %eax
     ret
 \end{gascode}
+\begin{itemize}
+  \item or via registers?
+\end{itemize}
+\begin{gascode}
+  movl $5, %eax
+  # %eax is 5
+  call doubleArg
+  # %eax is now 10
+
+  doubleArg:
+    addl %eax, %eax       # %eax += %eax
+    ret
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1506,7 +1566,7 @@ Disassembly of section .text:
   \pause
   \item How should we pass arguments to functions?
   \begin{itemize}
-    \item We could use registers after all.
+    \item Fixed memory addresses? Stack? Registers?
   \end{itemize}
   \pause
   \item GCC on Linux uses the {\ttfamily cdecl} calling convention
@@ -1957,30 +2017,30 @@ list_add:
 \begin{gascode}
 # void list_dump(list *head);
 list_dump:
-    push %ebp
-    mov %esp, %ebp
+  push %ebp
+  mov %esp, %ebp
 
-    pushl %ebx              # Save %ebx
-    movl 8(%ebp), %ebx      # %ebx = head
+  pushl %ebx              # Save %ebx
+  movl 8(%ebp), %ebx      # %ebx = head
 
-    traverse_dump:
-      testl %ebx, %ebx    # if (%ebx == NULL)
-      jz at_end_dump      #  goto at_end_dump;
+  traverse_dump:
+    testl %ebx, %ebx    # if (%ebx == NULL)
+    jz at_end_dump      #  goto at_end_dump;
 
-      movl (%ebx), %ecx   # %ecx = %ebx->data
-      pushl %ecx          # printf("%d\n", %ecx)
-      pushl $fmtStr
-      call printf
-      addl $8, %esp
+    movl (%ebx), %ecx   # %ecx = %ebx->data
+    pushl %ecx          # printf("%d\n", %ecx)
+    pushl $fmtStr
+    call printf
+    addl $8, %esp
 
-      movl 4(%ebx), %ebx  # %ebx = %ebx->next
-      jmp traverse_dump   # Loop
+    movl 4(%ebx), %ebx  # %ebx = %ebx->next
+    jmp traverse_dump   # Loop
 
-    at_end_dump:
-    pop %ebx                # Restore %ebx
-    mov %ebp, %esp
-    pop %ebp
-    ret
+  at_end_dump:
+  pop %ebx                # Restore %ebx
+  mov %ebp, %esp
+  pop %ebp
+  ret
 \end{gascode}
 \end{frame}
 
@@ -1989,27 +2049,27 @@ list_dump:
 \mvs
 \begin{gascode}
 main:
-    pushl $86           # %eax = list_alloc(86);
-    call list_alloc
-    addl $4, %esp
-    movl %eax, head     # head = %eax
+  pushl $86           # %eax = list_alloc(86);
+  call list_alloc
+  addl $4, %esp
+  movl %eax, head     # head = %eax
 
-    pushl $75           # list_add(head, 75);
-    pushl head
-    call list_add
-    addl $8, %esp
+  pushl $75           # list_add(head, 75);
+  pushl head
+  call list_add
+  addl $8, %esp
 
-    pushl $309          # list_add(head, 309);
-    pushl head
-    call list_add
-    addl $8, %esp
+  pushl $309          # list_add(head, 309);
+  pushl head
+  call list_add
+  addl $8, %esp
 
-    pushl head          # list_dump(head);
-    call list_dump
-    addl $4, %esp
+  pushl head          # list_dump(head);
+  call list_dump
+  addl $4, %esp
 
-    movl $0, %eax       # Return 0
-    ret
+  movl $0, %eax       # Return 0
+  ret
 
 .section .data
   head:     .long 0
@@ -2031,7 +2091,7 @@ $
 \end{textcode}
 \end{frame}
 
-\section*{Questions?}
+\section*{Lingering Questions?}
 
 \part{2}
 
@@ -2312,8 +2372,9 @@ $ as tee.S -o tee.o
 $ ld tee.o -o tee
 
 # Count total number of syscalls while generating a CSV syscall,no list
+
 $ egrep "NR.*$" -o /usr/include/asm/unistd_32.h |
-   cut -b 4- | sed 's/ /,/' | ./tee syscalls.txt | wc
+     cut -b 4- | sed 's/ /,/' | ./tee syscalls.txt | wc
     346     346    4604
 $ cat syscalls.txt
 restart_syscall,0
@@ -2368,11 +2429,11 @@ unlink,10
 \mvs
 \frametitle{Example 1 of String Instructions (example-15.S)}
 \begin{gascode}
-.section .text
 _start:
 cld               # Clear DF, we want to post-increment
 
 # Load str1 with 8 of 0xff
+
 movl $str1, %edi  # Set up our string destination pointer
 
 # Load the first four a byte at a time
@@ -2401,8 +2462,8 @@ movsl
 \frametitle{Example 1 of String Instructions (example-15.S) Continued}
 \begin{gascode}
 .section .bss
-.comm str1, 8
-.comm str2, 8
+  .comm str1, 8
+  .comm str2, 8
 \end{gascode}
 \end{frame}
 
@@ -2484,7 +2545,7 @@ asm_memset:
   ret
 
 .section .bss
-.comm str, 50
+  .comm str, 50
 \end{gascode}
 \end{frame}
 
@@ -2523,7 +2584,7 @@ $
 \begin{itemize}
   \item Trick is to load {\ttfamily \%ecx} with -1 or {\ttfamily 0xFFFFFFFF}
   \item Assumption: string is not longer than 4 gigabytes
-  \item Reasonable assumption, compiler might not make it for you
+  \item Reasonable assumption
 \end{itemize}
 \end{frame}
 
@@ -2541,6 +2602,7 @@ $
    0: 31 c0                 xorl    %eax,%eax
 \end{customobjdumpcode}
 \vspace{0.5em}
+\pause
   \item Use {\ttfamily lea} for general purpose arithmetic when applicable
   \begin{itemize}
     \item {\ttfamily lea} calculates the indirect memory address \\ {\ttfamily \%reg + \%reg*(1,2,4,8) + \$constant} \\ and stores the effective address without dereferencing memory
@@ -2550,6 +2612,7 @@ $
   # Compute expression: %eax + %ebx*2 + 10
   leal 10(%eax, %ebx, 2), %eax
 \end{gascode}
+\pause
   \item Use a more efficient loop structure when possible
 \mvs
 \begin{columns}[T]
@@ -2592,7 +2655,7 @@ loop:
   \pause
   \item Single Instruction Multiple Data (SIMD) instruction sets \\ like MMX, SSE, SSE2, SSE3, SSE4, ...
   \begin{itemize}
-    \item Parallel gain in that a single instruction carries out an operation (add, subtract, etc.) across multiple data blocks in parallel
+    \item Parallel gain in that a single instruction carries out an operation (add, subtract, etc.) across multiple data blocks in parallel (a vector)
     \item MMX was a SIMD instruction set for integers
     \pause
     \item SSE is SIMD instruction set for integers and floating point
@@ -2676,8 +2739,8 @@ main:
   ret
 
 .section .data
-.comm curtime, 4
-formatStr:  .ascii "%s\0"
+  .comm curtime, 4
+  formatStr:  .ascii "%s\0"
 \end{gascode}
 {\small Runtime:}
 \begin{textcode}
@@ -2726,7 +2789,7 @@ int main(void) {
 $ gcc -fno-stack-protector -z execstack example-18.c -o example-18
 \end{textcode}
 \begin{itemize}
-\item We'll build this the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
+\item We'll build this with the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
 \end{itemize}
 \end{frame}
 
@@ -2796,12 +2859,12 @@ ret
 \frametitle{Buffer Overflow}
 \mvs
 \begin{itemize}
-  \item With a well-crafted buffer, we can inject instructions into the buffer on the stack as well as an over-written return address to those instructions
-  \item When {\ttfamily get\_input()} returns, it will return to our injected instructions
+  \item With a well-crafted buffer, we can inject instructions into the buffer on the stack, as well as an over-written return address to those instructions
+  \item When {\ttfamily get\_input()} returns, it will return into our injected instructions
 \end{itemize}
 \begin{figure}
 \centering
-\includegraphics[height=0.60\paperheight]{figures/bufferoverflow.png}
+\includegraphics[height=0.55\paperheight]{figures/bufferoverflow.png}
 \end{figure}
 \end{frame}
 
@@ -2817,37 +2880,42 @@ ret
 #include <stdio.h>
 int main(void) {
   char c;
-  printf("%x\n", &c);
+  printf("%p\n", &c);
   return 0;
 }
 \end{ccode}
 \begin{textcode}
 $ gcc example-19.c -o example-19
 $ ./example-19
-bfe3d16f
+0xbfe3d16f
 $ ./example-19
-bfdef6ff
+0xbfdef6ff
 $ ./example-19
-bfefbecf
+0xbfefbecf
 \end{textcode}
+\pause
+\begin{itemize}
+  \item It's changing every time we run it!
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \frametitle{Address Space Layout Randomization (ASLR)}
 \begin{itemize}
-  \item We just witnessed the effect of ASLR, which randomly initializes the position of code, libraries, heap, and stack in a user program's address space
-  \item However, the addresses were all relatively close to each other, so there is an opportunity for guessing...
+  \item We just witnessed the effect of ASLR, which randomly initializes the position of code, libraries, heap, and stack in the user program's address space
+  \item However, the addresses were all relatively close to each other, so there is an opportunity for guessing... (16-bits of guessing on 32-bit)
+\pause
   \item For our purposes, let's turn off ASLR.
 \end{itemize}
 \vs
 \begin{textcode}
 $ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 $ ./example-19
-bffff28f
+0xbffff28f
 $ ./example-19
-bffff28f
+0xbffff28f
 $ ./example-19
-bffff28f
+0xbffff28f
 \end{textcode}
 \begin{itemize}
   \item Now we have an idea of where variables on the stack live
@@ -2863,7 +2931,7 @@ bffff28f
   \vs\vs
   \item Must be position-independent
   \begin{itemize}
-    \item Code cannot rely on absolute addresses for its data, since we're not sure exactly where it will live on the stack
+    \item Code cannot rely on absolute addresses for its data, since we're not sure {\bf exactly} where it will live on the stack, just roughly
   \end{itemize}
   \pause
   \item Must contain no newlines, and in other cases, no null bytes
@@ -2880,7 +2948,7 @@ bffff28f
 \frametitle{Hello Shellcode Take 1 (example-20.S)}
 \mvs
 \begin{gascode}
-# Clever way to get our own address
+# Clever way to get string address into %ecx
 jmp get_str_addr
 got_str_addr:
 popl %ecx
@@ -2941,7 +3009,7 @@ Disassembly of section .text:
 \frametitle{Hello Shellcode Take 2 (example-21.S)}
 \mvs
 \begin{gascode*}{textsize=\textsize{9}{8}}
-# Clever way to get our own address
+# Clever way to get string address into %ecx
 jmp get_str_addr
 got_str_addr:
 popl %ecx
@@ -3042,7 +3110,7 @@ input:
 Segmentation fault
 $
 \end{textcode}
-
+\pause
 \begin{itemize}
   \item Then, use gdb to find out the number of A's to start overwriting the return address...
 \end{itemize}
@@ -3057,7 +3125,7 @@ Program received signal SIGSEGV, Segmentation fault.
 \end{textcode}
 
 \begin{itemize}
-  \item Lower byte of return address, now \%eip, was overwritten by an 'A'.
+  \item Lower byte of return address, now \%eip, was overwritten by an {\ttfamily 'A'}, or {\ttfamily 0x41}.
 \end{itemize}
 \end{frame}
 
@@ -3103,8 +3171,8 @@ Hello!$
 \begin{frame}[fragile,t]
 \frametitle{Closing Notes}
 \begin{itemize}
-  \item If vulnerable program was running as root, shellcode could spawn a root shell
-  \item If vulnerable program was suid root, shellcode could setuid(0) and then spawn a root shell
+  \item If vulnerable program was running as root, shellcode can spawn a root shell
+  \item If vulnerable program was suid root, shellcode can {\ttfamily setuid(0)} and then spawn a root shell
   \pause
   \item We had to disable three security mechanisms to allow the traditional stack-based buffer overflow to work.
   \begin{itemize}
@@ -3137,27 +3205,29 @@ Hello!$
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 16: Comparisons with Atmel AVR and ARM Cortex-M3}
-
 \section{Extra Topic 1: Intel/nasm Syntax}
 
 \begin{frame}[fragile,t]
 \frametitle{Differences}
 \begin{itemize}
   \item Intel Syntax: {\ttfamily <mnemonic> <dest>, <src>}
+  \item Directives are not preceded by a dot {\ttfamily .}
   \item Less prefixes/suffixes floating around, so source looks cleaner
-  \item Instruction size usually implied by registers used, but is made explicit when necessary with {\ttfamily byte, word, dword} keywords
-  \begin{itemize}
-    \item {\ttfamily mov [ebp-4], dword 42}
-  \end{itemize}
   \pause
   \item Memory addresses are just plain symbol names
   \item Memory dereferenced with brackets {\ttfamily [ ... ]}
   \pause
+  \item Instruction size usually implied by registers used, but is made explicit when necessary with {\ttfamily byte, word, dword} keywords
+  \begin{itemize}
+    \item {\ttfamily mov [ebp-4], dword 42}
+  \end{itemize}
   \vs
+  \pause
   \item Indirect memory acceses spelled out as expressions
-  \item AT\&T / GAS: {\ttfamily movl \%eax, -12(\%ebp, \%ecx, 4)}
-  \item Intel / NASM: {\ttfamily mov [ebp+ecx*4-12], eax}
+  \begin{itemize}
+    \item AT\&T / GAS: {\ttfamily movl \%eax, -12(\%ebp, \%ecx, 4)}
+    \item Intel / NASM: {\ttfamily mov [ebp+ecx*4-12], eax}
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -3268,7 +3338,7 @@ $
 \begin{frame}[fragile,t]
 \frametitle{Immediate Differences}
 \begin{itemize}
-  \item {\ttfamily \%eax} extended to 64-bit {\ttfamily \%rax} \\
+  \item {\ttfamily \%eax} extended to 64-bit {\ttfamily \%rax}, along with \\
   {\ttfamily \%rax, \%rbx, \%rcx, \%rdx, \%rbp, \%rsp, \%rsi, \%rdi}
   \item Supplemental general purpose registers \\
   {\ttfamily \%r8, \%r9, \%r10, \%r11, \%r12, \%r13, \%r14, \%r15}
@@ -3276,7 +3346,7 @@ $
   \item Good architectural changes
   \begin{itemize}
     \item Segmentation and hardware task switching wiped away
-    \item No-Execute bit in page table entries
+    \item No-Execute bit in page table entries to enforce non-executable sections
   \end{itemize}
   \vs
   \item A lot of q's instead of l's: {\ttfamily movq, pushq, addq}
@@ -3328,10 +3398,11 @@ $
 \begin{itemize}
   \item Play with the examples
   \begin{itemize}
-    \item Modify Morse Encoder example to handle words
-    \item Add find and remove to Linked List example
-    \item Modify Fibonacci to print with syscalls instead of {\ttfamily printf()}
+    \item Modify Morse Encoder example to handle words ({\ttfamily morse.S})
+    \item Add find and remove to Linked List example ({\ttfamily linked\_list.S})
+    \item Modify Fibonacci to print with syscalls instead of {\ttfamily printf()}, ({\ttfamily fibonacci.S})
     \item Write a recursive Fibonacci Sequence generator
+    \item Modify exploit shellcode to print a newline ({\ttfamily example-21.S})
   \end{itemize}
   \item Write your own syscall, e.g. rot13
   \item Do Stack Smashing challenges: \\ {\footnotesize \url{http://community.corest.com/~gera/InsecureProgramming/}}
@@ -3344,6 +3415,6 @@ $
 \end{itemize}
 \end{frame}
 
-\section*{Questions?}
+\section*{Lingering Questions?}
 
 \end{document}

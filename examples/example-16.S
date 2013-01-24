@@ -39,5 +39,5 @@ asm_memset:
   ret
 
 .section .bss
-.comm str, 50
+  .comm str, 50
 

@@ -27,6 +27,6 @@ movsl
 # Done!
 
 .section .bss
-.comm str1, 8
-.comm str2, 8
+  .comm str1, 8
+  .comm str2, 8
 

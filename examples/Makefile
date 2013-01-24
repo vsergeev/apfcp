@@ -2,9 +2,9 @@ EXAMPLES = example-1 example-2 example-3 fibonacci example-5 example-6 morse_enc
 
 all:
 # These C examples should be compiled & linked with gcc
-	gcc -O1 example-1.c -o example-1 && objdump -D example-1 > example-1.objdump
-	gcc example-18.c -o example-18 && objdump -D example-18 > example-18.objdump
-	gcc example-19.c -o example-19 && objdump -D example-19 > example-19.objdump
+	gcc -Wall -O1 example-1.c -o example-1 && objdump -D example-1 > example-1.objdump
+	gcc -Wall example-18.c -o example-18 && objdump -D example-18 > example-18.objdump
+	gcc -Wall example-19.c -o example-19 && objdump -D example-19 > example-19.objdump
 # These examples should be linked directlywith ld
 	as example-2.S -o example-2.o && ld example-2.o -o example-2 && objdump -D example-2 > example-2.objdump
 	as example-3.S -o example-3.o && ld example-3.o -o example-3 && objdump -D example-3 > example-3.objdump

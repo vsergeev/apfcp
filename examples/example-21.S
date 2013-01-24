@@ -2,7 +2,7 @@
 .section .text
 .global _start
 _start:
-# Clever way to get our own address
+# Clever way to get string address into %ecx
 jmp get_str_addr
 got_str_addr:
 popl %ecx
