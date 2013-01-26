@@ -50,6 +50,6 @@ main:
   ret
 
 .section .data
-formatStr1: .ascii "%d bottles of beer on the wall! %d bottles of beer!\n\0"
-formatStr2: .ascii "Take one down, pass it around, %d bottles of beer on the wall!\n\0"
-formatStr3: .ascii "No more bottles of beer on the wall!\n\0"
+  formatStr1: .ascii "%d bottles of beer on the wall! %d bottles of beer!\n\0"
+  formatStr2: .ascii "Take one down, pass it around, %d bottles of beer on the wall!\n\0"
+  formatStr3: .ascii "No more bottles of beer on the wall!\n\0"

@@ -38,4 +38,4 @@ myprint:
   ret
 
 .section .data
-formatStr: .ascii "%d\n\0" # printf() format string
+  formatStr: .ascii "%d\n\0" # printf() format string

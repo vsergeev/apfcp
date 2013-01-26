@@ -15,8 +15,6 @@ _start:
     # Function prologue, save old frame pointer and setup new one
     pushl %ebp
     movl %esp, %ebp
-    # Allocate a dword on the stack, accessible at %ebp-4
-    subl $4, %esp
 
     movl $0, %eax       # Clear %eax
     movl $0, %ecx       # Clear %ecx

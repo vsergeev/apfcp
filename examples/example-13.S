@@ -30,7 +30,7 @@ _start:
   int $0x80
 
 .section .data
-filename:   .ascii "foo\0"
-message:    .ascii "Hello World!\n"
-.equ messageLen, . - message
+  filename:   .ascii "foo\0"
+  message:    .ascii "Hello World!\n"
+  .equ messageLen, . - message
 

@@ -30,5 +30,5 @@ main:
 
 .section .data
   .comm curtime, 4
-formatStr:  .ascii "%s\0"
+  formatStr:  .ascii "%s\0"
 

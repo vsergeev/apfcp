@@ -69,7 +69,7 @@ _start:
 .section .rodata
 # Usage string and length
   usageStr:     .ascii "./tee <file>\n\0"
-  usageStrLen:  .long .-usageStr-1
+  .equ usageStrLen, . - message
 
 .section .bss
 # Read character var

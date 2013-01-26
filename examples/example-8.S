@@ -13,6 +13,12 @@ pushl %eax          # Push dword 0x00000006 onto the stack
 
 pushl $0xdeadbeef   # Push dword 0xdeadbeef onto the stack
 
+# Stack is now
+# |    ...     |
+# | 0x00000005 |
+# | 0x00000006 |
+# | 0xdeadbeef |   <-- %esp = 0x8xxxxxxx
+
 popl %ebx           # Pop dword off of the stack,
                     # %ebx = 0xdeadbeef now
 

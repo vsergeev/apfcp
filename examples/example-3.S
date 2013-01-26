@@ -27,23 +27,23 @@ decl %ebx
 # it easy to specify addresses
 label1:
 label2:
-	movl $0, %eax	  # %eax = 0
-	incl %eax	      # %eax++ ; ZF set to 0!
-	jz label1	      # Jump if ZF = 1 (not taken)
-	jnz label3	    # Jump if ZF = 0 (taken)
-	decl %eax	      # I won't be executed
+  movl $0, %eax     # %eax = 0
+  incl %eax         # %eax++ ; ZF set to 0!
+  jz label1         # Jump if ZF = 1 (not taken)
+  jnz label3        # Jump if ZF = 0 (taken)
+  decl %eax         # I won't be executed
 label3:
-	nop
-	nop		          # Execution will fall through
+  nop
+  nop               # Execution will fall through
 label4:
-	jmp label1	    # Jump back to label1
+  jmp label1        # Jump back to label1
 
 # Loops
 movl $10, %eax
 loop:
-	nop
-	decl %eax
-	jnz loop
+  nop
+  decl %eax
+  jnz loop
 
 # Direct Comparison
 cmpl $0x05, %eax
