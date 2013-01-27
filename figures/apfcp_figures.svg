@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2568392"
-     inkscape:cx="-408.5222"
-     inkscape:cy="-2374.1134"
+     inkscape:zoom="0.6284196"
+     inkscape:cx="-665.33487"
+     inkscape:cy="275.45008"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -37,8 +37,8 @@
      inkscape:snap-global="true"
      inkscape:window-width="1264"
      inkscape:window-height="748"
-     inkscape:window-x="51"
-     inkscape:window-y="18"
+     inkscape:window-x="103"
+     inkscape:window-y="61"
      inkscape:window-maximized="0"
      inkscape:guide-bbox="true">
     <inkscape:grid
@@ -1152,7 +1152,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -9045,7 +9045,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9"
        d="m -564.70623,915.98479 0,14.51458 38.35067,0 0,7.25729 21.30592,-14.51458 -21.30592,-14.51457 0,7.25729 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -9054,7 +9054,7 @@
        id="text5156-5"
        y="905.36353"
        x="-560"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="905.36353"
          x="-560"
@@ -9068,7 +9068,7 @@
        id="text5156-4-6"
        y="950.36353"
        x="-550"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="950.36353"
          x="-550"
@@ -11507,13 +11507,13 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0"
        y="1533.3635"
-       x="-639"
+       x="-631"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="1533.3635"
-         x="-639"
+         x="-631"
          id="tspan5158-9-6-2-1-3-2"
-         sodipodi:role="line">addl $0x1, %eax</tspan></text>
+         sodipodi:role="line">Add 1 to %eax</tspan></text>
     <rect
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -13500,7 +13500,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9-5"
        d="m -574.70625,2191.9848 0,14.5145 38.35067,0 0,7.2573 21.30592,-14.5146 -21.30592,-14.5145 0,7.2573 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -13509,7 +13509,7 @@
        id="text5156-5-5"
        y="2179.3635"
        x="-570"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="2179.3635"
          x="-570"
@@ -13523,7 +13523,7 @@
        id="text5156-4-6-4"
        y="2228.3635"
        x="-560"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="2228.3635"
          x="-560"
@@ -15981,14 +15981,14 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-1"
        y="2770.3633"
-       x="-641.66132"
+       x="-647.66132"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="2770.3633"
-         x="-641.66132"
+         x="-647.66132"
          id="tspan5158-9-6-2-1-3-2-0"
          sodipodi:role="line"
-         style="fill:#0000ff">movl %eax, %ebx</tspan></text>
+         style="fill:#0000ff">Copy %eax to %ebx</tspan></text>
     <rect
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -17975,7 +17975,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9-5-5"
        d="m -584.70625,3423.9847 0,14.5145 38.35067,0 0,7.2573 21.30592,-14.5146 -21.30592,-14.5145 0,7.2573 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -17984,7 +17984,7 @@
        id="text5156-5-5-2"
        y="3411.3633"
        x="-580"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="3411.3633"
          x="-580"
@@ -17998,7 +17998,7 @@
        id="text5156-4-6-4-2"
        y="3460.3633"
        x="-570"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="3460.3633"
          x="-570"
@@ -19144,7 +19144,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9-4"
        d="m -502.87988,976.49938 0,-14.51458 -41.93109,0 0,-7.25729 -23.29503,14.51458 23.29503,14.51457 0,-7.25729 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -19169,7 +19169,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9-4-3"
        d="m -512.87988,2256.4994 0,-14.5146 -41.93109,0 0,-7.2573 -23.29503,14.5146 23.29503,14.5145 0,-7.2573 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -19194,7 +19194,7 @@
        inkscape:connector-curvature="0"
        id="path5154-9-4-8"
        d="m -522.87988,3487.4994 0,-14.5146 -41.93109,0 0,-7.2573 -23.29503,14.5146 23.29503,14.5145 0,-7.2573 z"
-       style="fill:none;stroke:#ff0000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+       style="fill:none;stroke:#000000;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
     <path
        inkscape:connector-curvature="0"
        id="path8296"
@@ -23043,13 +23043,13 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-0"
        y="1942.3622"
-       x="-640"
+       x="-636"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="1942.3622"
-         x="-640"
+         x="-636"
          id="tspan5158-9-6-2-1-3-2-59"
-         sodipodi:role="line">addl $0x1, %eax</tspan></text>
+         sodipodi:role="line">Add 1 to %eax</tspan></text>
     <text
        inkscape:export-ydpi="500"
        inkscape:export-xdpi="500"
@@ -23057,13 +23057,13 @@
        sodipodi:linespacing="125%"
        id="text5156-4-1-6-2-5-0-1-9"
        y="3182.3623"
-       x="-636"
+       x="-642"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;font-family:Monospace;-inkscape-font-specification:Monospace"
        xml:space="preserve"><tspan
          y="3182.3623"
-         x="-636"
+         x="-642"
          id="tspan5158-9-6-2-1-3-2-0-1"
          sodipodi:role="line"
-         style="fill:#0000ff">movl %eax, %ebx</tspan></text>
+         style="fill:#0000ff">Copy %eax to %ebx</tspan></text>
   </g>
 </svg>

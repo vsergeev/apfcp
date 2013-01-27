@@ -68,7 +68,7 @@ _start:
 
 .section .rodata
 # Usage string and length
-  usageStr:     .ascii "./tee <file>\n\0"
+  usageStr:     .ascii "./tee <file>\n"
   .equ usageStrLen, . - message
 
 .section .bss

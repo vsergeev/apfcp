@@ -3,8 +3,9 @@
 .global _start
 _start:
   movl $tableStart, %ebx          # Pointer to table start
-                                  # We are moving the *value* $tableStart,
-                                  # *this is not a memory access*
+                                  # We are moving the *value*
+                                  # $tableStart, this is not a
+                                  # memory access!
   movl $0, %ecx
   loop:
       movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)

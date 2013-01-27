@@ -26,5 +26,4 @@ _start:
   movl %eax, magicNumber     # *(magicNumber) = %eax
 
 .section .data
-magicNumber:               # void *magicNumber;
-  .long 0xdeadbeef         # *((int *)magicNumber) = 0xdeadbeef;
+  magicNumber: .long 0xdeadbeef  # *magicNumber = 0xdeadbeef;

@@ -2,20 +2,20 @@
 .section .text
 .global main
 main:
-  # time(NULL);
+  # %eax = time(NULL);
   pushl $0
   call time
   add $4, %esp
 
-  # curtime = %eax
+  # *curtime = %eax
   movl %eax, curtime
 
-  # localtime(%eax);
+  # %eax = localtime(&curtime);
   pushl $curtime
   call localtime
   add $4, %esp
 
-  # asctime(%eax);
+  # %eax = asctime(%eax);
   pushl %eax
   call asctime
   add $4, %esp

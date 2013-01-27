@@ -578,31 +578,30 @@ qword & 64-bits & q \\
 \mvs
 \begin{gascode*}{fontsize=\fontsize{9}{8}}
 .section .text
-nop                        # ; (Do nothing!)
+  nop                        # ; (Do nothing!)
 
-# add, sub, adc, and, or, xor
-addl %eax, %ebx            # %ebx = %ebx + %eax
-addl magicNumber, %ebx     # %ebx = %ebx + *(magicNumber)
-addl %ebx, magicNumber     # *(magicNumber) = *(magicNumber) + %ebx
-addl $0x12341234, %ebx     # %ebx = %ebx + 0x12341234
+  # add, sub, adc, and, or, xor
+  addl %eax, %ebx            # %ebx = %ebx + %eax
+  addl magicNumber, %ebx     # %ebx = %ebx + *(magicNumber)
+  addl %ebx, magicNumber     # *(magicNumber) = *(magicNumber) + %ebx
+  addl $0x12341234, %ebx     # %ebx = %ebx + 0x12341234
 
-# inc, dec, not, neg
-decl %eax                  # %eax--
-decw %ax                   # %ax--
-decb %al                   # %al--
+  # inc, dec, not, neg
+  decl %eax                  # %eax--
+  decw %ax                   # %ax--
+  decb %al                   # %al--
 
-# rol, rcl, shl, shr, sal, sar
-shrl $3, %eax              # %eax = %eax >> 3
-shrl $3, magicNumber       # *(magicNumber) = *(magicNumber) >> 3
+  # rol, rcl, shl, shr, sal, sar
+  shrl $3, %eax              # %eax = %eax >> 3
+  shrl $3, magicNumber       # *(magicNumber) = *(magicNumber) >> 3
 
-# mov
-movl %eax, %ebx            # %ebx = %eax
-movl magicNumber, %eax     # %eax = *(magicNumber)
-movl %eax, magicNumber     # *(magicNumber) = %eax
+  # mov
+  movl %eax, %ebx            # %ebx = %eax
+  movl magicNumber, %eax     # %eax = *(magicNumber)
+  movl %eax, magicNumber     # *(magicNumber) = %eax
 
 .section .data
-magicNumber:               # int *magicNumber;
-  .long 0xdeadbeef         # *magicNumber = 0xdeadbeef;
+  magicNumber: .long 0xdeadbeef  # *magicNumber = 0xdeadbeef;
 \end{gascode*}
 \end{frame}
 
@@ -755,26 +754,26 @@ somewhere_else:
 \begin{gascode}
 .section .text
 
-# cmpl %oper1, %oper2
-# updates flags based on result of %oper2 - %oper1
-cmpl %eax, %ecx
-cmpl $0xFF, %eax
+  # cmpl %oper1, %oper2
+  # updates flags based on result of %oper2 - %oper1
+  cmpl %eax, %ecx
+  cmpl $0xFF, %eax
 
-# conditional jumps
-je label_foo    # jump if %oper2 == %oper1
-jg label_bar    # jump if %oper2 > %oper1
-jl label_xyz    # jump if %oper2 < %oper1
+  # conditional jumps
+  je label_foo    # jump if %oper2 == %oper1
+  jg label_bar    # jump if %oper2 > %oper1
+  jl label_xyz    # jump if %oper2 < %oper1
 
-# test %oper1, %oper2
-# updates flags based on result of %oper2 & %oper1
-testl %eax, %ecx
-testl $0x1F, %eax
+  # test %oper1, %oper2
+  # updates flags based on result of %oper2 & %oper1
+  testl %eax, %ecx
+  testl $0x1F, %eax
 
-# arithmetic
-# updates flags based on result
-addl %eax, %ebx
-incl %eax
-decl %ebx
+  # arithmetic
+  # updates flags based on result
+  addl %eax, %ebx
+  incl %eax
+  decl %ebx
 \end{gascode}
 \end{frame}
 
@@ -782,31 +781,31 @@ decl %ebx
 \frametitle{Example of Conditional Jumps (example-3.S) Continued}
 \mvs
 \begin{gascode}
-# labels are just symbols containing an address to make
-# it easy to specify addresses
-label1:
-label2:
-  movl $0, %eax   # %eax = 0
-  incl %eax       # %eax++ ; ZF set to 0!
-  jz label1       # Jump if ZF = 1 (not taken)
-  jnz label3      # Jump if ZF = 0 (taken)
-  decl %eax       # I won't be executed
-label3:
-  nop
-  nop             # Execution will fall
-label4:           # through label4
-  jmp label1      # Jump back to label1
+  # labels are just symbols containing an address to make
+  # it easy to specify addresses
+  label1:
+  label2:
+    movl $0, %eax   # %eax = 0
+    incl %eax       # %eax++ ; ZF set to 0!
+    jz label1       # Jump if ZF = 1 (not taken)
+    jnz label3      # Jump if ZF = 0 (taken)
+    decl %eax       # I won't be executed
+  label3:
+    nop
+    nop             # Execution will fall
+  label4:           # through label4
+    jmp label1      # Jump back to label1
 
-# Loops
-movl $10, %eax
-loop:
-  nop
-  decl %eax
-  jnz loop
+  # Loops
+  movl $10, %eax
+  loop:
+    nop
+    decl %eax
+    jnz loop
 
-# Direct Comparison
-cmpl $0x05, %eax
-je label_foo      # Jump to label_foo if %eax == 5
+  # Direct Comparison
+  cmpl $0x05, %eax
+  je label_foo      # Jump to label_foo if %eax == 5
 \end{gascode}
 \end{frame}
 
@@ -893,6 +892,7 @@ myprint:
 
 \begin{frame}[fragile,t]
 \frametitle{Iterative Fibonacci (fibonacci.S) Output}
+\mvs
 \begin{textcode}
 $ as fibonacci.S -o fibonacci.o
 $ gcc fibonacci.o -o fibonacci
@@ -997,10 +997,10 @@ int main(void) {
 # Put some instructions in .text
 .section .text
 _start:
-nop
-nop
-nop
-nop
+  nop
+  nop
+  nop
+  nop
 
 # Put a string in .rodata
 .section .rodata
@@ -1008,10 +1008,10 @@ nop
 
 # Put some magic bytes in .data
 .section .data
-magicByte1:   .byte 0xaa
-magicBytes2:  .byte 0x55, 0x10
-magicDWord:   .long 0xdeadbeef
-magicStr:     .ascii "String!\0"
+  magicByte1:   .byte 0xaa
+  magicBytes2:  .byte 0x55, 0x10
+  magicDWord:   .long 0xdeadbeef
+  magicStr:     .ascii "String!\0"
 
 # Reserve 1024 uninitialized bytes in .bss
 .section .bss
@@ -1122,9 +1122,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
 \end{itemize}
 \begin{gascode}
 .section .text
-movl magicDword, %eax     # %eax = *(magicDword)
-andb byteMask, %al        # %al = %al & *(byteMask)
-movl %eax, modifiedDword  # *(magicDword) = %eax
+  movl magicDword, %eax     # %eax = *(magicDword)
+  andb byteMask, %al        # %al = %al & *(byteMask)
+  movl %eax, modifiedDword  # *(magicDword) = %eax
 
 .section .rodata          # Read-only!
   magicDword: .long 0xffffffff
@@ -1176,25 +1176,26 @@ Disassembly of section .text:
 \mvs
 \begin{gascode}
 .section .text
-
-movl $tableStart, %ebx          # Pointer to table start
-                                # We are moving the *value* $tableStart,
-                                # this is not a memory access!
-movl $0, %ecx
-loop:
-    movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
-    notl %eax                   # %eax = ~%eax
-    movl %eax, (%ebx, %ecx, 4)  # *(%ebx + 4*%ecx) = %eax
-    incl %ecx
-    cmpl $10, %ecx
-    jl loop
+_start:
+  movl $tableStart, %ebx          # Pointer to table start
+                                  # We are moving the *value*
+                                  # $tableStart, this is not a
+                                  # memory access!
+  movl $0, %ecx
+  loop:
+      movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
+      notl %eax                   # %eax = ~%eax
+      movl %eax, (%ebx, %ecx, 4)  # *(%ebx + 4*%ecx) = %eax
+      incl %ecx
+      cmpl $10, %ecx
+      jl loop
 
 .section .data
-tableStart: .long 0x00000000, 0x00000001
-            .long 0x00000002, 0x00000003
-            .long 0x00000004, 0x00000005
-            .long 0x00000006, 0x00000007
-            .long 0x00000008, 0x00000009
+  tableStart: .long 0x00000000, 0x00000001
+              .long 0x00000002, 0x00000003
+              .long 0x00000004, 0x00000005
+              .long 0x00000006, 0x00000007
+              .long 0x00000008, 0x00000009
 \end{gascode}
 \end{frame}
 
@@ -1418,7 +1419,6 @@ int main(void) {
 \frametitle{Example of Stack Usage (example-8.S)}
 \mvs
 \begin{gascode}
-_start:
 # Stack is now
 # |    ...     |   <-- %esp = 0x8xxxxxxx
 
@@ -1429,6 +1429,12 @@ incl %eax           # %eax += 1
 pushl %eax          # Push dword 0x00000006 onto the stack
 
 pushl $0xdeadbeef   # Push dword 0xdeadbeef onto the stack
+
+# Stack is now
+# |    ...     |
+# | 0x00000005 |
+# | 0x00000006 |
+# | 0xdeadbeef |   <-- %esp = 0x8xxxxxxx
 
 popl %ebx           # Pop dword off of the stack,
                     # %ebx = 0xdeadbeef now
@@ -1585,13 +1591,13 @@ Disassembly of section .text:
 \frametitle{Example of {\ttfamily cdecl} Calling Convention (example-9.S)}
 \begin{gascode}
 .section .text
-# sumThreeNumbers(*magicNumber, 5, 12);
-pushl $12             # Push 0x000000C
-pushl $5              # Push 0x0000005
-pushl magicNumber     # Push *magicNumber
-call sumThreeNumbers
-addl $12, %esp        # Clean up arguments off of the stack
-# %eax is 59
+  # sumThreeNumbers(*magicNumber, 5, 12);
+  pushl $12             # Push 0x000000C
+  pushl $5              # Push 0x0000005
+  pushl magicNumber     # Push *magicNumber
+  call sumThreeNumbers
+  addl $12, %esp        # Clean up arguments off of the stack
+  # %eax is 59
 
 sumThreeNumbers:
   # Stack is now
@@ -1608,7 +1614,7 @@ sumThreeNumbers:
   ret
 
 .section .data
-magicNumber: .long 42
+  magicNumber: .long 42
 \end{gascode}
 \end{frame}
 
@@ -1735,11 +1741,11 @@ main:
 \frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
 \begin{gascode}
 .section .data
-formatStr1:
+  formatStr1:
 .ascii "%d bottles of beer on the wall! %d bottles of beer!\n\0"
-formatStr2:
+  formatStr2:
 .ascii "Take one down, pass it around, %d bottles of beer on the wall!\n\0"
-formatStr3:
+  formatStr3:
 .ascii "No more bottles of beer on the wall!\n\0"
 \end{gascode}
 \end{frame}
@@ -1830,7 +1836,7 @@ $
     # |  old %ebp  | <- %esp    %ebp
     # Argument is at %ebp+8
 
-    subl $12, %esp   # Allocate 4 bytes on the stack
+    subl $12, %esp   # Allocate 12 bytes on the stack
     # Stack is now
     # |    ...     |
     # |      5     | <- %esp+20  %ebp+8
@@ -1885,8 +1891,6 @@ _start:
     # Function prologue, save old frame pointer and setup new one
     pushl %ebp
     movl %esp, %ebp
-    # Allocate a dword on the stack, accessible at %ebp-4
-    subl $4, %esp
 
     movl $0, %eax       # Clear %eax
     movl $0, %ecx       # Clear %ecx
@@ -1941,7 +1945,7 @@ _start:
 main:
   pushl %ebp
   movl %esp, %ebp
-  # return address from libc is at %ebp+4
+  # return address to libc is at %ebp+4
   # argc is at %ebp+8, **argv is at %ebp+12
   # *argv[0] = *(%ebp+12), *argv[1] = *(%ebp+12)+4
 \end{gascode}
@@ -2141,7 +2145,7 @@ $
 \frametitle{Linux System Calls}
 \mvs
 \begin{itemize}
-  \item Currently 338 system calls
+  \item Currently 346 system calls
   \item Common ones are {\ttfamily exit(), read(), write(), open(), close(), ioctl(), fork(), execve()}, etc.
   \pause
   \begin{itemize}
@@ -2216,9 +2220,9 @@ _start:
   int $0x80
 
 .section .data
-filename:   .ascii "foo\0"
-message:    .ascii "Hello World!\n"
-.equ messageLen, . - message
+  filename:   .ascii "foo\0"
+  message:    .ascii "Hello World!\n"
+  .equ messageLen, . - message
 \end{gascode}
 \end{frame}
 
@@ -2355,8 +2359,8 @@ _start:
 
 .section .rodata
 # Usage string and length
-  usageStr:     .ascii "./tee <file>\n\0"
-  usageStrLen:  .long .-usageStr-1
+  usageStr:     .ascii "./tee <file>\n"
+  .equ usageStrLen, . - message
 
 .section .bss
 # Read character var
@@ -2430,30 +2434,30 @@ unlink,10
 \frametitle{Example 1 of String Instructions (example-15.S)}
 \begin{gascode}
 _start:
-cld               # Clear DF, we want to post-increment
+  cld               # Clear DF, we want to post-increment
 
-# Load str1 with 8 of 0xff
+  # Load str1 with 8 of 0xff
 
-movl $str1, %edi  # Set up our string destination pointer
+  movl $str1, %edi  # Set up our string destination pointer
 
-# Load the first four a byte at a time
-movb $0xFF, %al
-stosb             # *(%edi++) = %al
-stosb             # *(%edi++) = %al
-stosb             # *(%edi++) = %al
-stosb             # *(%edi++) = %al
+  # Load the first four a byte at a time
+  movb $0xFF, %al
+  stosb             # *(%edi++) = %al
+  stosb             # *(%edi++) = %al
+  stosb             # *(%edi++) = %al
+  stosb             # *(%edi++) = %al
 
-# Load the last four with a single dword
-movl $0xFFFFFFFF, %eax
-stosl             # *(%edi) = %eax, %esi += 4
+  # Load the last four with a single dword
+  movl $0xFFFFFFFF, %eax
+  stosl             # *(%edi) = %eax, %esi += 4
 
-# Copy str1 to str2
-movl $str1, %esi  # str1 in the source
-movl $str2, %edi  # str2 in the destination
-# Two dword moves copies all 8 bytes
-movsl
-movsl
-# Done!
+  # Copy str1 to str2
+  movl $str1, %esi  # str1 in the source
+  movl $str2, %edi  # str2 in the destination
+  # Two dword moves copies all 8 bytes
+  movsl
+  movsl
+  # Done!
 \end{gascode}
 \end{frame}
 
@@ -2706,20 +2710,20 @@ loop:
 .section .text
 .global main
 main:
-  # time(NULL);
+  # %eax = time(NULL);
   pushl $0
   call time
   add $4, %esp
 
-  # curtime = %eax
+  # *curtime = %eax
   movl %eax, curtime
 
-  # localtime(%eax);
+  # %eax = localtime(&curtime);
   pushl $curtime
   call localtime
   add $4, %esp
 
-  # asctime(%eax);
+  # %eax = asctime(%eax);
   pushl %eax
   call asctime
   add $4, %esp
@@ -2948,28 +2952,28 @@ $ ./example-19
 \frametitle{Hello Shellcode Take 1 (example-20.S)}
 \mvs
 \begin{gascode}
-# Clever way to get string address into %ecx
-jmp get_str_addr
-got_str_addr:
-popl %ecx
+_start:
+  # Clever way to get string address into %ecx
+  jmp get_str_addr
+  got_str_addr:
+  popl %ecx
 
-# write(1, "Hello!", 6);
-movl $0x04, %eax
-movl $0x01, %ebx
-movl $6, %edx
-int $0x80
-# exit(0);
-movl $0x01, %eax
-# %ebx already zero from above
-int $0x80
+  # write(1, "Hello!", 6);
+  movl $0x04, %eax
+  movl $0x01, %ebx
+  movl $6, %edx
+  int $0x80
+  # exit(0);
+  movl $0x01, %eax
+  # %ebx already zero from above
+  int $0x80
 
 get_str_addr:
-call got_str_addr
-.ascii "Hello!"
+  call got_str_addr
+  .ascii "Hello!"
 \end{gascode}
 \begin{textcode}
-$ as example-20.S -o example-20.o
-$ ld example-20.o -o example-20
+$ as example-20.S -o example-20.o && ld example-20. o -o example-20
 $ ./example-20
 Hello!$
 \end{textcode}
@@ -3009,32 +3013,32 @@ Disassembly of section .text:
 \frametitle{Hello Shellcode Take 2 (example-21.S)}
 \mvs
 \begin{gascode*}{textsize=\textsize{9}{8}}
-# Clever way to get string address into %ecx
-jmp get_str_addr
-got_str_addr:
-popl %ecx
+_start:
+  # Clever way to get string address into %ecx
+  jmp get_str_addr
+  got_str_addr:
+  popl %ecx
 
-# write(1, "Hello!", 6);
-xorl %eax, %eax
-xorl %ebx, %ebx
-xorl %edx, %edx
-incl %ebx
-addb $4, %al 
-addb $6, %dl 
-int $0x80
-# exit(0);
-xorl %eax, %eax
-incl %eax
-# %ebx already zero from above
-int $0x80
+  # write(1, "Hello!", 6);
+  xorl %eax, %eax
+  xorl %ebx, %ebx
+  xorl %edx, %edx
+  incl %ebx
+  addb $4, %al 
+  addb $6, %dl 
+  int $0x80
+  # exit(0);
+  xorl %eax, %eax
+  incl %eax
+  # %ebx already zero from above
+  int $0x80
 
 get_str_addr:
-call got_str_addr
-.ascii "Hello!"
+  call got_str_addr
+  .ascii "Hello!"
 \end{gascode*}
 \begin{textcode*}{textsize=\textsize{9}{8}}
-$ as example-21.S -o example-21.o
-$ ld example-21.o -o example-21
+$ as example-21.S -o example-21.o && ld example-21.o -o example-21
 $ ./example-21
 Hello!$
 \end{textcode*}
