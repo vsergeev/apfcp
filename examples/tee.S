@@ -57,7 +57,7 @@ _start:
   movl $4, %eax
   movl $1, %ebx
   movl $usageStr, %ecx
-  movl usageStrLen, %edx
+  movl $usageStrLen, %edx
   int $0x80
 
   tee_exit:
@@ -69,7 +69,7 @@ _start:
 .section .rodata
 # Usage string and length
   usageStr:     .ascii "./tee <file>\n"
-  .equ usageStrLen, . - message
+  .equ usageStrLen, . - usageStr
 
 .section .bss
 # Read character var

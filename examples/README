@@ -1,8 +1,10 @@
-Only fibonacci, morse_encoder, 99_bottles_of_beer, linked_list, example-13,
-example-14, example-16, example-17, example-18, example-19, example-20,
-example-21, and example-22 are meant to be executed from command-line.
+Only fibonacci, morse_encoder, 99_bottles_of_beer, linked_list, tee, example-9,
+example-11, example-12, example-insecure, example-addrstack,
+example-shellcode1, example-shellcode2, example-hello-nasm are meant to be
+executed from command-line.
 
 The other programs are just examples of instruction encodings that are meant to
 be examined with objdump or single-stepped in gdb. They do not call syscall
 exit() to exit properly, so they will likely segmentation fault when execution
 falls through outside of .text.
+

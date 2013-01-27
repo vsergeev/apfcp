@@ -1,25 +1,25 @@
-# Example of Static Allocation (example-5.S)
-# Put some instructions in .text
+# Example of Indirectly Accessing Memory (example-5.S)
 .section .text
 .global _start
 _start:
-  nop
-  nop
-  nop
+  movl $tableStart, %ebx          # Pointer to table start
+                                  # We are moving the *value*
+                                  # $tableStart, this is not a
+                                  # memory access!
+  movl $0, %ecx
+  loop:
+      movl (%ebx, %ecx, 4), %eax  # %eax = *(%ebx + 4*%ecx)
+      notl %eax                   # %eax = ~%eax
+      movl %eax, (%ebx, %ecx, 4)  # *(%ebx + 4*%ecx) = %eax
+      incl %ecx
+      cmpl $10, %ecx
+      jl loop
   nop
 
-# Put a string in .rodata
-.section .rodata
-  anotherStr:   .ascii "Another string\n\0"
-
-# Put some magic bytes in .data
 .section .data
-  magicByte1:   .byte 0xaa
-  magicBytes2:  .byte 0x55, 0x10
-  magicDWord:   .long 0xdeadbeef
-  magicStr:     .ascii "String!\0"
-
-# Reserve 1024 uninitialized bytes in .bss
-.section .bss
-  .comm Buffer, 1024
+  tableStart: .long 0x00000000, 0x00000001
+              .long 0x00000002, 0x00000003
+              .long 0x00000004, 0x00000005
+              .long 0x00000006, 0x00000007
+              .long 0x00000008, 0x00000009
 

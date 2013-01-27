@@ -1,29 +1,36 @@
-# Example of cdecl Calling Convention (example-9.S)
+# Example of System Calls (example-9.S)
 .section .text
 .global _start
 _start:
-  # sumThreeNumbers(*magicNumber, 5, 12);
-  pushl $12             # Push 0x000000C
-  pushl $5              # Push 0x0000005
-  pushl magicNumber     # Push *magicNumber
-  call sumThreeNumbers
-  addl $12, %esp        # Clean up arguments off of the stack
-  # %eax is 59
+  # syscall open("foo", O_CREAT | O_WRONLY, 0644);
+  movl $0x05, %eax
+  movl $filename, %ebx
+  movl $0x41, %ecx
+  movl $0644, %edx
+  int $0x80
 
-sumThreeNumbers:
-  # Stack is now
-  # |    ...     |
-  # |     12     | <- %esp+12
-  # |      5     | <- %esp+8
-  # |     42     | <- %esp+4
-  # | retaddr    | <- %esp
+  # fd in %eax from open(), move it to %ebx for write()
+  movl %eax, %ebx
 
-  movl $0, %eax        # Clear %eax
-  addl 4(%esp), %eax   # %eax += *(%esp+4)
-  addl 8(%esp), %eax   # %eax += *(%esp+8)
-  addl 12(%esp), %eax  # %eax += *(%esp+12)
-  ret
+  # syscall write(fd, message, messageLen);
+  movl $0x04, %eax
+  # fd in %ebx from above
+  movl $message, %ecx
+  movl $messageLen, %edx
+  int $0x80
+
+  # syscall close(fd);
+  movl $0x06, %eax
+  # fd still in %ebx
+  int $0x80
+
+  # syscall exit(0);
+  movl $0x01, %eax
+  movl $0x0, %ebx
+  int $0x80
 
 .section .data
-  magicNumber: .long 42
+  filename:   .ascii "foo\0"
+  message:    .ascii "Hello World!\n"
+  .equ messageLen, . - message
 

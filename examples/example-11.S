@@ -1,37 +1,44 @@
-# Example of using the Frame Pointer (example-11.S)
+# Example 2 of String Instructions (example-11.S)
 .section .text
-.global _start
-_start:
-  pushl $22
-  pushl $20
-  pushl $42
-  pushl $3
-  call sumNumbers
-  addl $16, %esp
-  # %eax is now 84
+.global main
+main:
+  # memset(str, 'A', 48);
+  pushl $48
+  pushl $'A
+  pushl $str
+  call asm_memset
+  addl $12, %esp
 
-  # sumNumbers(int n, ...)
-  sumNumbers:
-    # Function prologue, save old frame pointer and setup new one
-    pushl %ebp
-    movl %esp, %ebp
+  # str[48] = '\n'; str[49] = '\0';
+  movb $'\n', str+48
+  movb $0, str+49
 
-    movl $0, %eax       # Clear %eax
-    movl $0, %ecx       # Clear %ecx
-    movl 8(%ebp), %edx  # Copy argument 1 into %edx
+  # printf(str);
+  pushl $str
+  call printf
+  addl $4, %esp
 
-    sumLoop:
-      # Add argument 2, 3, 4, ... n in %eax
-      # Argument 2 starts at %ebp+12
-      addl 12(%ebp, %ecx, 4), %eax
-      incl %ecx
+  ret
 
-      # Loop
-      decl %edx
-      jnz sumLoop
+# void *memset(void *s, int c, size_t n);
+asm_memset:
+  pushl %edi
+  pushl %ebp
+  movl %esp, %ebp
 
-    # Function epilogue, deallocate and restore old frame pointer
-    movl %ebp, %esp
-    popl %ebp
-    ret
+  movl 12(%ebp), %edi    # %eid = s
+  movl 16(%ebp), %eax    # %eax = c
+  movl 20(%ebp), %ecx    # %ecx = n
+
+  rep stosb
+
+  movl 12(%ebp), %eax    # %eax = s
+
+  movl %ebp, %esp
+  popl %ebp
+  popl %edi
+  ret
+
+.section .bss
+  .comm str, 50
 

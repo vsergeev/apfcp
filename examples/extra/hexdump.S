@@ -1,4 +1,4 @@
-# Simple Hexdump (example-14.S)
+# Simple Hexdump (hexdump.S)
 .section .text
 .global _start
 _start:

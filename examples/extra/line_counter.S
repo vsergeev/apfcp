@@ -1,4 +1,4 @@
-# File Line Counter (example-12.S)
+# File Line Counter (line_counter.S)
 .section .text
 .global main
 

@@ -18,7 +18,7 @@
 # \end{itemize}
 # \end{frame}
 
-# Base-64 Encoder (example-7.S)
+# Base-64 Encoder (base64.S)
 .section .text
 
 .global main
