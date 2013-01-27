@@ -67,11 +67,11 @@ _start:
   int $0x80
 
 .section .rodata
-# Usage string and length
+  # Usage string and length
   usageStr:     .ascii "./tee <file>\n"
   .equ usageStrLen, . - usageStr
 
 .section .bss
-# Read character var
+  # Read character var
   .comm c, 1
 

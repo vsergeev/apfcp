@@ -2,8 +2,10 @@
 .section .text
 .global main
 
-# struct list { int data; struct list *next; }
-# struct list: [ data: 4 bytes ][ list *next: 4 bytes ]
+# struct list { int data; struct list *next; };
+#
+#  [ int data; ][ list *next; ]   8 bytes total
+#   \ 4 bytes /  \  4 bytes  /
 
 # list *list_alloc(int data);
 list_alloc:

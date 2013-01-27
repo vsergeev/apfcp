@@ -1,4 +1,4 @@
-# Example of using libc in Assembly (example-12.S)
+# Example of using libc in Assembly (example-libc.S)
 .section .text
 .global main
 main:

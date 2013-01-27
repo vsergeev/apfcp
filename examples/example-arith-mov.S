@@ -1,4 +1,4 @@
-# Example of Arithmetic and Data Transfer Instructions (example-2.S)
+# Example of Arithmetic and Data Transfer Instructions (example-arith-mov.S)
 .section .text
 .global _start
 _start:

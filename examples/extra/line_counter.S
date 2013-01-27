@@ -19,10 +19,9 @@ main:
   # FILE *fp is at %ebp-4
   # unsigned int lc at %ebp-8
 
-  # if (argc < 2)
-  movl 8(%ebp), %ecx    # Copy argc to %ecx
-  cmpl $2, %ecx
-  jl printUsage
+  # if (argc != 2)
+  cmpl $2, 8(%ebp)
+  jne printUsage
 
   movl 12(%ebp), %eax   # Copy argv to %eax
   addl $4, %eax         # Add 4 to yield *argv[1]
@@ -98,7 +97,7 @@ main:
 
 
 .section .data
-openMode:     .ascii "r\0"
-countStr:     .ascii "%d\n\0"
-usageStr:     .ascii "usage: %s <file>\n\0"
-errorOpenStr: .ascii "error opening file!\n\0"
+  openMode:     .ascii "r\0"
+  countStr:     .ascii "%d\n\0"
+  usageStr:     .ascii "usage: %s <file>\n\0"
+  errorOpenStr: .ascii "error opening file!\n\0"

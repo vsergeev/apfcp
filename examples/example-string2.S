@@ -1,4 +1,4 @@
-# Example 2 of String Instructions (example-11.S)
+# Example 2 of String Instructions (example-string2.S)
 .section .text
 .global main
 main:

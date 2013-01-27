@@ -8,10 +8,9 @@ _start:
   # Allocate int fd; char buff[16]; on stack
   subl $20, %esp
 
-  # Check if argc < 2
-  movl 4(%ebp), %eax
-  cmpl $2, %eax
-  jl exit
+  # Check if argc != 2
+  cmpl $2, 4(%ebp)
+  jne print_usage
 
   # syscall open(argv[1], O_RDONLY);
   movl $0x05, %eax
@@ -67,6 +66,15 @@ _start:
 
     # Loop read_loop
     jmp read_loop
+
+print_usage:
+  # syscall write(1, usageStr, usageStrLen);
+  movl $4, %eax
+  movl $1, %ebx
+  movl $usageStr, %ecx
+  movl $usageStrLen, %edx
+  int $0x80
+  jmp exit
 
 cleanup:
   # syscall close(fd);
@@ -125,5 +133,6 @@ putchar:
 ########################################
 
 .section .rodata
-nibble2hex: .ascii "0123456789abcdef"
-
+  nibble2hex: .ascii "0123456789abcdef"
+  usageStr:   .ascii "./hexdump <file>\n"
+  .equ usageStrLen, . - usageStr

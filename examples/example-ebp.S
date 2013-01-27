@@ -1,4 +1,4 @@
-# Example of using the Frame Pointer (example-8.S)
+# Example of using the Frame Pointer (example-ebp.S)
 .section .text
 .global _start
 _start:

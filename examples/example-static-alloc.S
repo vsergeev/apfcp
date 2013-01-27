@@ -1,4 +1,4 @@
-# Example of Static Allocation (example-4.S)
+# Example of Static Allocation (example-static-alloc.S)
 # Put some instructions in .text
 .section .text
 .global _start

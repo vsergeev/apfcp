@@ -1,4 +1,4 @@
-# Example of cdecl Calling Convention (example-7.S)
+# Example of cdecl Calling Convention (example-cdecl.S)
 .section .text
 .global _start
 _start:

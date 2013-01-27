@@ -1,4 +1,4 @@
-# Example 1 of String Instructions (example-10.S)
+# Example 1 of String Instructions (example-string1.S)
 .section .text
 .global _start
 _start:

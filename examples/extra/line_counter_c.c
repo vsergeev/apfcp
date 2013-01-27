@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
   char c;
   unsigned int lc;
 
-  if (argc < 2) {
+  if (argc != 2) {
     printf("usage: %s <file>\n", argv[0]);
     return -1;
   }

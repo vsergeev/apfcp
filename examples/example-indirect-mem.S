@@ -1,4 +1,4 @@
-# Example of Indirectly Accessing Memory (example-5.S)
+# Example of Indirectly Accessing Memory (example-indirect-mem.S)
 .section .text
 .global _start
 _start:

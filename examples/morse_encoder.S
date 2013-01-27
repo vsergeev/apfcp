@@ -51,7 +51,7 @@ main:
     ret
 
 .section .rodata
-# Morse code lookup table
+  # Morse code lookup table
   MorseTable:
   .ascii ".-      ", "-...    ", "-.-.    ", "-..     " # A, B, C, D
   .ascii ".       ", "..-.    ", "--.     ", "....    " # E, F, G, H
@@ -62,10 +62,10 @@ main:
   .ascii "-.--    ", "--..    "                         # Y, Z
 
 .section .data
-# Input Word Storage
+  # Input Word Storage
   inputWord: .ascii "HELLO\0"
 
 .section .bss
-# Output Morse Code Storage
+  # Output Morse Code Storage
   .comm outputMorse, 64
 

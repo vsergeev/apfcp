@@ -1,4 +1,4 @@
-# Example of Conditional Jumps (example-3.S)
+# Example of Conditional Jumps (example-cond-jmp.S)
 .section .text
 .global _start
 _start:

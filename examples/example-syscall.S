@@ -1,4 +1,4 @@
-# Example of System Calls (example-9.S)
+# Example of System Calls (example-syscall.S)
 .section .text
 .global _start
 _start:
