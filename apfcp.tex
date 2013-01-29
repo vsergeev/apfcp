@@ -14,10 +14,11 @@
 \setbeamersize{text margin left = 1em}
 
 \usemintedstyle{perldoc}
+\newminted{gas}{fontsize=\fontsize{9}{8},obeytabs=true}
+\newminted{customobjdump}{fontsize=\fontsize{9}{8},obeytabs=true}
+
 \newminted{c}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
-\newminted{gas}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{nasm}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
-\newminted{customobjdump}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{bash}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 \newminted{text}{fontsize=\fontsize{9.25}{8.5},obeytabs=true}
 
@@ -115,10 +116,12 @@ size_t ex_strlen(const char *s) {
 
 %%% Introduction and Example Slide 2
 \begin{frame}[fragile,t]
-\frametitle{Reasonable strlen (example-strlen.c) disassembly}
+\frametitle{Reasonable strlen (example-strlen.c) Disassembly}
 Let's compile and disassemble it.\vs
 \begin{customobjdumpcode}
-$ gcc -O1 example-strlen.c -o example-strlen && objdump -d example-strlen
+$ gcc -O1 example-strlen.c -o example-strlen
+$ objdump -d example-strlen
+
 ...
 080483b4 <ex_strlen>:
  80483b4: 8b 54 24 04     mov    0x4(%esp),%edx
@@ -138,7 +141,7 @@ $ gcc -O1 example-strlen.c -o example-strlen && objdump -d example-strlen
 
 %% Introduction and Example Slide 3
 \begin{frame}[fragile,t]
-\frametitle{Reasonable strlen (example-strlen.c) disassembly}
+\frametitle{Reasonable strlen (example-strlen.c) Disassembly}
 Commented disassembly for \verb+ex_strlen()+:\vs
 \begin{gascode}
 # size_t strlen(const char *s);
@@ -186,10 +189,12 @@ strlen (const char *str)
 
 %%% Introduction and Example Slide 5
 \begin{frame}[fragile,t]
-\frametitle{glibc strlen (example-strlen.c) disassembly}
+\frametitle{glibc strlen (example-strlen.c) Disassembly}
 Let's compile and disassemble it.\vs
 \begin{customobjdumpcode}
-$ gcc -O1 example-strlen.c -o example-strlen && objdump -d a.out
+$ gcc -O1 example-strlen.c -o example-strlen
+$ objdump -d a.out
+
 ...
 080483cd <glibc_strlen>:
  80483cd: 57                    push   %edi
@@ -351,6 +356,7 @@ f2 ae           repnz scas %es:(%edi),%al
 
 \begin{frame}[fragile,t]
 \frametitle{8086 CPU Registers}
+\mvs
 \begin{figure}
 \centering \includegraphics[width=0.85\textwidth]{figures/8086state.png}
 \end{figure}
@@ -361,6 +367,7 @@ f2 ae           repnz scas %es:(%edi),%al
 
 \begin{frame}[fragile,t]
 \frametitle{386+ CPU Registers}
+\mvs
 \begin{figure}
 \centering \includegraphics[width=0.85\textwidth]{figures/386state.png}
 \end{figure}
@@ -371,6 +378,7 @@ f2 ae           repnz scas %es:(%edi),%al
 
 \begin{frame}[fragile,t]
 \frametitle{386+ CPU Registers and Memory}
+\mvs
 \begin{figure}
 \centering \includegraphics[width=0.65\textwidth]{figures/386statemem.png}
 \end{figure}
@@ -388,7 +396,7 @@ f2 ae           repnz scas %es:(%edi),%al
     \item {\ttfamily \%eip} contains address of next instruction
     \vs \vs \vs
     \pause
-    \item Fetch - Decode - Execute Simplified Model
+    \item Fetch-Decode-Execute Simplified CPU Model
     \begin{itemize}
         \item CPU {\bf fetches} data at address {\ttfamily \%eip} from main memory \\
         \item CPU {\bf decodes} data into an instruction \\
@@ -462,6 +470,24 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{frame}
 
 \begin{frame}[fragile,t]
+\frametitle{Sampling of Core 386+ User Instructions}
+\mvs
+\begin{itemize}
+    \item {\bf Arithmetic:} {\ttfamily adc, add, and, cmp, dec, div, idiv, imul, inc, mul, neg, not, or, rcl, rcr, rol, ror, sal, sar, sbb, shl, shr, sub, test, xor, lea}
+    \item {\bf Flags:} {\ttfamily clc / stc, cld / std, cli / sti, cmc}
+    \item {\bf String:} {\ttfamily cmpsb / cmpsw, lodsb / lodsw, movsb / movsw, scasb / scasw, stosb / stosw, repxx}
+    \item {\bf Stack:} {\ttfamily push, pop}
+    \item {\bf Memory:} {\ttfamily mov}
+    \item {\bf Flow Control:} {\ttfamily call, jxx, jmp, ret / retn / retf, loop/loopxx}
+    \item {\bf Operating System:} {\ttfamily int, into, iret, hlt, pushf, popf, popad, popfd, pushad}
+    \item {\bf Input/Output:} {\ttfamily in, out}
+    \item {\bf Misc:} {\ttfamily aaa, aad, aam, aas, daa, cbw, cwd, lahf, lds, les, lock, wait, xchg, xlat, nop}
+\end{itemize}
+\end{frame}
+
+\section{Topic 2: Arithmetic, and Data Transfer}
+
+\begin{frame}[fragile,t]
 \frametitle{Instructions in Assembly}
 \begin{itemize}
     \item Instructions represented by a mnemonic and operands
@@ -501,19 +527,69 @@ f2 ae           repnz scas %es:(%edi),%al
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Sampling of Core 386+ User Instructions}
+\frametitle{Example Arithmetic and Data Transfer (example-arith-mov.S)}
 \mvs
-\begin{itemize}
-    \item {\bf Arithmetic:} {\ttfamily adc, add, and, cmp, dec, div, idiv, imul, inc, mul, neg, not, or, rcl, rcr, rol, ror, sal, sar, sbb, shl, shr, sub, test, xor, lea}
-    \item {\bf Flags:} {\ttfamily clc / stc, cld / std, cli / sti, cmc}
-    \item {\bf String:} {\ttfamily cmpsb / cmpsw, lodsb / lodsw, movsb / movsw, scasb / scasw, stosb / stosw, repxx}
-    \item {\bf Stack:} {\ttfamily push, pop}
-    \item {\bf Memory:} {\ttfamily mov}
-    \item {\bf Flow Control:} {\ttfamily call, jxx, jmp, ret / retn / retf, loop/loopxx}
-    \item {\bf Operating System:} {\ttfamily int, into, iret, hlt, pushf, popf, popad, popfd, pushad}
-    \item {\bf Input/Output:} {\ttfamily in, out}
-    \item {\bf Misc:} {\ttfamily aaa, aad, aam, aas, daa, cbw, cwd, lahf, lds, les, lock, wait, xchg, xlat, nop}
-\end{itemize}
+\begin{gascode}
+.section .text
+  nop                        # ; (Do nothing!)
+
+  # add, sub, adc, and, or, xor
+  addl %eax, %ebx            # %ebx = %ebx + %eax
+  addl magicNumber, %ebx     # %ebx = %ebx + *(magicNumber)
+  addl %ebx, magicNumber     # *(magicNumber) = *(magicNumber) + %ebx
+  addl $0x12341234, %ebx     # %ebx = %ebx + 0x12341234
+
+  # inc, dec, not, neg
+  decl %eax                  # %eax--
+  decw %ax                   # %ax--
+  decb %al                   # %al--
+
+  # rol, rcl, shl, shr, sal, sar
+  shrl $3, %eax              # %eax = %eax >> 3
+  shrl $3, magicNumber       # *(magicNumber) = *(magicNumber) >> 3
+
+  # mov
+  movl %eax, %ebx            # %ebx = %eax
+  movl magicNumber, %eax     # %eax = *(magicNumber)
+  movl %eax, magicNumber     # *(magicNumber) = %eax
+
+.section .data
+  magicNumber: .long 0xdeadbeef  # *magicNumber = 0xdeadbeef;
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Ex. Arithmetic and Data Transfer (example-arith-mov.S) Disassembly}
+\mvs
+\begin{customobjdumpcode}
+$ as example-arith-mov.S -o example-arith-mov.o
+$ ld example-arith-mov.o -o example-arith-mov
+$ objdump -D example-arith-mov
+
+Disassembly of section .text:
+08048074 <.text>:
+ 8048074: 90                    nop
+ 8048075: 01 c3                 add    %eax,%ebx
+ 8048077: 03 1d a4 90 04 08     add    0x80490a4,%ebx
+ 804807d: 01 1d a4 90 04 08     add    %ebx,0x80490a4
+ 8048083: 81 c3 34 12 34 12     add    $0x12341234,%ebx
+ 8048089: 48                    dec    %eax
+ 804808a: 66 48                 dec    %ax
+ 804808c: fe c8                 dec    %al
+ 804808e: c1 e8 03              shr    $0x3,%eax
+ 8048091: c1 2d a4 90 04 08 03  shrl   $0x3,0x80490a4
+ 8048098: 89 c3                 mov    %eax,%ebx
+ 804809a: a1 a4 90 04 08        mov    0x80490a4,%eax
+ 804809f: a3 a4 90 04 08        mov    %eax,0x80490a4
+
+Disassembly of section .data:
+080490a4 <magicNumber>:
+ 80490a4: ef                    out    %eax,(%dx)
+ 80490a5: be                    .byte 0xbe
+ 80490a6: ad                    lods   %ds:(%esi),%eax
+ 80490a7: de                    .byte 0xde
+
+\end{customobjdumpcode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -553,7 +629,7 @@ f2 ae           repnz scas %es:(%edi),%al
         \item Naturally, they often have the same name...
         \vs
         \pause
-        \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambigiously encode the correct instruction \\
+        \item GAS supports the syntax {\ttfamily <mnemonic><size>} \\ to unambiguously encode the correct instruction \\
 \begin{textcode}
 movb $0xff, %al   movw %bx, %ax    movl memAddr, %eax
 incb %ah          incw %ax         incl %eax
@@ -570,72 +646,6 @@ dword & 32-bits & l \\
 qword & 64-bits & q \\
 \end{tabular}
 \end{center}
-\end{frame}
-
-\section{Topic 2: Arithmetic, and Data Transfer}
-
-\begin{frame}[fragile,t]
-\frametitle{Example of Arithmetic and Data Transfer Instructions (example-arith-mov.S)}
-\mvs
-\begin{gascode*}{fontsize=\fontsize{9}{8}}
-.section .text
-  nop                        # ; (Do nothing!)
-
-  # add, sub, adc, and, or, xor
-  addl %eax, %ebx            # %ebx = %ebx + %eax
-  addl magicNumber, %ebx     # %ebx = %ebx + *(magicNumber)
-  addl %ebx, magicNumber     # *(magicNumber) = *(magicNumber) + %ebx
-  addl $0x12341234, %ebx     # %ebx = %ebx + 0x12341234
-
-  # inc, dec, not, neg
-  decl %eax                  # %eax--
-  decw %ax                   # %ax--
-  decb %al                   # %al--
-
-  # rol, rcl, shl, shr, sal, sar
-  shrl $3, %eax              # %eax = %eax >> 3
-  shrl $3, magicNumber       # *(magicNumber) = *(magicNumber) >> 3
-
-  # mov
-  movl %eax, %ebx            # %ebx = %eax
-  movl magicNumber, %eax     # %eax = *(magicNumber)
-  movl %eax, magicNumber     # *(magicNumber) = %eax
-
-.section .data
-  magicNumber: .long 0xdeadbeef  # *magicNumber = 0xdeadbeef;
-\end{gascode*}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{Example of Arithmetic and Data Transfer Instructions Disassembled}
-\mvs
-\begin{customobjdumpcode}
-$ as example-arith-mov.S -o example-arith-mov.o &&
-   ld example-arith-mov.o -o example-arith-mov && objdump -D example-arith-mov
-
-Disassembly of section .text:
-08048074 <.text>:
- 8048074: 90                    nop
- 8048075: 01 c3                 add    %eax,%ebx
- 8048077: 03 1d a4 90 04 08     add    0x80490a4,%ebx
- 804807d: 01 1d a4 90 04 08     add    %ebx,0x80490a4
- 8048083: 81 c3 34 12 34 12     add    $0x12341234,%ebx
- 8048089: 48                    dec    %eax
- 804808a: 66 48                 dec    %ax
- 804808c: fe c8                 dec    %al
- 804808e: c1 e8 03              shr    $0x3,%eax
- 8048091: c1 2d a4 90 04 08 03  shrl   $0x3,0x80490a4
- 8048098: 89 c3                 mov    %eax,%ebx
- 804809a: a1 a4 90 04 08        mov    0x80490a4,%eax
- 804809f: a3 a4 90 04 08        mov    %eax,0x80490a4
-
-Disassembly of section .data:
-080490a4 <magicNumber>:
- 80490a4: ef                    out    %eax,(%dx)
- 80490a5: be                    .byte 0xbe
- 80490a6: ad                    lods   %ds:(%esi),%eax
- 80490a7: de                    .byte 0xde
-\end{customobjdumpcode}
 \end{frame}
 
 \section{Basic Tools}
@@ -662,7 +672,6 @@ Disassembly of section .data:
 \end{itemize}
 \end{frame}
 
-
 \section{Topic 3: Flow Control}
 
 \begin{frame}[fragile,t]
@@ -671,7 +680,7 @@ Disassembly of section .data:
 \begin{itemize}
   \item With most instructions, CPU will increment {\ttfamily \%eip} by the executed instruction size to proceed to the next immediate instruction
 \end{itemize}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 a_label:
   nop
   addl $5, %eax         # %eax = %eax + 5
@@ -680,12 +689,12 @@ a_label:
 another_label:
   nop
   nop
-\end{gascode*}
+\end{gascode}
 \pause
 \begin{itemize}
   \item The unconditional {\ttfamily jmp <label>} instruction allows us to explicitly change {\ttfamily \%eip} to another address, and continue execution from there
 \end{itemize}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 a_label:
   nop
   addl $5, %eax         # %eax = %eax + 5
@@ -696,12 +705,11 @@ another_label:
 
 somewhere_else:
   xorl %ecx, %ebx       # %ebx = %ebx ^ %ecx
-  ...
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Modifying Flow of Execution Intelligently}
+\frametitle{Modifying Flow of Execution Conditionally}
 \begin{itemize}
   \item Certain instructions will set boolean bit flags in the {\ttfamily \%eflags} registers based on the result
   \begin{itemize}
@@ -715,12 +723,13 @@ somewhere_else:
 \centering
   \includegraphics[width=\textwidth]{figures/eflags.png} \\
   \vs
-  \includegraphics[height=0.3\paperheight]{figures/ia32-eflags.png}\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, A-1}
+  \includegraphics[height=0.3\paperheight]{figures/ia32-eflags.png}\let\thefootnote\relax\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, A-1}
 \end{figure}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \frametitle{Conditional Jumps}
+\mvs
 \begin{table}[h]\scriptsize
 \begin{tabular}{l|c|c}
   \textbf{Instruction} & \textbf{\%eflags Condition} &  \textbf{Description} \\
@@ -746,11 +755,11 @@ somewhere_else:
   {\ttfamily jo <label>} & OF = 1 & Overflow \\
   {\ttfamily js <label>} & SF = 1 & Sign (negative) \\
 \end{tabular}
-\end{table} \footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, 7-23}
+\end{table} \let\thefootnote\relax\footnote{Intel 64 and IA-32 Architectures Software Developer’s Manual Vol. 1, 7-23}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Conditional Jumps (example-cond-jmp.S)}
+\frametitle{Example Conditional Jumps (example-cond-jmp.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -778,7 +787,7 @@ somewhere_else:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Conditional Jumps (example-cond-jmp.S) Continued}
+\frametitle{Example Conditional Jumps (example-cond-jmp.S) Continued}
 \mvs
 \begin{gascode}
   # labels are just symbols containing an address to make
@@ -810,13 +819,15 @@ somewhere_else:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Conditional Jumps (example-cond-jmp.S) Disassembly}
+\frametitle{Example Conditional Jumps (example-cond-jmp.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ as example-cond-jmp.S -o example-cond-jmp.o &&
-   ld example-cond-jmp.o -o example-cond-jmp && objdump -D example-cond-jmp
+$ as example-cond-jmp.S -o example-cond-jmp.o
+$ ld example-cond-jmp.o -o example-cond-jmp
+$ objdump -D example-cond-jmp
 
 Disassembly of section .text:
+
 08048054 <_start>:
  8048054: 39 c1                 cmp    %eax,%ecx
  8048056: 3d ff 00 00 00        cmp    $0xff,%eax
@@ -834,7 +845,7 @@ Disassembly of section .text:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Conditional Jumps (example-cond-jmp.S) Disassembly Continued}
+\frametitle{Example Conditional Jumps (example-cond-jmp.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
 0804806c <label1>:
@@ -855,6 +866,8 @@ Disassembly of section .text:
  8048082: 75 fc                 jne    8048080 <loop>
  8048084: 83 f8 05              cmp    $0x5,%eax
  8048087: 74 00                 je     8048089 <label_foo>
+
+...
 \end{customobjdumpcode}
 \end{frame}
 
@@ -895,7 +908,8 @@ myprint:
 \mvs
 \begin{textcode}
 $ as fibonacci.S -o fibonacci.o
-$ gcc fibonacci.o -o fibonacci
+$ gcc fibonacci.o -o fibonacci   # (Easy way to link with libc,
+                                 #  more on this, later)
 $ ./fibonacci
 1
 2
@@ -915,7 +929,13 @@ $
 
 \begin{frame}[fragile,t]
 \frametitle{Iterative Fibonacci (fibonacci.S) Disassembly}
+\mvs
 \begin{customobjdumpcode}
+$ objdump -D fibonacci
+
+Disassembly of section .text:
+...
+
 080483e4 <main>:
  80483e4: b9 00 00 00 00        mov    $0x0,%ecx
  80483e9: bb 01 00 00 00        mov    $0x1,%ebx
@@ -930,6 +950,8 @@ $
  8048403: 4f                    dec    %edi
  8048404: 75 f2                 jne    80483f8 <fib_loop>
  8048406: c3                    ret
+
+...
 \end{customobjdumpcode}
 \begin{itemize}
   \item Main code is only 35 bytes!
@@ -991,7 +1013,7 @@ int main(void) {
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-static-alloc.S)}
+\frametitle{Example Static Allocation (example-static-alloc.S)}
 \mvs
 \begin{gascode}
 # Put some instructions in .text
@@ -1020,11 +1042,12 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-static-alloc.S) Disassembly}
+\frametitle{Example Static Allocation (example-static-alloc.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ as example-static-alloc.S -o example-static-alloc.o &&
-   ld example-static-alloc.o -o example-static-alloc && objdump -D example-static-alloc
+$ as example-static-alloc.S -o example-static-alloc.o
+$ ld example-static-alloc.o -o example-static-alloc
+$ objdump -D example-static-alloc
 
 Disassembly of section .text:
 
@@ -1051,7 +1074,7 @@ Disassembly of section .rodata:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Static Allocation in Assembly (example-static-alloc.S) Disassembly}
+\frametitle{Example Static Allocation (example-static-alloc.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
 Disassembly of section .data:
@@ -1146,7 +1169,7 @@ Disassembly of section .text:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Indirectly Accessing Memory}
+\frametitle{Indirect Memory Access}
 \begin{itemize}
   \item Many x86 instructions are capable of complex indirect addressing: \\
   {\ttfamily {\footnotesize *(base register + (offset register * multiplier) + displacement)}}
@@ -1172,7 +1195,7 @@ Disassembly of section .text:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Indirectly Accessing Memory (example-indirect-mem.S)}
+\frametitle{Example Indirect Memory Access (example-indirect-mem.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -1200,12 +1223,15 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Indirectly Accessing Memory (example-indirect-mem.S) Disassembly}
+\frametitle{Ex. Indirect Memory Access (example-indirect-mem.S) Disassembly}
+\mvs
 \begin{customobjdumpcode}
-$ as example-indirect-mem.S -o example-indirect-mem.o &&
-   ld example-indirect-mem.o -o example-indirect-mem && objdump -D example-indirect-mem
+$ as example-indirect-mem.S -o example-indirect-mem.o
+$ ld example-indirect-mem.o -o example-indirect-mem
+$ objdump -D example-indirect-mem
 
 Disassembly of section .text:
+
 08048074 <_start>:
  8048074: bb 90 90 04 08        mov    $0x8049090,%ebx
  8048079: b9 00 00 00 00        mov    $0x0,%ecx
@@ -1219,11 +1245,13 @@ Disassembly of section .text:
  804808c: 90                    nop
 
 Disassembly of section .data:
+
 08049090 <tableStart>:
  8049090: 00 00                 add    %al,(%eax)
  8049092: 00 00                 add    %al,(%eax)
  8049094: 01 00                 add    %eax,(%eax)
  8049096: 00 00                 add    %al,(%eax)
+ 8049098: 02 00                	add    (%eax),%al
   ...
 
 \end{customobjdumpcode}
@@ -1234,7 +1262,7 @@ Disassembly of section .data:
 \begin{frame}[fragile,t]
 \frametitle{Morse Encoder (morse\_encoder.S)}
 \mvs
-\begin{gascode*}{fontsize=\fontsize{9}{8}}
+\begin{gascode}
 .section .text
 .global main
 main:
@@ -1259,13 +1287,13 @@ encode_loop:
     cmpb $' , %bl               # If we encounter a space
     je lookup_done              #   break out of the loop
 
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \frametitle{Morse Encoder (morse\_encoder.S) Continued}
 \mvs
-\begin{gascode*}{fontsize=\fontsize{9}{8}}
+\begin{gascode}
     # (inside lookup loop)
 
     movb %bl, (%edi)            # Copy the code character to our output morse
@@ -1287,13 +1315,13 @@ lookup_done:
 finished:
   movb $0x00, (%edi)        # Append a null byte to the output morse
   incl %edi                 # Increment output morse pointer
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \frametitle{Morse Encoder (morse\_encoder.S) Continued}
 \mvs
-\begin{gascode*}{fontsize=\fontsize{9}{8}}
+\begin{gascode}
 
   pushl $outputMorse        # Call puts(outputMorse);
   call puts
@@ -1320,7 +1348,7 @@ finished:
 .section .bss
   # Output Morse Code Storage
   .comm outputMorse, 64
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1408,7 +1436,7 @@ int main(void) {
 \mvs
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/x86stackalloc.png}
+\includegraphics[width=0.90\textwidth]{figures/x86stackalloc.png}
 \end{figure}
 \begin{itemize}
 \item We can batch allocate/deallocate space by simply adjusting {\ttfamily \%esp}
@@ -1416,7 +1444,7 @@ int main(void) {
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-stack.S)}
+\frametitle{Example Stack Usage (example-stack.S)}
 \mvs
 \begin{gascode}
 # Stack is now
@@ -1448,7 +1476,7 @@ popl %ebx           # Pop dword off of the stack,
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-stack.S)}
+\frametitle{Example Stack Usage (example-stack.S)}
 \mvs
 \begin{gascode}
 # Stack is now
@@ -1477,11 +1505,12 @@ movl $0xaaaaaaaa, (%esp)  # Write 0xaaaaaaaa to the stack
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of Stack Usage (example-stack.S) Disassembly}
+\frametitle{Example Stack Usage (example-stack.S) Disassembly}
 \mvs
 \begin{customobjdumpcode}
-$ as example-stack.S -o example-stack.o &&
-   ld example-stack.o -o example-stack && objdump -D example-stack
+$ as example-stack.S -o example-stack.o
+$ ld example-stack.o -o example-stack
+$ objdump -D example-stack
 
 Disassembly of section .text:
 
@@ -1494,6 +1523,8 @@ Disassembly of section .text:
  8048061:	5b                   	pop    %ebx
  8048062:	83 c4 04             	add    $0x4,%esp
  8048065:	c7 04 24 aa aa aa aa 	movl   $0xaaaaaaaa,(%esp)
+
+...
 \end{customobjdumpcode}
 \end{frame}
 
@@ -1589,7 +1620,7 @@ Disassembly of section .text:
 
 \begin{frame}[fragile,t]
 \mvs
-\frametitle{Example of {\ttfamily cdecl} Calling Convention (example-cdecl.S)}
+\frametitle{Example {\ttfamily cdecl} Calling Convention (example-cdecl.S)}
 \begin{gascode}
 .section .text
   # sumThreeNumbers(*magicNumber, 5, 12);
@@ -1617,6 +1648,127 @@ sumThreeNumbers:
 .section .data
   magicNumber: .long 42
 \end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Example {\ttfamily cdecl} Calling Convention (example-cdecl.S) Disassembly}
+\mvs
+\begin{customobjdumpcode}
+$ as example-cdecl.S -o example-cdecl.o
+$ ld example-cdecl.o -o example-cdecl
+$ objdump -D example-cdecl
+
+Disassembly of section .text:
+
+08048074 <_start>:
+ 8048074:   6a 0c                   push   $0xc
+ 8048076:   6a 05                   push   $0x5
+ 8048078:   ff 35 98 90 04 08       pushl  0x8049098
+ 804807e:   e8 03 00 00 00          call   8048086 <sumThreeNumbers>
+ 8048083:   83 c4 0c                add    $0xc,%esp
+
+08048086 <sumThreeNumbers>:
+ 8048086:   b8 00 00 00 00          mov    $0x0,%eax
+ 804808b:   03 44 24 04             add    0x4(%esp),%eax
+ 804808f:   03 44 24 08             add    0x8(%esp),%eax
+ 8048093:   03 44 24 0c             add    0xc(%esp),%eax
+ 8048097:   c3                      ret    
+
+Disassembly of section .data:
+08049098 <magicNumber>:
+ 8049098:   2a 00                   sub    (%eax),%al
+    ...
+
+\end{customobjdumpcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Example {\ttfamily cdecl} with libc (example-libc.S)}
+\vspace{-0.5em}
+\begin{itemize}
+    \item {\ttfamily libc} library functions you use in C (strings, math, time, files, sockets, etc.) are all accessible in assembly when linking with libc
+    \item Follow the {\ttfamily cdecl} calling convention
+\end{itemize}
+\vspace{0.25em}
+\begin{gascode}
+.section .text
+.global main
+main:
+  # %eax = time(NULL);
+  pushl $0
+  call time
+  add $4, %esp
+
+  # *curtime = %eax
+  movl %eax, curtime
+
+  # %eax = localtime(&curtime);
+  pushl $curtime
+  call localtime
+  add $4, %esp
+
+  # %eax = asctime(%eax);
+  pushl %eax
+  call asctime
+  add $4, %esp
+\end{gascode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\mvs
+\frametitle{Example {\ttfamily cdecl} with libc (example-libc.S) Continued}
+\begin{gascode}
+  # printf("%s\n", %eax);
+  pushl %eax
+  pushl $formatStr
+  call printf
+  add $8, %esp
+
+  ret
+
+.section .data
+  .comm curtime, 4
+  formatStr:  .ascii "%s\0"
+\end{gascode}
+{\small Runtime:}
+\begin{textcode}
+$ as example-libc.S -o example-libc.o
+$ gcc example-libc.o -o example-libc
+$ ./example-libc
+Wed Jan 25 16:13:27 2012
+$
+\end{textcode}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Example {\ttfamily cdecl} with libc (example-libc.S) Disassembly}
+\mvs
+\begin{customobjdumpcode}
+$ as example-libc.S -o example-libc.o
+$ ld example-libc.o -o example-libc
+$ objdump -D example-libc
+
+Disassembly of section .text:
+...
+0804848c <main>:
+ 804848c:   6a 00                   push   $0x0
+ 804848e:   e8 ad fe ff ff          call   8048340 <time@plt>
+ 8048493:   83 c4 04                add    $0x4,%esp
+ 8048496:   a3 30 97 04 08          mov    %eax,0x8049730
+ 804849b:   68 30 97 04 08          push   $0x8049730
+ 80484a0:   e8 cb fe ff ff          call   8048370 <localtime@plt>
+ 80484a5:   83 c4 04                add    $0x4,%esp
+ 80484a8:   50                      push   %eax
+ 80484a9:   e8 a2 fe ff ff          call   8048350 <asctime@plt>
+ 80484ae:   83 c4 04                add    $0x4,%esp
+ 80484b1:   50                      push   %eax
+ 80484b2:   68 28 97 04 08          push   $0x8049728
+ 80484b7:   e8 74 fe ff ff          call   8048330 <printf@plt>
+ 80484bc:   83 c4 08                add    $0x8,%esp
+ 80484bf:   c3                      ret    
+
+...
+\end{customobjdumpcode}
 \end{frame}
 
 \section{Entry Points}
@@ -1679,7 +1831,6 @@ $
 \begin{gascode}
 .section .text
 .global main
-.global printf
 main:
   movl $99, %eax    # Start with 99 bottles!
   # We could use a cdecl callee preserved register,
@@ -1740,7 +1891,7 @@ main:
 \begin{frame}[fragile,t]
 \mvs
 \frametitle{99 Bottles of Beer on the Wall (99\_bottles\_of\_beer.S)}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 .section .data
   formatStr1:
 .ascii "%d bottles of beer on the wall! %d bottles of beer!\n\0"
@@ -1748,7 +1899,7 @@ main:
 .ascii "Take one down, pass it around, %d bottles of beer on the wall!\n\0"
   formatStr3:
 .ascii "No more bottles of beer on the wall!\n\0"
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1783,7 +1934,7 @@ $
 \begin{itemize}
   \item Referring to arguments with {\ttfamily \%esp} in a function is easy, until you start moving around {\ttfamily \%esp} itself.
 \end{itemize}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
   pushl $5
   call doSomething
   addl $4, %esp
@@ -1806,7 +1957,7 @@ $
     # | local var  | <- %esp+4
     # | local var  | <- %esp
     # Argument is now at %esp+16 !
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1822,7 +1973,7 @@ $
 \begin{frame}[fragile,t]
 \frametitle{Frame Pointer Prologue}
 \mvs
-\begin{gascode*}{textsize=\textsize{8}{8}}
+\begin{gascode}
   pushl $5
   call doSomething
   addl $4, %esp
@@ -1848,7 +1999,7 @@ $
     # | local var  | <- %esp     %ebp-12
     # Argument is still always at %ebp+8
     # Allocated memory always at %ebp-4, %ebp-8, %ebp-12
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -1857,11 +2008,11 @@ $
   \item To have a valid return address on the stack, we must reset {\ttfamily \%esp} to its previous value and pop the saved frame pointer
   \item This conveniently also deallocates any space we allocated on the stack
 \end{itemize}
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
     movl %ebp, %esp   # Restore %esp, deallocating space on the stack
     popl %ebp         # Restore the frame pointer
     ret               # Return
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1869,14 +2020,14 @@ $
 \mvs
 \begin{figure}
 \centering
-\includegraphics[width=0.65\textwidth]{figures/stackframe.png}
+\includegraphics[width=0.68\textwidth]{figures/stackframe.png}
 \end{figure}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of using the Frame Pointer (example-ebp.S)}
+\frametitle{Example using the Frame Pointer (example-ebp.S)}
 \mvs
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 .section .text
 _start:
   pushl $22
@@ -1897,13 +2048,13 @@ _start:
     movl $0, %ecx       # Clear %ecx
     movl 8(%ebp), %edx  # Copy argument 1, n, into %edx
 
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of using the Frame Pointer (example-ebp.S)}
+\frametitle{Example using the Frame Pointer (example-ebp.S)}
 \mvs
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
     sumLoop:
       # Add argument 2, 3, 4, ... n+1 in %eax
       # Argument 2 starts at %ebp+12
@@ -1918,8 +2069,47 @@ _start:
     movl %ebp, %esp
     popl %ebp
     ret
-\end{gascode*}
+\end{gascode}
 \end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Example using the Frame Pointer (example-ebp.S) Disassembly}
+\mvs
+\begin{customobjdumpcode*}{fontsize=\fontsize{8}{8}}
+$ as example-ebp.S -o example-ebp.o
+$ ld example-ebp.o -o example-ebp
+$ objdump -D example-ebp
+
+Disassembly of section .text:
+
+08048054 <_start>:
+ 8048054:   6a 16                   push   $0x16
+ 8048056:   6a 14                   push   $0x14
+ 8048058:   6a 2a                   push   $0x2a
+ 804805a:   6a 03                   push   $0x3
+ 804805c:   e8 03 00 00 00          call   8048064 <sumNumbers>
+ 8048061:   83 c4 10                add    $0x10,%esp
+08048064 <sumNumbers>:
+ 8048064:   55                      push   %ebp
+ 8048065:   89 e5                   mov    %esp,%ebp
+ 8048067:   b8 00 00 00 00          mov    $0x0,%eax
+ 804806c:   b9 00 00 00 00          mov    $0x0,%ecx
+ 8048071:   8b 55 08                mov    0x8(%ebp),%edx
+08048074 <sumLoop>:
+ 8048074:   03 44 8d 0c             add    0xc(%ebp,%ecx,4),%eax
+ 8048078:   41                      inc    %ecx
+ 8048079:   4a                      dec    %edx
+ 804807a:   75 f8                   jne    8048074 <sumLoop>
+ 804807c:   89 ec                   mov    %ebp,%esp
+ 804807e:   5d                      pop    %ebp
+ 804807f:   c3                      ret    
+
+...
+\end{customobjdumpcode*}
+\end{frame}
+
+
+\part{2}
 
 \section{Topic 9: Command-line Arguments}
 
@@ -2100,8 +2290,6 @@ $
 
 \section*{Lingering Questions?}
 
-\part{2}
-
 \section{Topic 10: System Calls}
 
 \begin{frame}[fragile,t]
@@ -2109,13 +2297,18 @@ $
 \begin{itemize}
   \item Monolithic kernel like Linux completely sandboxes a user program
   \begin{itemize}
-  \item User program executes at a lower CPU privillege
+  \item User program executes at a lower CPU privilege
   \item Virtual memory hides other programs, restricts access to kernel memory and memory-mapped I/O
   \end{itemize}
   \vs \vs
   \pause
   \item User program can effectively only do pure computation and manipulate user memory mapped by the OS
 \end{itemize}
+\pause
+\begin{figure}
+\centering
+\includegraphics[height=0.40\paperheight]{figures/hamster.jpg}
+\end{figure}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -2131,7 +2324,9 @@ $
   \item CPU saves current state in an architecture-specific way, switches to privileged mode, and jumps to the interrupt handler in the kernel
   \pause
   \item Software interrupt, instruction {\ttfamily int <number>}, provides a mechanism to make a request to the kernel to do something user program cannot
-  \item System call
+  \begin{itemize}
+    \item System call
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -2146,7 +2341,6 @@ $
 
 \begin{frame}[fragile,t]
 \frametitle{Linux System Calls}
-\mvs
 \begin{itemize}
   \item Currently 346 system calls
   \item Common ones are {\ttfamily exit(), read(), write(), open(), close(), ioctl(), fork(), execve()}, etc.
@@ -2184,7 +2378,7 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-syscall.S)}
+\frametitle{Example System Calls (example-syscall.S)}
 \mvs
 \begin{gascode}
 .section .text
@@ -2214,7 +2408,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-syscall.S)}
+\frametitle{Example System Calls (example-syscall.S)}
 \mvs
 \begin{gascode}
   # syscall exit(0);
@@ -2230,7 +2424,7 @@ _start:
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-syscall.S) Runtime}
+\frametitle{Example System Calls (example-syscall.S) Runtime}
 \mvs
 \begin{textcode}
 $ as example-syscall.S -o example-syscall.o
@@ -2243,13 +2437,15 @@ $
 \end{frame}
 
 \begin{frame}[fragile,t]
-\frametitle{Example of System Calls (example-syscall.S) Disassembly}
+\frametitle{Example System Calls (example-syscall.S) Disassembly}
 \mvs
-\begin{customobjdumpcode*}{textsize=\textsize{9}{8}}
-$ as example-syscall.S -o example-syscall.o &&
-   ld example-syscall.o -o example-syscall && ojbdump -D example-syscall
+\begin{customobjdumpcode}
+$ as example-syscall.S -o example-syscall.o
+$ ld example-syscall.o -o example-syscall
+$ ojbdump -D example-syscall
 
 Disassembly of section .text:
+
 08048074 <_start>:
  8048074: b8 05 00 00 00        mov    $0x5,%eax
  8048079: bb b0 90 04 08        mov    $0x80490b0,%ebx
@@ -2270,9 +2466,8 @@ Disassembly of section .text:
 Disassembly of section .data:
 080490b0 <filename>:
  80490b0: 66 6f                 outsw  %ds:(%esi),(%dx)
- 80490b2: 6f                    outsl  %ds:(%esi),(%dx)
   ...
-\end{customobjdumpcode*}
+\end{customobjdumpcode}
 \end{frame}
 
 \section{Program Example: tee}
@@ -2310,10 +2505,9 @@ _start:
 \begin{frame}[fragile,t]
 \mvs
 \frametitle{tee (tee.S) Continued}
-\begin{gascode*}{textsize=\textsize{8.5}{8}}
+\begin{gascode}
   tee_loop:
-    # Read from input
-    # syscall read(0, &c, 1);
+    # Read from input: syscall read(0, &c, 1);
     movl $3, %eax
     movl $0, %ebx
     movl $c, %ecx
@@ -2323,15 +2517,13 @@ _start:
     cmpl $1, %eax       # if (%eax < 1)
     jl tee_exit         #   goto tee_exit;
 
-    # Write to file
-    # syscall write(fd, &c, 1);
+    # Write to file: syscall write(fd, &c, 1);
     movl $4, %eax
     movl -4(%ebp), %ebx
     movl $c, %ecx
     movl $1, %edx
     int $0x80
-    # Write to stdout
-    # syscall write(1, &c, 1);
+    # Write to stdout: syscall write(1, &c, 1);
     movl $4, %eax
     movl $1, %ebx
     movl $c, %ecx
@@ -2339,7 +2531,7 @@ _start:
     int $0x80
 
     jmp tee_loop       # Loop
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -2399,8 +2591,44 @@ unlink,10
 \end{textcode}
 \end{frame}
 
+\section{Advanced Topic 11: Role of libc}
 
-\section{Advanced Topic 11: x86 String Operations}
+\begin{frame}[fragile,t]
+\frametitle{{\ttfamily libc} for library functions and system calls}
+\begin{itemize}
+  \item {\ttfamily libc} provides optimized string, formatting, pattern matching, math, date and time, etc. computation functions
+  \item {\ttfamily libc} wraps system calls and provides more-so platform independent data structures and interfaces
+  \begin{itemize}
+    \item file streams: {\ttfamily FILE *, fopen(), fclose(), fread(), fwrite()}
+    \item sockets: {\ttfamily socket(), bind(), accept(), send(), recv()}
+  \end{itemize}
+  \item In other words, {\ttfamily libc} implements the C library of the POSIX standard
+  \vs
+  \pause
+  \item You can choose not to link with libc, only use syscalls, and implement the other functionality yourself (interesting challenge)
+  \vs
+  \pause
+  \item Some I/O operations will be more efficient through {\ttfamily libc} than direct system calls, due to buffering in user space
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{{\ttfamily libc} for dynamic memory management (heap)}
+\begin{columns}[T]
+\column{0.7\textwidth}
+\begin{itemize}
+  \item Operating system allocates heap memory for user program
+  \item {\ttfamily libc} {\ttfamily malloc()} and {\ttfamily free()} manages allocations, deallocations, fragmentation of the heap
+  \item Heap grows up, stack grows down
+\end{itemize}
+\column{0.3\textwidth}
+\includegraphics[height=0.70\paperheight]{figures/memlayoutvm.png}
+\end{columns}
+\end{frame}
+
+
+
+\section{Advanced Topic 12: x86 String Operations}
 
 \begin{frame}[fragile,t]
 \frametitle{Some Overlooked Registers}
@@ -2595,7 +2823,7 @@ $
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 12: Three Simple Optimizations}
+\section{Advanced Topic 13: Three Simple Optimizations}
 
 \begin{frame}[fragile,t]
 \frametitle{Three Basic Optimizations}
@@ -2621,10 +2849,11 @@ $
 \end{gascode}
 \pause
   \item Use a more efficient loop structure when possible
-\mvs
+\vspace{-1.0em}
 \begin{columns}[T]
-\column{0.5\textwidth}
-\begin{gascode}
+\centering
+\column{0.4\textwidth}
+\begin{gascode*}{fontsize=\fontsize{8}{8}}
 # for (i = 0; i < 10; i++) { ; }
 xorl %ecx, %ecx
 loop:
@@ -2634,21 +2863,21 @@ loop:
   incl %ecx
   jmp loop
 loop_done:
-\end{gascode}
-\column{0.5\textwidth}
-\begin{gascode}
+\end{gascode*}
+\column{0.4\textwidth}
+\begin{gascode*}{fontsize=\fontsize{8}{8}}
 # i = 10; do { ; } while(--i != 0);
 movl $10, %ecx
 loop:
   nop
   decl %ecx
   jnz loop
-\end{gascode}
+\end{gascode*}
 \end{columns}
 \end{itemize}
 \end{frame}
 
-\section{Advanced Topic 13: x86 Extensions}
+\section{Advanced Topic 14: x86 Extensions}
 
 \begin{frame}[fragile,t]
 \frametitle{Overview}
@@ -2662,7 +2891,7 @@ loop:
   \pause
   \item Single Instruction Multiple Data (SIMD) instruction sets \\ like MMX, SSE, SSE2, SSE3, SSE4, ...
   \begin{itemize}
-    \item Parallel gain in that a single instruction carries out an operation (add, subtract, etc.) across multiple data blocks in parallel (a vector)
+    \item Single instruction carries out an operation (add, subtract, etc.) on multiple data blocks, a vector
     \item MMX was a SIMD instruction set for integers
     \pause
     \item SSE is SIMD instruction set for integers and floating point
@@ -2671,7 +2900,7 @@ loop:
     \item SSE2 added 64-bit double precision floating point support
     \pause
     \item SSE registers are {\%xmm0 - \%xmm7}, each 128-bit
-    \item SSE instructions can treat a register as multiple floats, doubles, chars, shorts, etc.
+    \item SSE instructions can treat each register as multiple floats, doubles, chars, shorts, etc.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2679,98 +2908,9 @@ loop:
 \begin{frame}[fragile,t]
 \frametitle{Scalar versus SIMD}
 \begin{figure}
-\centering
 \includegraphics[width=\textwidth]{figures/simd.png}
 \footnote{\url{http://software.intel.com/en-us/articles/introduction-to-intel-advanced-vector-extensions/}}
 \end{figure}
-\end{frame}
-
-\section{Advanced Topic 14: Role of libc}
-
-\begin{frame}[fragile,t]
-\frametitle{{\ttfamily libc} for library functions and system calls}
-\begin{itemize}
-  \item {\ttfamily libc} provides optimized string, formatting, pattern matching, math, date and time, etc. computation functions
-  \item {\ttfamily libc} wraps system calls and provides more-so platform independent data structures and interfaces
-  \begin{itemize}
-    \item file streams: {\ttfamily FILE *, fopen(), fclose(), fread(), fwrite()}
-    \item sockets: {\ttfamily socket(), bind(), accept(), send(), recv()}
-  \end{itemize}
-  \item In other words, {\ttfamily libc} implements the C library of the POSIX standard
-  \vs
-  \vs
-  \pause
-  \item All accessible in assembly when linking with {\ttfamily libc}
-  \item Follow {\ttfamily cdecl} calling convention
-  \item You can choose not to link with libc, only use syscalls, and implement the other functionality yourself (interesting challenge)
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\mvs
-\frametitle{Example of using libc in Assembly (example-libc.S)}
-\begin{gascode}
-.section .text
-.global main
-main:
-  # %eax = time(NULL);
-  pushl $0
-  call time
-  add $4, %esp
-
-  # *curtime = %eax
-  movl %eax, curtime
-
-  # %eax = localtime(&curtime);
-  pushl $curtime
-  call localtime
-  add $4, %esp
-
-  # %eax = asctime(%eax);
-  pushl %eax
-  call asctime
-  add $4, %esp
-\end{gascode}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\mvs
-\frametitle{Example of using libc in Assembly (example-libc.S) Continued}
-\begin{gascode}
-  # printf("%s\n", %eax);
-  pushl %eax
-  pushl $formatStr
-  call printf
-  add $8, %esp
-
-  ret
-
-.section .data
-  .comm curtime, 4
-  formatStr:  .ascii "%s\0"
-\end{gascode}
-{\small Runtime:}
-\begin{textcode}
-$ as example-libc.S -o example-libc.o
-$ gcc example-libc.o -o example-libc
-$ ./example-libc
-Wed Jan 25 16:13:27 2012
-$
-\end{textcode}
-\end{frame}
-
-\begin{frame}[fragile,t]
-\frametitle{{\ttfamily libc} for dynamic memory management (heap)}
-\begin{columns}[T]
-\column{0.7\textwidth}
-\begin{itemize}
-  \item Operating system allocates heap memory for user program
-  \item {\ttfamily libc} {\ttfamily malloc()} and {\ttfamily free()} manages allocations, deallocations, fragmentation of the heap
-  \item Heap grows up, stack grows down
-\end{itemize}
-\column{0.3\textwidth}
-\includegraphics[height=0.70\paperheight]{figures/memlayoutvm.png}
-\end{columns}
 \end{frame}
 
 \section{Advanced Topic 15: Stack-based Buffer Overflows}
@@ -2792,13 +2932,12 @@ int main(void) {
 }
 \end{ccode}
 \vs
+\pause
 \begin{textcode}
 $ gcc -fno-stack-protector -z execstack example-insecure.c
     -o example-insecure
 \end{textcode}
-\begin{itemize}
-\item We'll build this with the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
-\end{itemize}
+We'll build this with the GCC stack protector disabled and executable stack (for reasons explained in a few slides)
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -2812,7 +2951,8 @@ void get_input(void) {
 \end{ccode}
 \vs
 \begin{customobjdumpcode}
-$ objdump -D example-insecure
+$ objdump -d example-insecure
+...
 08048414 <get_input>:
                               # Function prologue
  8048414: 55                  push   %ebp
@@ -2828,13 +2968,14 @@ $ objdump -D example-insecure
                               # Function epilogue
  8048428: c9                  leave  
  8048429: c3                  ret 
+...
 \end{customobjdumpcode}
 \end{frame}
 
 \begin{frame}[fragile,t]
 \frametitle{Stack Frame of {\ttfamily get\_input()}}
 \mvs
-\begin{gascode*}{textsize=\textsize{8.5}{8}}
+\begin{gascode}
 # Function prologue
 push   %ebp
 mov    %esp,%ebp
@@ -2860,7 +3001,7 @@ ret
 # |    buf    |
 # |    buf    |
 # |   &buf    | <- %esp
-\end{gascode*}
+\end{gascode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -2878,7 +3019,6 @@ ret
 
 \begin{frame}[fragile,t]
 \frametitle{Overwriting the Return Address}
-\mvs
 \begin{itemize}
   \item But how do we pick the return address? What is the address of stuff on the stack anyway?
   \pause
@@ -2978,7 +3118,7 @@ get_str_addr:
 \end{gascode}
 \begin{textcode}
 $ as example-shellcode1.S -o example-shellcode1.o
-$ ld example-shellcode1. o -o example-shellcode1
+$ ld example-shellcode1.o -o example-shellcode1
 $ ./example-shellcode1
 Hello!$
 \end{textcode}
@@ -2989,7 +3129,9 @@ Hello!$
 \mvs
 \begin{customobjdumpcode}
 $ objdump -D example-shellcode1
+
 Disassembly of section .text:
+
 08048054 <_start>:
  8048054: eb 19                 jmp    804806f <get_str_addr>
 08048056 <got_str_addr>:
@@ -3017,7 +3159,7 @@ Disassembly of section .text:
 \begin{frame}[fragile,t]
 \frametitle{Hello Shellcode Take 2 (example-shellcode2.S)}
 \mvs
-\begin{gascode*}{textsize=\textsize{9}{8}}
+\begin{gascode}
 _start:
   # Clever way to get string address into %ecx
   jmp get_str_addr
@@ -3041,12 +3183,12 @@ _start:
 get_str_addr:
   call got_str_addr
   .ascii "Hello!"
-\end{gascode*}
-\begin{textcode*}{textsize=\textsize{9}{8}}
+\end{gascode}
+\begin{textcode}
 $ as example-shellcode2.S -o example-shellcode2.o && ld ...
 $ ./example-shellcode2
 Hello!$
-\end{textcode*}
+\end{textcode}
 \end{frame}
 
 \begin{frame}[fragile,t]
@@ -3078,6 +3220,7 @@ Disassembly of section .text:
  8048073: 6f                    outsl  %ds:(%esi),(%dx)
  8048074: 21                    .byte 0x21
 \end{customobjdumpcode}
+\vspace{-0.5em}
 \begin{itemize}
   \item No null bytes or newlines!
 \end{itemize}
@@ -3141,7 +3284,7 @@ Program received signal SIGSEGV, Segmentation fault.
 \begin{frame}[fragile,t]
 \frametitle{The Actual Exploit... (example-insecure\_exploit.sh) Continued}
 \mvs
-\begin{textcode*}{textsize=\textsize{8}{8}}
+\begin{textcode*}{fontsize=\fontsize{8}{8}}
 Prepare small nop-sled, shellcode, A's, and return address that is
 116 characters long.
 
@@ -3151,7 +3294,7 @@ $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
       0       1     116
 \end{textcode*}
 \pause
-\begin{textcode*}{textsize=\textsize{7}{7}}
+\begin{textcode*}{fontsize=\fontsize{8}{8}}
 Guess at the return address, starting at 0xbffff280:
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
@@ -3160,7 +3303,7 @@ input:
 Segmentation fault
 \end{textcode*}
 \pause
-\begin{textcode*}{textsize=\textsize{7}{7}}
+\begin{textcode*}{fontsize=\fontsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x70\xf2\xff\xbf"' | ./example-insecure
@@ -3168,7 +3311,7 @@ input:
 Illegal instruction
 \end{textcode*}
 \pause
-\begin{textcode*}{textsize=\textsize{7}{7}}
+\begin{textcode*}{fontsize=\fontsize{8}{8}}
 $ perl -e 'print "\x90" x 20 . "\xeb\x14\x59\x31\xc0\x31\xdb\x31\xd2\x43
  \x04\x04\x80\xc2\x06\xcd\x80\x31\xc0\x40\xcd\x80\xe8\xe7\xff\xff\xff
  \x48\x65\x6c\x6c\x6f\x21" . "A" x 59 . "\x60\xf2\xff\xbf"' | ./example-insecure
@@ -3232,7 +3375,7 @@ Hello!$
   \end{itemize}
   \vs
   \pause
-  \item Indirect memory acceses spelled out as expressions
+  \item Indirect memory accesses spelled out as expressions
   \begin{itemize}
     \item AT\&T / GAS: {\ttfamily movl \%eax, -12(\%ebp, \%ecx, 4)}
     \item Intel / NASM: {\ttfamily mov [ebp+ecx*4-12], eax}
@@ -3404,6 +3547,7 @@ $
 
 \begin{frame}[fragile,t]
 \frametitle{Going From Here}
+\vspace{-0.5em}
 \begin{itemize}
   \item Play with the examples
   \begin{itemize}
@@ -3420,7 +3564,7 @@ $
   \item e.g. telnet: \\ {\footnotesize \url{https://github.com/vsergeev/x86asm/blob/master/telnet.asm}}
   \item e.g. asmscan: \\ {\footnotesize\url{https://github.com/edma2/asmscan}}
 \end{itemize}
-  \item Write assembly for microcontrollers like Atmel AVR and ARM
+  \item Write assembly for microcontrollers like Atmel AVR, Microchip PIC, and ARM Cortex M series
 \end{itemize}
 \end{frame}
 

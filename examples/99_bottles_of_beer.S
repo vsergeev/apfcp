@@ -1,7 +1,6 @@
 # 99 Bottles of Beer on the Wall (example-10.S)
 .section .text
 .global main
-.global printf
 main:
   movl $99, %eax    # Start with 99 bottles!
   # We could use a cdecl callee preserved register,

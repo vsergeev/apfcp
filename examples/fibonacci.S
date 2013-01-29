@@ -21,7 +21,6 @@ main:
 
   ret
 
-.global printf
 myprint:
   # Save %ecx, %ebx, %eax
   # Pass formatStr (and %eax)
